@@ -1,0 +1,15 @@
+{
+  "name": "congress-2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@paypal/react-paypal-js": "^7.8.3",
+    "react": "^18.2.0"
+  }
+}
