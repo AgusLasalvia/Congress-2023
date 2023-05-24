@@ -51,18 +51,6 @@ const Checkout = () => {
     <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
       <div>
         <div className="wrapper">
-          <div className="product-img">
-            <img
-              src="https://cdn.pixabay.com/photo/2021/08/15/06/54/sunflower-6546993_1280.jpg"
-              alt="SunFlower"
-              height="320"
-              width="300"
-            />
-          </div>
-          <div className="product-info">
-            <div className="product-text">
-              <h1>Sunflower</h1>
-            </div>
             <div className="product-price-btn">
               <p>$20</p>
               <br></br>
@@ -84,7 +72,6 @@ const Checkout = () => {
             onApprove={onApprove}
           />
         ) : null}
-      </div>
     </PayPalScriptProvider>
   );
 };
