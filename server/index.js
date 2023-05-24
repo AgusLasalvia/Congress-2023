@@ -3,7 +3,6 @@ const app = express();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
-
 //email configuration
 var mail = nodemailer.createTransport({
   service: "gmail",
@@ -58,4 +57,12 @@ function SendMail(reciver, attachment) {
       content: new Buffer(attachment, "utf-8"),
     };
   }
+
+  mail.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email sent successfully: " + info.response);
+    }
+  });
 }
