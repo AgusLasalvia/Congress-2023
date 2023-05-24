@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
+
+//email configuration
 var mail = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -43,6 +45,7 @@ app.post("/registration", (req, res) => {
 });
 
 function SendMail(reciver, attachment) {
+  //mail individual options
   var mailOptions = {
     from: "quitel's mail",
     to: reciver,
