@@ -1,4 +1,5 @@
 const preRegister = require("./Models/pre-register");
+const Register = require('./Models/registration')
 const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const express = require("express");
@@ -48,7 +49,7 @@ app.post("/pre_registration", (req, res) => {
     'institution': req.body.institution,
   };
 
-  preRegister.insertMany(data);
+  preRegister.create(data);
 });
 
 
@@ -86,7 +87,20 @@ app.post("/registration", (req, res) => {
     first_reg,
     m_language,
   } = req.body;
+  result = Register.findOne({'email':email});
+  if (result === undefined || result === null){
+    Register.create({
+      'email':email,
+      'name':name,
+      'lastname':lastname
+    });
+  }else{
+    res.json({'message':'That person is already registed'})
+  }
 });
+
+
+
 
 //email send methods
 function SendMail(reciver, attachment) {
@@ -97,7 +111,7 @@ function SendMail(reciver, attachment) {
     subject: "example: Payment notification",
     text: "",
   };
-  if (attachment) {
+  if (attachment != null) {
     mailOptions["attachment"] = {
       filename: attachment,
       content: new Buffer(attachment, "utf-8"),
