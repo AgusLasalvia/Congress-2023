@@ -1,25 +1,27 @@
+const preRegister = require("./Models/pre-register");
 const nodemailer = require("nodemailer");
+const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const https = require('https')
-const http = require('http')
-const fs = require('fs')
+// const https = require('https')
+// const http = require('http')
+// const fs = require('fs')
 const app = express();
+//mongoose configuration
+mongoose.connect("");
 
+// //https configuration
+// const httpsPort = process.env.PORT || 5000;
+// var httpsCongig = {
+//   key: fs.readFileSync('./private/keys/key.pam'),
+//   cert: fs.readFileSync('./private/keys/cert.cert')
+// }
 
-//https configuration
-const httpsPort = process.env.PORT || 5000; 
-var httpsCongig = {
-  key: fs.readFileSync('./private/keys/key.pam'),
-  cert: fs.readFileSync('./private/keys/cert.cert')
-}
+// https.createServer(httpsCongig, app).listen(https);
 
-https.createServer(httpsCongig, app).listen(https);
-
-//http configuration
-const httpPort = process.env.PORT || 4000;
-http.createServer(app).listen(httpPort);
-
+// //http configuration
+// const httpPort = process.env.PORT || 4000;
+// http.createServer(app).listen(httpPort);
 
 //email configuration
 var mail = nodemailer.createTransport({
@@ -36,8 +38,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.post("/pre_registration", (req, res) => {
-  const { email, name, lastname, gender, level_ed, country, institution } =
-    req.body;
+  const data = {
+    'email': req.body.email,
+    'name': req.body.name,
+    'lastname': req.body.lastname,
+    'gender': req.body.gender,
+    'level_ed': req.body.level,
+    'country': req.body.country,
+    'institution': req.body.institution,
+  };
+
+  preRegister.insertMany(data);
+});
+
+
+app.post('/get_personInfo',(req,res)=>{
+  const data = {
+    'email':req.body.email
+  }
+
+  var result = preRegister.findOne(data);
+  if (result != null){
+    res.send(result)
+  }else if(result === undefined){
+    console.log('error on database');
+  }else{
+    res.redirect('') //Change URL of the 
+  }
 });
 
 app.post("/registration", (req, res) => {
@@ -60,7 +87,6 @@ app.post("/registration", (req, res) => {
     m_language,
   } = req.body;
 });
-
 
 //email send methods
 function SendMail(reciver, attachment) {
@@ -86,3 +112,5 @@ function SendMail(reciver, attachment) {
     }
   });
 }
+
+app.listen();
