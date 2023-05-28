@@ -9,6 +9,14 @@ const app = express();
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
 
+require('dotenv').config()
+
+
+//mongoose configuration
+mongoose.connect(process.env.MONGODB);
+console.log(process.env.PORT)
+
+
 //email configuration
 var mail = nodemailer.createTransport({
   service: "gmail",
