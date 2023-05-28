@@ -8,8 +8,13 @@ const cors = require("cors");
 // const http = require('http')
 // const fs = require('fs')
 const app = express();
+
+require('dotenv').config()
+
+
 //mongoose configuration
-mongoose.connect("");
+mongoose.connect(process.env.MONGODB);
+console.log(process.env.PORT)
 
 // //https configuration
 // const httpsPort = process.env.PORT || 5000;
