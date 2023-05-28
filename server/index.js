@@ -5,17 +5,10 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-
-//mongoose configuration
-mongoose.connect(process.env.MONGODB);
-
 require('dotenv').config()
 
-
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
-console.log(process.env.PORT)
-
 
 //email configuration
 var mail = nodemailer.createTransport({
