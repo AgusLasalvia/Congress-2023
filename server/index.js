@@ -4,25 +4,10 @@ const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-// const https = require('https')
-// const http = require('http')
-// const fs = require('fs')
 const app = express();
+
 //mongoose configuration
-mongoose.connect("");
-
-// //https configuration
-// const httpsPort = process.env.PORT || 5000;
-// var httpsCongig = {
-//   key: fs.readFileSync('./private/keys/key.pam'),
-//   cert: fs.readFileSync('./private/keys/cert.cert')
-// }
-
-// https.createServer(httpsCongig, app).listen(https);
-
-// //http configuration
-// const httpPort = process.env.PORT || 4000;
-// http.createServer(app).listen(httpPort);
+mongoose.connect(process.env.MONGODB);
 
 //email configuration
 var mail = nodemailer.createTransport({
@@ -127,4 +112,4 @@ function SendMail(reciver, attachment) {
   });
 }
 
-app.listen();
+app.listen(process.env.PORT,`server listening in port ${process.env.PORT}`);

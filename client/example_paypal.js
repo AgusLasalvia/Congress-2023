@@ -48,7 +48,7 @@ const Checkout = () => {
   }, [success]);
 
   return (
-    <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
+    <PayPalScriptProvider options={{ "client-id": process.env.CLIENT_ID }}>
       <div>
         <div className="wrapper">
             <div className="product-price-btn">
