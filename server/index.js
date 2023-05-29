@@ -33,6 +33,7 @@ app.use(cors());
 app.put("/pre_registration", (req, res) => {
   const data = req.body;
   preRegister.create(data);
+  res.redirect('quitel.site/')
 });
 
 

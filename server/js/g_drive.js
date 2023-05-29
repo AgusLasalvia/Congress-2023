@@ -23,7 +23,7 @@ export async function uploadFile() {
       body: fs.createReadStream(),
     };
 
-    const response = await driveService.files.create({
+    const response = driveService.files.create({
       resource: fileData,
       media: media,
       field: "id",
