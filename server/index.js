@@ -1,10 +1,10 @@
 const preRegister = require("./Models/pre-register");
 const Register = require('./Models/registration')
 const nodemailer = require("nodemailer");
+const bodyParse = require('body-parser');
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const bodyParse = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000
 // require('dotenv').config()
@@ -86,4 +86,4 @@ function SendMail(reciver, attachment) {
   });
 }
 
-app.listen(port,`server listening in port ${port}`);
+app.listen(port,()=>`server listening in port ${port}`);
