@@ -1,3 +1,4 @@
+import uploadFile from './js/g_drive'
 const preRegister = require("./Models/pre-register");
 const Register = require('./Models/registration')
 const nodemailer = require("nodemailer");
@@ -8,6 +9,7 @@ const cors = require("cors");
 const app = express();
 require('dotenv').config()
 const port = process.env.PORT || 5000
+
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
 console.log(process.env.PORT);
@@ -59,9 +61,6 @@ app.put("/registration", (req, res) => {
     res.json({'message':'That person is already registed'})
   }
 });
-
-
-
 
 //email send methods
 function SendMail(reciver, attachment) {
