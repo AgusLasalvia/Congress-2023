@@ -7,9 +7,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000
-// require('dotenv').config()
+require('dotenv').config()
 //mongoose configuration
 mongoose.connect('mongodb+srv://AgusLasalvia:agus1307@cluster0.ut5bic1.mongodb.net/?retryWrites=true&w=majority');
+console.log(process.env.PORT);
+console.log(process.env.MONGODB);
 
 //email configuration
 var mail = nodemailer.createTransport({
