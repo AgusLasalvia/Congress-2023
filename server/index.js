@@ -8,7 +8,7 @@ const app = express();
 require('dotenv').config()
 
 //mongoose configuration
-mongoose.connect(process.env.MONGODB);
+mongoose.connect('mongodb+srv://AgusLasalvia:agus1307@cluster0.ut5bic1.mongodb.net/?retryWrites=true&w=majority');
 console.log(process.env.MONGODB);
 console.log(process.env.PORT);
 
