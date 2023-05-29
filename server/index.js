@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 5000
 require('dotenv').config()
+const port = process.env.PORT || 5000
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
 console.log(process.env.PORT);
