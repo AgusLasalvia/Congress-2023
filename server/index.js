@@ -6,7 +6,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 require('dotenv').config()
-
+const port = process.env.PORT
 //mongoose configuration
 mongoose.connect('mongodb+srv://AgusLasalvia:agus1307@cluster0.ut5bic1.mongodb.net/?retryWrites=true&w=majority');
 
@@ -84,4 +84,4 @@ function SendMail(reciver, attachment) {
   });
 }
 
-app.listen(process.env.PORT,`server listening in port ${process.env.PORT}`);
+app.listen(port,`server listening in port ${port}`);
