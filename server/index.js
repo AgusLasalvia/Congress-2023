@@ -25,16 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.post("/pre_registration", (req, res) => {
-  const data = {
-    'email': req.body.email,
-    'name': req.body.name,
-    'lastname': req.body.lastname,
-    'gender': req.body.gender,
-    'level_ed': req.body.level,
-    'country': req.body.country,
-    'institution': req.body.institution,
-  };
-
+  const data = req.body;
   preRegister.create(data);
 });
 
