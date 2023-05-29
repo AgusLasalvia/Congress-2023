@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require('dotenv').config()
-const port = process.env.PORT
+const port = process.env.PORT || 5000
+// require('dotenv').config()
 //mongoose configuration
 mongoose.connect('mongodb+srv://AgusLasalvia:agus1307@cluster0.ut5bic1.mongodb.net/?retryWrites=true&w=majority');
 
