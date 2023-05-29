@@ -55,31 +55,11 @@ app.post('/get_personInfo',(req,res)=>{
 });
 
 app.post("/registration", (req, res) => {
-  const {
-    email,
-    name,
-    lastname,
-    gender,
-    level_ed,
-    position,
-    main_inst,
-    inst_addrs,
-    country,
-    region,
-    city,
-    postal,
-    modality,
-    sp_meal,
-    first_reg,
-    m_language,
-  } = req.body;
+  const { email } = req.body.email;
+  const data = req.body
   result = Register.findOne({'email':email});
   if (result === undefined || result === null){
-    Register.create({
-      'email':email,
-      'name':name,
-      'lastname':lastname
-    });
+    Register.create(data);
   }else{
     res.json({'message':'That person is already registed'})
   }

@@ -2,9 +2,21 @@ let mongoose = require('mongoose');
 let schema = mongoose.Schema;
 
 let registerSchema = new schema({
-    'email':String,
-    'name':String,
-    'lastname':String,
+    email:String,
+    name:String,
+    lastName: String,
+    gender: String,
+    levelEducatino: String,
+    position: String,
+    mainInstitution: String,
+    institutionAddress: String,
+    country: String,
+    region: String,
+    postal: Number,
+    modality: String,
+    speacialMeal: String,
+    motherLanguage:String
+    
 });
 
 
