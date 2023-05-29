@@ -9,6 +9,8 @@ require('dotenv').config()
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
+console.log(process.env.MONGODB);
+console.log(process.env.PORT);
 
 //email configuration
 var mail = nodemailer.createTransport({
