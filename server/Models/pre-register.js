@@ -13,6 +13,6 @@ let preRegisterSchema = new schema({
     infromation:Boolean
 });
 
-let preRegister = mongoose.model("PreRegistration",preRegisterSchema);
+let preRegister = mongoose.model("PreRegister",preRegisterSchema);
 
 module.exports = preRegister;
