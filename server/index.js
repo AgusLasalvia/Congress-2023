@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
 
-app.post("/pre_registration", (req, res) => {
+app.put("/pre_registration", (req, res) => {
   const data = req.body;
   preRegister.create(data);
 });
@@ -49,7 +49,7 @@ app.post('/get_personInfo',(req,res)=>{
   }
 });
 
-app.post("/registration", (req, res) => {
+app.put("/registration", (req, res) => {
   const { email } = req.body.email;
   const data = req.body
   result = Register.findOne({'email':email});
