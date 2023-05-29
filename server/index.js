@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
+const bodyParse = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000
 // require('dotenv').config()
@@ -22,6 +23,7 @@ var mail = nodemailer.createTransport({
 //express conficurations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParse.json());
 app.use(cors());
 
 app.post("/pre_registration", (req, res) => {
