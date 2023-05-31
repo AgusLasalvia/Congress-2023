@@ -12,8 +12,9 @@ const port = process.env.PORT || 5000
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
-console.log(process.env.PORT);
-console.log(process.env.MONGODB);
+mongoose.connection.once("open", () => {
+  console.log('Mongodb connected')
+})
 
 //email configuration
 var mail = nodemailer.createTransport({
@@ -33,13 +34,14 @@ app.use(cors());
 app.put("/pre_registration", (req, res) => {
   const data = req.body;
   preRegister.create(data);
-  res.redirect('quitel.site/')
+  SendMail(data)
+  res.redirect('https://quitel.site/')
 });
 
 
 app.post('/get_personInfo',(req,res)=>{
   const data = {
-    'email':req.body.email
+    'email': req.body.email
   }
 
   var result = preRegister.findOne(data);
@@ -48,7 +50,7 @@ app.post('/get_personInfo',(req,res)=>{
   }else if(result === undefined){
     console.log('error on database');
   }else{
-    res.redirect('') //Change URL of the 
+    res.redirect('') //Change URL of the home
   }
 });
 
@@ -63,21 +65,23 @@ app.put("/registration", (req, res) => {
   }
 });
 
+
+app.put("/submit_abstract",(req,res) =>{
+  const data = req.body;
+  const file = req.body.file
+  SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');
+  uploadFile();
+  });
+
 //email send methods
-function SendMail(reciver, attachment) {
+function SendMail(reciver,message,subject) {
   //mail individual options
   var mailOptions = {
-    from: "quitel's mail",
-    to: reciver,
-    subject: "example: Payment notification",
-    text: "",
+    from: "quitel2023@gmail.com",
+    to: reciver['email'],
+    subject: subject,
+    text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`
   };
-  if (attachment != null) {
-    mailOptions["attachment"] = {
-      filename: attachment,
-      content: new Buffer(attachment, "utf-8"),
-    };
-  }
 
   mail.sendMail(mailOptions, function (err, info) {
     if (err) {
@@ -86,6 +90,6 @@ function SendMail(reciver, attachment) {
       console.log("Email sent successfully: " + info.response);
     }
   });
-}
+};
 
 app.listen(port,()=>`server listening in port ${port}`);
