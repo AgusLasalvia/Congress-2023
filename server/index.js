@@ -31,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
 
+
+//Routes POST and PUT
 app.put("/pre_registration", (req, res) => {
   const data = req.body;
   preRegister.create(data);
