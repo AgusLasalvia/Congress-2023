@@ -1,5 +1,4 @@
-//import uploadFile from './js/g_drive'
-const upload = require('./js/g_drive.js')
+//const upload = require('./js/g_drive.js')
 const preRegister = require("./Models/pre-register");
 const Register = require('./Models/registration')
 const nodemailer = require("nodemailer");
