@@ -3,7 +3,7 @@ const { google } = require("googleapis");
 
 const GOOGLE_IP_FOLDER_ID = "";
 
-export async function uploadFile() {
+async function uploadFile() {
   try {
     const auth = new google.auth.GoogleAuth({
       keyFile: "./googlekey.json",
@@ -34,3 +34,5 @@ export async function uploadFile() {
     console.log("error");
   }
 }
+
+module.exports = uploadFile();
