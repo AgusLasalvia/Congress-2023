@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB);
 mongoose.connection.once("open", () => {
   console.log('Mongodb connected')
 })
-
+console.log("server start")
 //email configuration
 var mail = nodemailer.createTransport({
   service: "gmail",
