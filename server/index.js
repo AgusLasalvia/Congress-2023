@@ -95,4 +95,4 @@ function SendMail(reciver,message,subject) {
   });
 };
 
-app.listen(port,()=>`server listening in port ${port}`);
+app.listen(port,()=>console.info(`server listening in port ${port}`));
