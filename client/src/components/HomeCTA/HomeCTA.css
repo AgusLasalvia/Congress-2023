@@ -1,0 +1,25 @@
+.home-cta {
+  margin-top: 12rem;
+}
+
+.text-cta {
+  color: #212121;
+  opacity: 0.5;
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  font-weight: 600;
+}
+.arrow {
+  margin-top: 4px;
+  opacity: 0.5;
+}
+
+/* for mobile devices in landscape */
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+  .home-cta {
+    margin-top: 8rem;
+  }
+
+  .text-cta {
+    font-size: clamp(0.8rem, 2.2vw, 0.75rem);
+  }
+}
