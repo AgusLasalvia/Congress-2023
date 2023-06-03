@@ -14,9 +14,6 @@ export default defineConfig({
     }),
   ],
   server: {
-    https:{
-      cert:''
-    },
     port: process.env.PORT,
     host: `0.0.0.0`,
   },
