@@ -58,7 +58,7 @@ export default defineConfig({
       cVGvAoGATDsjID/N59A+q19AT6b2NMG/Dfuf68qIbUO2dZyHtjEqL2Krm1WxX1eq
       dbXEs+ShwTggWIZNZ46rv1YKLfbGamywVW/DYPTdnFvEuD5R6wFDhmmtPZ7keWoj
       XGbgbAsab0ap2bXTeT7S2cbd9Ag2TCSWXRPqSfyzRRHnaMgGICo=`
-    }
+    },
     port: process.env.PORT,
     host: `0.0.0.0`,
   },
