@@ -79,6 +79,9 @@ export default function Navbar() {
                               <NavLink className="nav-link" to="/Quitel/pre-registration">Pre-registration</NavLink>
                          </li>
                          <li>
+                              <NavLink className="nav-link" to="/Quitel/registration">Pre-registration</NavLink>
+                         </li>
+                         <li>
                               <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
                          </li>
                          <li>
