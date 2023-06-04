@@ -1,14 +1,19 @@
-//const upload = require('./js/g_drive.js')
+const authentication = require('./js/google-sheet')
 const preRegister = require("./Models/pre-register");
 const Register = require('./Models/registration')
+const googleSheet = require('./js/google-sheet');
+const uploadFile = require('./js/g_drive.js')
 const nodemailer = require("nodemailer");
 const bodyParse = require('body-parser');
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
+const { auth } = require('google-auth-library');
 const app = express();
 require('dotenv').config()
+
 const port = process.env.PORT || 5000
+
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
@@ -32,12 +37,12 @@ app.use(bodyParse.json());
 app.use(cors());
 
 
-//Routes POST and PUT
+//Routes POST
 app.put("/pre_registration", (req, res) => {
   const data = req.body;
   preRegister.create(data);
   SendMail(data)
-  res.redirect('https://quitel.site/')
+  res.redirect('https://www.quitel.site/')
 });
 
 
@@ -56,23 +61,31 @@ app.post('/get_personInfo',(req,res)=>{
   }
 });
 
-app.put("/registration", (req, res) => {
-  const { email } = req.body.email;
+app.post("/registration",async (req, res) => {
   const data = req.body
-  result = Register.findOne({'email':email});
+  const  sheets  = (await authentication).sheets
+  const response = await sheets.spreadsheets.values.append({
+    spreadsheetID: process.env.REGISTRATION_ID_FOLDER,
+    range:'Sheet1',
+    valueInputOption: "USER_ENTERED",
+    resource:[
+      [  ]
+    ]
+  })
+  result = Register.findOne({'email':data['email']});
   if (result === undefined || result === null){
     Register.create(data);
+
   }else{
     res.json({'message':'That person is already registed'})
   }
 });
 
 
-app.put("/submit_abstract",(req,res) =>{
+app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
   const file = req.body.file
   SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');
-  uploadFile();
   });
 
 //email send methods
