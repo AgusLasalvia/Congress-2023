@@ -2,6 +2,10 @@
   margin-bottom: 2rem;
 }
 
+.info-title.fees.paypal {
+  margin-bottom: 1rem;
+}
+
 .page-title-p.fees {
   font-size: clamp(1rem, 2.2vw, 0.75rem);
 }
@@ -20,8 +24,48 @@
   margin-top: 1rem;
 }
 
+.line-input p {
+  font-weight: 700;
+}
+
+.form-select {
+  width: 18rem;
+
+  margin-top: 4px;
+  padding: 0.5rem;
+
+  border: none;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: #212121;
+
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  line-height: 1.65rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+}
+
+.form-select option {
+  background-color: white;
+}
+
 @media screen and (orientation: landscape) and (max-width: 1024px) {
   .page-title-p.fees {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .info-title.fees {
+    margin-bottom: 1rem;
+  }
+
+  .info-title.fees.paypal {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-select {
+    width: 20rem;
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
   }
 }

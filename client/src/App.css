@@ -16,7 +16,7 @@
   --bg: #e0e0e0;
   --black: #212121;
   --white: #d9d9d9;
-  --gray: #c4c1ba;
+  --green: #506437;
   --blue: #546e7a;
   --sweet-blue: #528aa4;
   --pink: #c97582;
@@ -96,10 +96,6 @@ body {
   flex-direction: column;
 }
 
-.info-box:nth-child(3) {
-  margin-bottom: 0px;
-}
-
 .info-title {
   color: #212121;
   font-size: clamp(1.6rem, 2.2vw, 0.75rem);
@@ -124,24 +120,74 @@ body {
   text-decoration: underline;
 }
 
-.form-button-long-blue,
-.form-button-long-pink {
-  color: var(--white);
+.button-long-blue,
+.button-long-pink,
+.upload-button {
+  color: white;
   margin-top: 1rem;
   text-decoration: none;
   text-align: center;
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
   font-weight: 500;
   border-radius: 12px;
   padding: 1rem;
   margin-inline: none;
+  cursor: pointer;
 }
 
-.form-button-long-blue {
+.button-long-blue {
   background-color: var(--sweet-blue);
 }
 
-.form-button-long-pink {
+.button-long-pink {
   background-color: var(--pink);
+}
+
+.upload-button {
+  background-color: var(--green);
+}
+
+/* forms common */
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.form-label {
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  font-weight: 700;
+}
+
+.form-input {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: #212121;
+
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  line-height: 1.65rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  transition: all 0.2s;
+  box-shadow: 0px 0px 4px rgb(255, 255, 255);
 }
 
 /* for mobile devices in landscape */
@@ -165,8 +211,17 @@ body {
     line-height: 1.2rem;
   }
 
-  .form-button-long-blue,
-  .form-button-long-pink {
+  .form-label {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 0.5rem;
     line-height: 1.2rem;

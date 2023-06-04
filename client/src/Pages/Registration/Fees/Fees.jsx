@@ -54,7 +54,6 @@ export default function Fees() {
                                    <p>40</p>
                               </div>
                          </div>
-
                     </div>
 
                     {/* From July 1st */}
@@ -94,7 +93,7 @@ export default function Fees() {
                          </div>
                     </div>
 
-                    {/* From July 1st */}
+                    {/* To be noted */}
                     <div className="info-box">
                          <div className="info-text">
                               <div className="line heading">
@@ -108,14 +107,34 @@ export default function Fees() {
                               <br />
                               <br />
                               <div className="line heading">
-                                   <p>The registration package for the participants includes:</p>
+                                   <p>Researchers and Students belonging to PEDECIBA (Uruguay):</p>
                               </div>
                               <p>
                                    Researchers and students who belong to PEDECIBA and who wish to pay through PEDECIBA must complete the following <a href="https://drive.google.com/file/d/1Ctr87tIPmz5BkRSXfdCY3ddYxlVduWxo/view" rel="noreferrer" target="_blank">form</a> and attach it to the <b>Registration payment receipt</b> section found in the registration form.
                               </p>
                          </div>
-
                     </div>
+
+                    {/* Payment */}
+                    <div className="info-box">
+                         <div className="info-text">
+                              <h1 className="info-title fees paypal">Registration fee payment</h1>
+                              <div className="line">
+                                   <p>Payments can be made with PayPal using a credit or debit card.</p>
+                              </div>
+                              <div className="line-input">
+                                   <p>Registration fee</p>
+                                   <select name="registration-fee" id="fee-select" className="form-select">
+                                        <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
+                                        <option value="phdstudents">Master / PhD Students - 271 USD</option>
+                                        <option value="undergraduates">Undergraduate Students - 225 USD</option>
+                                        <option value="accompanying">Accompanying - 180 USD</option>
+                                        <option value="dinner"> Dinner - 40 USD</option>
+                                   </select>
+                              </div>
+                         </div>
+                    </div>
+
 
                </div>
 
