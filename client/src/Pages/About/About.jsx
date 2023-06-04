@@ -1,20 +1,24 @@
 import Footer from "../../components/Footer/Footer";
 
 export default function About() {
-     return (
-          <div className="about">
+     // Scrolls to top when rendered.
+     // Otherwise when switching routes the user would remain at the same Y position in the window.
+     window.scrollTo(0, 0);
 
-               {/* About chitel */}
-               <h1 className="about-title">
-                    <p className="about-title-p">
+     return (
+          <div className="page-wrapper">
+
+               {/* Page title */}
+               <h1 className="page-title">
+                    <p className="page-title-p">
                          About
                     </p>
-                    <p className="about-title-p">
+                    <p className="page-title-p">
                          QUITEL/CHITEL
                     </p>
                </h1>
 
-               <div className="about-info">
+               <div className="page-info">
                     {/* The origins */}
                     <div className="info-box">
                          <h1 className="info-title">The origins.</h1>

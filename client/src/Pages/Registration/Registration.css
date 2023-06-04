@@ -1,0 +1,27 @@
+.info-title.fees {
+  margin-bottom: 2rem;
+}
+
+.page-title-p.fees {
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.info-text .heading p {
+  font-weight: 700;
+}
+
+.info-text .line.heading.second {
+  margin-top: 1rem;
+}
+
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+  .page-title-p.fees {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+}

@@ -9,6 +9,7 @@ export default function Navbar() {
 
      window.addEventListener("orientationchange", () => {
           setIsLandscape(!isLandscape);
+
           console.log("orientation changed");
      });
 
@@ -29,9 +30,11 @@ export default function Navbar() {
 
 
      useEffect(() => {
+
           console.log("isMobile: " + isMobile);
           console.log("landscape mode: " + isLandscape);
-     }, [isLandscape])
+
+     }, [isLandscape, isMobile])
 
      return (
 
@@ -67,7 +70,7 @@ export default function Navbar() {
                <nav role="navigation" id="nav">
                     <ul id="menu">
                          <li>
-                              <NavLink className={({ isActive, isPending }) => isPending ? "nav-link pending" : isActive ? "nav-link active" : "nav-link"} to="/Quitel/">Home</NavLink>
+                              <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
                          </li>
                          <li>
                               <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
@@ -76,10 +79,7 @@ export default function Navbar() {
                               <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
                          </li>
                          <li>
-                              <NavLink className="nav-link" to="/Quitel/pre-registration">Pre-registration</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/registration">Pre-registration</NavLink>
+                              <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
                          </li>
                          <li>
                               <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>

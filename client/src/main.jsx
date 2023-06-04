@@ -8,22 +8,23 @@ import Home from './Pages/Home/Home.jsx';
 import './Pages/Home/Home.css';
 import About from './Pages/About/About.jsx';
 import './Pages/About/About.css';
+import Registration from './Pages/Registration/Registration.jsx';
+import './Pages/Registration/Registration.css';
 
 // component imports
 import './components/Navbar/Navbar.css';
 import './components/HomeCTA/HomeCTA.css';
 import './components/Footer/Footer.css';
 import ErrorElement from './Pages/ErrorElement.jsx';
+import Fees from './Pages/Registration/Fees/Fees.jsx';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/quitel/" element={<App />}>
     <Route index element={<Home />} />
     <Route path="/quitel/about" element={<About />} />
+    <Route path="/quitel/registration" element={<Registration />} />
+    <Route path="/quitel/registration-info" element={<Fees />} />
     <Route path="*" element={<ErrorElement />} />
-    {/* 
-    <Route path="/portfolio/about" element={<About />} />
-     
-    */}
   </Route>
 )
 );

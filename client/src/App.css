@@ -1,3 +1,4 @@
+/* common styles */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap");
 
 * {
@@ -8,7 +9,6 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  -webkit-tap-highlight-color: transparent;
   font-family: "Raleway", sans-serif;
 }
 
@@ -18,6 +18,7 @@
   --white: #d9d9d9;
   --gray: #c4c1ba;
   --blue: #546e7a;
+  --sweet-blue: #528aa4;
   --pink: #c97582;
   --darkpink: #a56063;
 }
@@ -51,7 +52,39 @@ body {
   font-weight: 400;
 }
 
-/* info box */
+/* info box & common page styles */
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url("/assets/images/blobs.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.page-title {
+  margin-top: 10rem;
+  margin-inline: auto;
+  text-align: center;
+  width: 90vw;
+  color: var(--black);
+  font-size: clamp(2.2rem, 2.2vw, 0.75rem);
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.page-title-p:nth-child(1) {
+  font-weight: 400;
+}
+
+.page-title-p:nth-child(2) {
+  font-weight: 600;
+}
+
+.page-info {
+  margin-top: 4rem;
+  margin-inline: auto;
+  width: 90vw;
+}
 
 .info-box {
   background-color: var(--white);
@@ -91,8 +124,37 @@ body {
   text-decoration: underline;
 }
 
+.form-button-long-blue,
+.form-button-long-pink {
+  color: var(--white);
+  margin-top: 1rem;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-inline: none;
+}
+
+.form-button-long-blue {
+  background-color: var(--sweet-blue);
+}
+
+.form-button-long-pink {
+  background-color: var(--pink);
+}
+
 /* for mobile devices in landscape */
 @media screen and (orientation: landscape) and (max-width: 1024px) {
+  .page-title {
+    margin-top: 6rem;
+    font-size: clamp(1.6rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
   .info-title {
     font-size: clamp(1rem, 2.2vw, 0.75rem);
   }
@@ -100,6 +162,13 @@ body {
   .info-text p,
   .info-text ul {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    line-height: 1.2rem;
+  }
+
+  .form-button-long-blue,
+  .form-button-long-pink {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 0.5rem;
     line-height: 1.2rem;
   }
 }

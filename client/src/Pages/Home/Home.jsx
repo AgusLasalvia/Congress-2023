@@ -2,6 +2,10 @@ import Footer from "../../components/Footer/Footer";
 import HomeCTA from "../../components/HomeCTA/HomeCTA";
 
 export default function Home() {
+     // Scrolls to top when rendered.
+     // Otherwise when switching routes the user would remain at the same Y position in the window.
+     window.scrollTo(0, 0);
+
      return (
           <div className="home">
                <div className="hero">
