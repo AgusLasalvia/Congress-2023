@@ -45,7 +45,7 @@ app.get('/',(req,res)=>{
 })
 
 //Routes POST
-app.get("/pre-registration", (req, res) => {
+app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
   //MongoDB data Creation
