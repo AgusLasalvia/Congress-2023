@@ -30,6 +30,9 @@ var mail = nodemailer.createTransport({
   },
 });
 
+
+
+
 //express conficurations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,18 +40,22 @@ app.use(bodyParse.json());
 app.use(cors());
 
 
-//Routes POST
-app.put("/pre_registration", (req, res) => {
-  const data = req.body;
+app.get('/',(req,res)=>{
+  res.redirect('https://quitel23.site')
+})
 
+//Routes POST
+app.get("/pre-registration", (req, res) => {
+  const data = req.body;
+  console.log(data);
   //MongoDB data Creation
-  preRegister.create(data);
+  // preRegister.create(data);
 
   //Sheet data append
-  sendSheetData(registrationID,data);
+  // sendSheetData(registrationID,data);
 
   //Mail with data
-  SendMail(data);
+  // SendMail(data);
 
   //Redorecton to home page
   res.redirect('https://www.quitel.site/')
@@ -89,7 +96,7 @@ app.post("/registration",async (req, res) => {
 
 app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
-  const file = req.body.file
+  const file = req.file;
   SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');
   });
 
@@ -113,15 +120,15 @@ function SendMail(reciver,message,subject) {
 };
 
 async function sendSheetData(folderID,data) {
-  const sheets = (await authentication).sheets
-  const response = await sheets.spreadsheets.values.append({
+  const sheets = (await authentication).sheets;
+  const response = sheets.spreadsheets.values.append({
     spreadsheetID: folderID,
     range: 'Sheet1',
     valueInputOption: "USER_ENTERED",
     resource: [
       []
     ]
-  })
+  });
 }
 
 app.listen(port,()=>console.info(`server listening in port ${port}`));
