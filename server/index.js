@@ -1,19 +1,19 @@
 const authentication = require('./js/google-sheet')
 const preRegister = require("./Models/pre-register");
-const Register = require('./Models/registration')
-const googleSheet = require('./js/google-sheet');
+const Register = require('./Models/registration');
 const uploadFile = require('./js/g_drive.js')
 const nodemailer = require("nodemailer");
 const bodyParse = require('body-parser');
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { auth } = require('google-auth-library');
 const app = express();
-require('dotenv').config()
-
 const port = process.env.PORT || 5000
 
+require('dotenv').config()
+
+const registrationID = process.env.REGISTRATION_FOLDER_ID
+const preRegisterID = process.env.PREREGISTER_FOLDER_ID
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
@@ -40,8 +40,17 @@ app.use(cors());
 //Routes POST
 app.put("/pre_registration", (req, res) => {
   const data = req.body;
+
+  //MongoDB data Creation
   preRegister.create(data);
-  SendMail(data)
+
+  //Sheet data append
+  sendSheetData(registrationID,data);
+
+  //Mail with data
+  SendMail(data);
+
+  //Redorecton to home page
   res.redirect('https://www.quitel.site/')
 });
 
@@ -63,18 +72,14 @@ app.post('/get_personInfo',(req,res)=>{
 
 app.post("/registration",async (req, res) => {
   const data = req.body
-  const  sheets  = (await authentication).sheets
-  const response = await sheets.spreadsheets.values.append({
-    spreadsheetID: process.env.REGISTRATION_ID_FOLDER,
-    range:'Sheet1',
-    valueInputOption: "USER_ENTERED",
-    resource:[
-      [  ]
-    ]
-  })
+
   result = Register.findOne({'email':data['email']});
-  if (result === undefined || result === null){
+  if (result === undefined || result === null) {
+    
+    //MongoDB insert method
     Register.create(data);
+
+    //
 
   }else{
     res.json({'message':'That person is already registed'})
@@ -106,5 +111,17 @@ function SendMail(reciver,message,subject) {
     }
   });
 };
+
+async function sendSheetData(folderID,data) {
+  const sheets = (await authentication).sheets
+  const response = await sheets.spreadsheets.values.append({
+    spreadsheetID: folderID,
+    range: 'Sheet1',
+    valueInputOption: "USER_ENTERED",
+    resource: [
+      []
+    ]
+  })
+}
 
 app.listen(port,()=>console.info(`server listening in port ${port}`));
