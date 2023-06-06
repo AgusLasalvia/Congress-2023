@@ -6,11 +6,11 @@ let preRegisterSchema = new schema({
     firtName:String,
     lastName:String,
     gender:String,
-    level:String,
+    educationLevel:String,
     country:String,
-    institution:String,
+    mainIbnstitution:String,
     attendend:String,
-    infromation:Boolean
+    infromation:String
 });
 
 let preRegister = mongoose.model("PreRegister",preRegisterSchema);

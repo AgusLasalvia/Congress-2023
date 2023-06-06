@@ -40,14 +40,13 @@ app.use(bodyParse.json());
 app.use(cors());
 
 
-app.get('/',(req,res)=>{
-  res.redirect('https://quitel23.site')
-})
+
 
 //Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
+  preRegister.create(data)
   //MongoDB data Creation
   // preRegister.create(data);
 
