@@ -46,7 +46,7 @@ app.use(cors());
 app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
-  preRegister.create(data)
+  // preRegister.create(data)
   //MongoDB data Creation
   // preRegister.create(data);
 
@@ -57,7 +57,7 @@ app.post("/pre-registration", (req, res) => {
   // SendMail(data);
 
   //Redorecton to home page
-  res.redirect('https://www.quitel.site/')
+  // res.redirect('https://www.quitel.site/')
 });
 
 
