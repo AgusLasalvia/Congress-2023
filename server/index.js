@@ -49,7 +49,7 @@ app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
   console.log(data);
   const result = preRegister.findOne({'email':data['email']});
-
+  console.log(result)
   if (result != null || result != undefined){
     res.json('user already pre-registered');
     
