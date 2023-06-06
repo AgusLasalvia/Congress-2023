@@ -9,8 +9,8 @@ let preRegisterSchema = new schema({
     educationLevel:String,
     country:String,
     mainIbnstitution:String,
-    attendend:String,
-    infromation:String
+    hasAttended:String,
+    mail:String
 });
 
 let preRegister = mongoose.model("PreRegister",preRegisterSchema);
