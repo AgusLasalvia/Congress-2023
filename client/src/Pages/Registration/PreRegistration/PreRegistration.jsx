@@ -5,12 +5,14 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import { preRegistration, sendPreRegistration } from "../../../services/FormsService";
+import { validateData } from "../../../hooks/ValidateData";
 
 export default function PreRegistration() {
 
      // form data object
      const [formData, setFormData] = useState(preRegistration);
-
+     // Empty fields boolean
+     const [hasEmptyFields, setHasEmptyFields] = useState(false);
      // navigation hook
      const navigate = useNavigate();
      // step count state
@@ -19,6 +21,8 @@ export default function PreRegistration() {
 
      // Goes to the next step in the form
      const nextStep = () => {
+
+          // TODO: check for empty fields when going to the next step
           if (step <= 2) {
                setStep(step + 1);
           }
@@ -35,7 +39,12 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
-          sendPreRegistration(formData);
+          if (validateData(formData)) {
+               setHasEmptyFields(false);
+               sendPreRegistration(formData);
+          } else {
+               setHasEmptyFields(true);
+          }
      }
 
      return (
@@ -53,7 +62,6 @@ export default function PreRegistration() {
                                    {step < 3 ? "Step " + step + "/3" : "Last step!"}
                               </h1>
 
-
                               {/* Switches between steps */}
                               {(() => {
                                    switch (step) {
@@ -68,16 +76,19 @@ export default function PreRegistration() {
                                    }
                               })()}
 
+                              {hasEmptyFields && <p className="form-error-message">There are empty fields in one of the steps, please check.</p>}
+
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
                                    onClick={step == 3 ? handleSubmit : nextStep}
                               >{step == 3 ? "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
-
                          </div>
                     </div>
                </div>
+
                <Footer />
+
           </div>
      )
 }

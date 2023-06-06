@@ -190,7 +190,8 @@ body {
   margin-top: 2rem;
 }
 
-.form-label {
+.form-label,
+.info-box .form-error-message {
   font-size: clamp(1rem, 2.2vw, 0.75rem);
   color: var(--black);
   font-weight: 700;
@@ -266,6 +267,13 @@ body {
   color: var(--black);
 }
 
+.info-box .form-error-message {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--blue);
+  font-weight: 600;
+}
+
 /* for mobile devices in landscape */
 @media screen and (orientation: landscape) and (max-width: 1024px) {
   .page-title {
@@ -287,20 +295,15 @@ body {
     line-height: 1.2rem;
   }
 
-  .form-label {
-    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
-  }
-
-  .form-input {
-    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
-  }
-
   .form-select {
     width: 20rem;
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
   }
 
-  .form-radio-label {
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
   }
 

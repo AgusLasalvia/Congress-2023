@@ -34,6 +34,7 @@ export default function Step2({ setFormData, formData }) {
                <div className="form-input-wrapper">
                     <label className="form-label" htmlFor="Country<">Country</label>
                     <input className="form-input" type="text" id="country<" name="Country"
+                         value={formData.country}
                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                     />
                </div>
@@ -41,6 +42,7 @@ export default function Step2({ setFormData, formData }) {
                <div className="form-input-wrapper">
                     <label className="form-label" htmlFor="MainInstitution">Main Institution</label>
                     <input className="form-input" type="text" id="maininstitution" name="MainInstitution"
+                         value={formData.mainInstitution}
                          onChange={(e) => setFormData({ ...formData, mainInstitution: e.target.value })}
                     />
                </div>
