@@ -46,7 +46,9 @@ app.use(cors());
 app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
-  db.collection(preRegister).insert(data);
+
+  let postData = new preRegister(data)
+  postData.save();
   //MongoDB data Creation
   // preRegister.create(data);
 
