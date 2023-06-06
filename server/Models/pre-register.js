@@ -3,7 +3,7 @@ let schema = mongoose.Schema;
 
 let preRegisterSchema = new schema({
     email: String,
-    firtName:String,
+    firstName:String,
     lastName:String,
     gender:String,
     educationLevel:String,
