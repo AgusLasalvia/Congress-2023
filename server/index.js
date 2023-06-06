@@ -60,6 +60,7 @@ app.post("/pre-registration", (req, res) => {
 
   //Redorecton to home page
   res.json(data);
+  res.redirect('https://quitel23.site')
 });
 
 
