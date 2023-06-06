@@ -40,7 +40,9 @@ app.use(bodyParse.json());
 app.use(cors());
 
 
-
+app.get('/',(req,res)=>{
+  res.redirect('https://quitel23.site/Quitel')
+})
 
 //Routes POST
 app.post("/pre-registration", (req, res) => {
@@ -60,7 +62,7 @@ app.post("/pre-registration", (req, res) => {
 
   //Redorecton to home page
   res.json(data);
-  res.redirect('https://quitel23.site')
+  res.redirect('/')
 });
 
 
