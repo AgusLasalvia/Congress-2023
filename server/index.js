@@ -41,7 +41,7 @@ app.use(cors());
 
 
 app.get('/',(req,res)=>{
-  res.redirect('https://quitel23.site/Quitel')
+  res.redirect('https://quitel23.site')
 })
 
 //Routes POST
