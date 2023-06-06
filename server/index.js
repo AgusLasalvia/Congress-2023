@@ -46,11 +46,18 @@ app.get('/',(req,res)=>{
 
 //Routes POST
 app.post("/pre-registration", (req, res) => {
-  const data = req.body;
+  const data = req.body.preRegistration;
   console.log(data);
+  const result = preRegister.findOne({'email':data['email']});
 
-  let postData = new preRegister(data['preRegistration'])
-  postData.save();
+  if (result != null || result != undefined){
+    res.json('user already pre-registered');
+    
+  }else{
+    let postData = new preRegister(data);
+    postData.save();
+    res.json('user pre-registered successfully');
+  }
   //MongoDB data Creation
   // preRegister.create(data);
 
@@ -62,7 +69,6 @@ app.post("/pre-registration", (req, res) => {
 
   //Redorecton to home page
   res.json(data);
-  res.redirect('https://quitel23.site/Quitel/')
 });
 
 
