@@ -1,10 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 
 export default function Fees() {
+
+     const navigate = useNavigate();
      // Scrolls to top when rendered.
      // Otherwise when switching routes the user would remain at the same Y position in the window.
      window.scrollTo(0, 0);
 
+     const goBack = () => {
+          navigate("/quitel/registration");
+     }
      return (
           <div className="page-wrapper">
 
@@ -123,7 +129,7 @@ export default function Fees() {
                                    <p>Payments can be made with PayPal using a credit or debit card.</p>
                               </div>
                               <div className="line-input">
-                                   <p>Registration fee</p>
+                                   <label className="form-label" htmlFor="Email">Registration fee</label>
                                    <select name="registration-fee" id="fee-select" className="form-select">
                                         <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
                                         <option value="phdstudents">Master / PhD Students - 271 USD</option>
@@ -133,7 +139,11 @@ export default function Fees() {
                                    </select>
                               </div>
                          </div>
+                         <div className="button-long-blue">Registration form</div>
+                         <div className="button-long-pink" onClick={goBack}>Back</div>
+
                     </div>
+
 
 
                </div>

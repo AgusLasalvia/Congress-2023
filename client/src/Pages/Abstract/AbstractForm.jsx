@@ -8,7 +8,7 @@ export default function AbstractForm() {
      return (
           <div className="page-wrapper">
 
-               <div className="page-info abstract-form">
+               <div className="page-info form">
                     {/* The origins */}
                     <div className="info-box">
                          <h1 className="info-title">Abstract submission form</h1>
@@ -17,7 +17,7 @@ export default function AbstractForm() {
                                    <p>XLVI International Congress of Theoretical Chemists of Latin Expression</p>
                               </div>
 
-                              <div className="form-input-wrapper abstract-first">
+                              <div className="form-input-wrapper form-first">
                                    <label className="form-label" htmlFor="Email">Email</label>
                                    <input className="form-input" type="email" id="email" name="Email" />
                               </div>

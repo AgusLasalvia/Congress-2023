@@ -20,6 +20,7 @@ import './components/Navbar/Navbar.css';
 import './components/HomeCTA/HomeCTA.css';
 import './components/Footer/Footer.css';
 import ErrorElement from './Pages/ErrorElement.jsx';
+import PreRegistration from './Pages/Registration/PreRegistration/PreRegistration.jsx';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/quitel/" element={<App />}>
@@ -27,6 +28,8 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/quitel/about" element={<About />} />
     <Route path="/quitel/registration" element={<Registration />} />
     <Route path="/quitel/registration-info" element={<Fees />} />
+    {/* <Route path="/quitel/registration-form" element={<RegistrationForm />} /> */}
+    <Route path="/quitel/preregistration-form" element={<PreRegistration />} />
     <Route path="/quitel/abstract-submission" element={<Abstract />} />
     <Route path="/quitel/abstract-submission-form" element={<AbstractForm />} />
     <Route path="*" element={<ErrorElement />} />

@@ -86,6 +86,10 @@ body {
   width: 90vw;
 }
 
+.page-info.form {
+  margin-top: 10rem;
+}
+
 .info-box {
   background-color: var(--white);
   border-radius: 12px;
@@ -96,11 +100,26 @@ body {
   flex-direction: column;
 }
 
-.info-title {
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.line-input p {
+  font-weight: 700;
+}
+
+.info-title,
+.info-counter {
   color: #212121;
   font-size: clamp(1.6rem, 2.2vw, 0.75rem);
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+.info-counter {
+  margin-top: 1rem;
 }
 
 .info-text p,
@@ -139,6 +158,10 @@ body {
   background-color: var(--sweet-blue);
 }
 
+.submit-button {
+  margin-top: 4rem;
+}
+
 .button-long-pink {
   background-color: var(--pink);
 }
@@ -154,6 +177,13 @@ body {
   flex-direction: column;
 }
 
+.form-input-wrapper.form-first {
+  margin-top: 2rem;
+}
+.form-input-wrapper.form-first.radio {
+  margin-bottom: 2rem;
+}
+
 .form-upload-wrapper {
   display: flex;
   flex-direction: column;
@@ -162,6 +192,7 @@ body {
 
 .form-label {
   font-size: clamp(1rem, 2.2vw, 0.75rem);
+  color: var(--black);
   font-weight: 700;
 }
 
@@ -175,7 +206,7 @@ body {
 
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   background-color: white;
-  color: #212121;
+  color: var(--black);
 
   font-size: clamp(1rem, 2.2vw, 0.75rem);
   line-height: 1.65rem;
@@ -188,6 +219,51 @@ body {
 .form-input:focus {
   transition: all 0.2s;
   box-shadow: 0px 0px 4px rgb(255, 255, 255);
+}
+
+.form-select {
+  width: 18rem;
+
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+
+  border: none;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: var(--black);
+
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  line-height: 1.65rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+}
+
+.form-select option {
+  background-color: white;
+}
+
+.form-radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-radio-wrapper:nth-child(2) {
+  margin-top: 0.5rem;
+}
+
+.form-radio-label {
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  color: var(--black);
+  font-weight: 400;
+}
+
+.form-radio {
+  color: var(--black);
 }
 
 /* for mobile devices in landscape */
@@ -216,6 +292,15 @@ body {
   }
 
   .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select {
+    width: 20rem;
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .form-radio-label {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
   }
 
