@@ -17,7 +17,7 @@ const preRegisterID = process.env.PREREGISTER_FOLDER_ID
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
-mongoose.connection.once("open", () => {
+db = mongoose.connection.once("open", () => {
   console.log('Mongodb connected')
 })
 console.log("server start")
@@ -46,7 +46,7 @@ app.use(cors());
 app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
-  preRegister.create(data)
+  db.collection(preRegister).insert(data);
   //MongoDB data Creation
   // preRegister.create(data);
 
