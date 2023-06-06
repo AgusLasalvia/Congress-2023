@@ -47,7 +47,7 @@ app.post("/pre-registration", (req, res) => {
   const data = req.body;
   console.log(data);
 
-  let postData = new preRegister(data)
+  let postData = new preRegister(data['preRegistration'])
   postData.save();
   //MongoDB data Creation
   // preRegister.create(data);
