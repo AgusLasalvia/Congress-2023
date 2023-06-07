@@ -51,10 +51,14 @@ app.post("/pre-registration", (req, res) => {
   let postData = new preRegister(data);
   preRegister.findOne({
     email:data['email']
-  }).then( () =>{
-    postData.save()
-    //res.json('user pre-registered successfully')
-    });
+  }).then( result =>{
+    if (result.email == null ){
+      postData.save()
+      res.json('success')
+    }else{
+      res.json('user pre-registered successfully')
+    }
+  });
   
   //MongoDB data Creation
   // preRegister.create(data);
@@ -66,7 +70,6 @@ app.post("/pre-registration", (req, res) => {
   // SendMail(data);
 
   //Redorecton to home page
-  res.json(data);
 });
 
 
