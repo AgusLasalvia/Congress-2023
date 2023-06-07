@@ -53,7 +53,7 @@ app.post("/pre-registration", (req, res) => {
     email:data['email']
   }).then( result =>{
     console.log((result))
-    if (result.email == null ){
+    if (result == null ){
       postData.save()
       res.json('success')
     }else{
