@@ -57,7 +57,7 @@ app.post("/pre-registration", (req, res) => {
       postData.save()
       res.json('success')
     }else{
-      res.json('user pre-registered successfully')
+      res.json('user already pre-registered')
     }
   });
   
