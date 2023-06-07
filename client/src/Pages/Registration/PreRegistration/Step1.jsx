@@ -40,12 +40,13 @@ export default function Step1({ setFormData, formData }) {
                          value={formData.gender}
                          onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
                     >
+                         <option value="" disabled hidden>Select your gender</option>
                          <option value="male">Male</option>
                          <option value="female">Female</option>
                          <option value="nonbinary">Non binary</option>
                          <option value="other">Other</option>
                     </select>
                </div>
-          </div >
+          </div>
      )
 }

@@ -39,6 +39,7 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
+          console.log(formData)
           if (validateData(formData)) {
                setHasEmptyFields(false);
                sendPreRegistration(formData);
