@@ -275,7 +275,7 @@ body {
 }
 
 /* for mobile devices in landscape */
-@media screen and (orientation: landscape) and (max-width: 1024px) {
+@media screen and (orientation: landscape) and (max-width: 1366px) {
   .page-title {
     margin-top: 6rem;
     font-size: clamp(1.6rem, 2.2vw, 0.75rem);

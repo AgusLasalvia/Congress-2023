@@ -18,7 +18,7 @@ export default function Navbar() {
           document.getElementById("nav").classList.toggle("open");
      }
 
-     if (isMobile) {
+     if (window.matchMedia("only screen and (max-width: 1366px)").matches) {
           // listens for clicks outside the mobile menu to close it 
           document.onclick = function (clickEvent) {
                if (clickEvent.target.id !== 'nav' && clickEvent.target.id !== 'checkbox' && clickEvent.target.id !== 'menuStamp') {
