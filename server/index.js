@@ -90,22 +90,27 @@ app.post('/get_personInfo',(req,res)=>{
 });
 
 app.post("/registration",async (req, res) => {
-  const data = req.body
+  const data = req.body.requistration;
+  let postData = new Register(data);
+  Register.findOne({
+    email:data['email']
+  }).then(result =>{
+      if (result == null){
+        //MongoDB successfull
+        postData.save()
 
-  result = Register.findOne({'email':data['email']});
-  if (result === undefined || result === null) {
-    
-    //MongoDB insert method
-    Register.create(data);
+        //Shhet data append
+        //sendSheetData(registrationID,data)
 
-    //
-
-  }else{
-    res.json({'message':'That person is already registed'})
-  }
+        //Send mailOptions
+        //SendMail(data,'registered: ','registration')
+      }else{
+        res.json('already registered')
+      }
+    });
 });
 
-
+//Abstract submition
 app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
   const file = req.file;
