@@ -53,7 +53,7 @@ app.post("/pre-registration", (req, res) => {
     email:data['email']
   }).then( () =>{
     postData.save()
-    res.json('user pre-registered successfully')
+    //res.json('user pre-registered successfully')
     });
   
   //MongoDB data Creation
