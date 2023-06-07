@@ -52,6 +52,7 @@ app.post("/pre-registration", (req, res) => {
   preRegister.findOne({
     email:data['email']
   }).then( result =>{
+    console.log((result))
     if (result.email == null ){
       postData.save()
       res.json('success')
