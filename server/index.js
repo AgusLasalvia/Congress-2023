@@ -48,20 +48,14 @@ app.get('/',(req,res)=>{
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
   console.log(data);
+  let postData = new preRegister(data);
   preRegister.findOne({
     email:data['email']
-  },(err,oneUser) =>{
-      if (err) console.log(err);
-
-      else if (oneUser === null) {
-        let postData = new preRegister(data);
-        postData.save();
-        res.json('user pre-registered successfully');
-      
-      }else{
-        res.json('user already pre registered')
-      }
-  });
+  }).then( () =>{
+    postData.save()
+    res.json('user pre-registered successfully')
+    });
+  
   //MongoDB data Creation
   // preRegister.create(data);
 
