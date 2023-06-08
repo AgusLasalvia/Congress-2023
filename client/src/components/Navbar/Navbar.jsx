@@ -64,43 +64,46 @@ export default function Navbar() {
                          <span></span>
                          <span></span>
                     </div >
+
+                    {/* nav */}
+                    <nav role="navigation" id="nav">
+                         <ul id="menu">
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/abstract-submission">Abstract submission</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
+                              </li>
+                              <li>
+                                   <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
+                              </li>
+                              <li>
+                                   {/* TODO: Language selector */}
+                                   <p className="language-selector">EN</p>
+                              </li>
+                         </ul >
+                         {/* menu stamp */}
+                         <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
+                    </nav>
+
                </div>
 
-               {/* nav */}
-               <nav role="navigation" id="nav">
-                    <ul id="menu">
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/abstract-submission">Abstract submission</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
-                         </li>
-                         <li>
-                              <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
-                         </li>
-                         <li>
-                              {/* TODO: Language selector */}
-                              <p className="language-selector">EN</p>
-                         </li>
-                    </ul >
-                    {/* menu stamp */}
-                    <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
-               </nav>
+
           </header >
      )
 }

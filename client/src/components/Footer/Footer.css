@@ -66,3 +66,20 @@
     margin-bottom: 1.3rem;
   }
 }
+
+/* Desktop */
+@media screen and (min-width: 1367px) {
+  .footer-content {
+    width: 50vw;
+  }
+
+  .footer {
+    height: 20rem;
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  .footer {
+    height: 23.5rem;
+  }
+}

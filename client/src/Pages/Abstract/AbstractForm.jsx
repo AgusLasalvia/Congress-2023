@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
 export default function AbstractForm() {
+
+     const navigate = useNavigate();
+     const previousStep = () => {
+          navigate("/Quitel/abstract-submission");
+     }
+
      // Scrolls to top when rendered.
      // Otherwise when switching routes the user would remain at the same Y position in the window.
      window.scrollTo(0, 0);
@@ -47,6 +54,7 @@ export default function AbstractForm() {
 
                               {/* Submit button */}
                               <div className="button-long-blue abstract-submit-button">Submit</div>
+                              <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>
                </div>

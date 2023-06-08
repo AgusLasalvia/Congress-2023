@@ -106,6 +106,12 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.line-input {
+  display: flex;
+  flex-direction: column;
+  margin-block: 1rem;
+}
+
 .line-input p {
   font-weight: 700;
 }
@@ -223,8 +229,6 @@ body {
 }
 
 .form-select {
-  width: 18rem;
-
   margin-top: 0.5rem;
   padding: 0.7rem;
 
@@ -296,8 +300,8 @@ body {
   }
 
   .form-select {
-    width: 20rem;
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
   }
 
   .form-radio-label,
@@ -311,7 +315,117 @@ body {
   .button-long-pink,
   .upload-button {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
-    padding: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+/* for mobile devices in portrait */
+@media screen and (orientation: portrait) and (min-width: 768px) {
+  .info-box {
+    padding: 48px;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 2.2vw, 0.75rem);
+  }
+
+  .info-title {
+    font-size: clamp(1.5rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select option {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 768px) {
+  .page-title {
+    width: 65vw;
+  }
+  .page-info {
+    width: 65vw;
+  }
+  .info-box {
+    padding: 48px;
+  }
+}
+
+@media screen and (min-width: 1367px) {
+  .page-title {
+    width: 50vw;
+  }
+
+  .page-info {
+    /* margin-inline: auto; */
+    width: 50vw;
+  }
+
+  .page-info.form {
+    width: 35vw;
+    margin-inline: auto;
+  }
+
+  .info-box {
+    padding: 64px;
+  }
+
+  .page-title {
+    margin-top: 12rem;
+    font-size: clamp(2rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
+  .info-title {
+    font-size: clamp(1.3rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     line-height: 1.2rem;
+  }
+
+  .form-select {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
   }
 }

@@ -33,3 +33,14 @@
     font-size: clamp(0.8rem, 2.2vw, 0.75rem);
   }
 }
+
+/* Desktop */
+@media screen and (min-width: 1367px) {
+  .home-cta {
+    margin-top: 10rem;
+  }
+
+  .text-cta {
+    font-size: clamp(1rem, 2.2vw, 0.75rem);
+  }
+}

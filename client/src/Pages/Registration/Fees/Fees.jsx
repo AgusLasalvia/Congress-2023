@@ -139,6 +139,7 @@ export default function Fees() {
                                    </select>
                               </div>
                          </div>
+                         {/* TODO: add PayPal button */}
                          <div className="button-long-blue">Registration form</div>
                          <div className="button-long-pink" onClick={goBack}>Back</div>
 
