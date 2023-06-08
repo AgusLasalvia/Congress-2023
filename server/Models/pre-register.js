@@ -13,6 +13,6 @@ let preRegisterSchema = new schema({
     mail:String
 });
 
-let preRegister = mongoose.model("PreRegister",preRegisterSchema);
+let preRegister = mongoose.model("PreRegister",preRegisterSchema,"QUITEL");
 
 module.exports = preRegister;
