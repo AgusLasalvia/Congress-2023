@@ -60,17 +60,12 @@ app.post("/pre-registration", (req, res) => {
       res.json('user already pre-registered')
     }
   });
-  
-  //MongoDB data Creation
-  // preRegister.create(data);
 
   //Sheet data append
   // sendSheetData(registrationID,data);
 
   //Mail with data
   // SendMail(data);
-
-  //Redorecton to home page
 });
 
 
@@ -124,7 +119,7 @@ function SendMail(reciver,message,subject) {
     from: "quitel2023@gmail.com",
     to: reciver['email'],
     subject: subject,
-    text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`
+    text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
