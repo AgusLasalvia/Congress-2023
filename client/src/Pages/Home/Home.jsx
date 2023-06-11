@@ -59,8 +59,8 @@ export default function Home() {
                               </p>
                               <br />
                               <ul>
-                                   <li> Quantum Chemistry and Methodology</li>
-                                   <li> Medicinal Chemistry</li>
+                                   <li>Quantum Chemistry and Methodology</li>
+                                   <li>Medicinal Chemistry</li>
                                    <li>New Materials and Supramolecular Chemistry</li>
                                    <li>Computational Physical Chemistry</li>
                                    <li>Machine Learning</li>

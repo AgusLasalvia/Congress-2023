@@ -92,10 +92,9 @@ export default function Navbar() {
                               <li>
                                    <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
                               </li>
-                              <li>
-                                   {/* TODO: Language selector */}
+                              {/* <li>
                                    <p className="language-selector">EN</p>
-                              </li>
+                              </li> */}
                          </ul >
                          {/* menu stamp */}
                          <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />

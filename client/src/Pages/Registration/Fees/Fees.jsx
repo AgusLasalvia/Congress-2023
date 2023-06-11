@@ -20,14 +20,14 @@ export default function Fees() {
                          Registration fees
                     </p>
                     <p className="page-title-p fees">
-                         Early registration dates and pricing: All registration received before July 1st will be favored with a 10% discount.
+                         Early registration dates and pricing: All registrations received before August 1st will be favored with a 10% discount.
                     </p>
                </h1>
 
                <div className="page-info">
                     {/* Until June 30th */}
                     <div className="info-box">
-                         <h1 className="info-title fees">Early, until June 30th.</h1>
+                         <h1 className="info-title fees">Early, until August 1st.</h1>
                          <div className="info-text">
                               {/* Level */}
                               <div className="line heading">
@@ -64,7 +64,7 @@ export default function Fees() {
 
                     {/* From July 1st */}
                     <div className="info-box">
-                         <h1 className="info-title fees">From July 1st.</h1>
+                         <h1 className="info-title fees">From August 1st.</h1>
                          <div className="info-text">
                               {/* Level */}
                               <div className="line heading">
@@ -102,6 +102,7 @@ export default function Fees() {
                     {/* To be noted */}
                     <div className="info-box">
                          <div className="info-text">
+                              <h1 className="info-title fees">Please note:</h1>
                               <div className="line heading">
                                    <p>The registration package for the participants includes:</p>
                               </div>

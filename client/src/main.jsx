@@ -7,13 +7,13 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Home from './Pages/Home/Home.jsx';
 import './Pages/Home/Home.css';
 import About from './Pages/About/About.jsx';
-import './Pages/About/About.css';
 import Registration from './Pages/Registration/Registration.jsx';
 import './Pages/Registration/Registration.css';
 import Fees from './Pages/Registration/Fees/Fees.jsx';
 import Abstract from './Pages/Abstract/Abstract.jsx';
 import AbstractForm from './Pages/Abstract/AbstractForm.jsx';
 import './Pages/Abstract/Abstract.css';
+import Speakers from './Pages/Speakers/Speakers.jsx';
 
 // component imports
 import './components/Navbar/Navbar.css';
@@ -21,6 +21,7 @@ import './components/HomeCTA/HomeCTA.css';
 import './components/Footer/Footer.css';
 import ErrorElement from './Pages/ErrorElement.jsx';
 import PreRegistration from './Pages/Registration/PreRegistration/PreRegistration.jsx';
+import Committees from './Pages/Commitees/Committees.jsx';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/quitel/" element={<App />}>
@@ -32,6 +33,8 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/quitel/preregistration-form" element={<PreRegistration />} />
     <Route path="/quitel/abstract-submission" element={<Abstract />} />
     <Route path="/quitel/abstract-submission-form" element={<AbstractForm />} />
+    <Route path="/quitel/speakers" element={<Speakers />} />
+    <Route path="/quitel/committees" element={<Committees />} />
     <Route path="*" element={<ErrorElement />} />
   </Route>
 )
