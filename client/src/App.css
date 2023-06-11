@@ -279,6 +279,20 @@ body {
   font-weight: 600;
 }
 
+.venue-img {
+  width: auto;
+  border: none;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+.map {
+  margin-top: 1rem;
+  width: auto;
+  border: none;
+  border-radius: 12px;
+}
+
 /* for mobile devices in landscape */
 @media screen and (orientation: landscape) and (max-width: 1366px) {
   .page-title {
