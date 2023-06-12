@@ -1,9 +1,7 @@
 const fs = require("fs");
 const { google } = require("googleapis");
 
-const GOOGLE_IP_FOLDER_ID = "";
-
-async function uploadFile() {
+async function uploadFile(mimeType,bodyFile) {
   try {
     const auth = new google.auth.GoogleAuth({
       keyFile: "./googlekey.json",
@@ -16,10 +14,10 @@ async function uploadFile() {
 
     const fileData = {
       name: "",
-      parents: [GOOGLE_IP_FOLDER_ID],
+      parents: [process.env.GOOGLE_IP_FOLDER_ID],
     };
     const media = {
-      MimeType: "pdf",
+      MimeType: mimeType,
       body: fs.createReadStream(),
     };
 

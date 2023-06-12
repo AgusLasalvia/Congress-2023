@@ -94,7 +94,7 @@ app.post("/registration",async (req, res) => {
         //MongoDB successfull
         postData.save()
 
-        //Shhet data append
+        //Shet data append
         //sendSheetData(registrationID,data)
 
         //Send mailOptions
