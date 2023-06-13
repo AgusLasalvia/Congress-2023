@@ -21,11 +21,10 @@ export default function Speakers() {
                <div className="page-info">
                     <div className="info-box">
                          <div className="info-text">
-                              <ul>
+                              <ul className="speakers-ul">
                                    <li>Dr. <a href="https://scholar.google.com/citations?user=bDtZleMAAAAJ" rel="noreferrer" target="_blank">Adrian Roitberg</a>. University of Florida. Roitberg Group. Computational Chemistry. USA.</li>
 
                                    <li>Dr. <a href="https://scholar.google.com/citations?user=4xTOvaMAAAAJ&hl=en" rel="noreferrer" target="_blank">Andrea Cavalli</a>. University of Bologna and Research Director at the Italian Istitute of Tecnology, Genova, Italy</li>
-
                                    <li>TBA</li>
 
                                    <li>Dr. <a href="https://scholar.google.com/citations?user=p7_WRcAAAAAJ&hl=es" rel="noreferrer" target="_blank">Danilo Gonzalez Nilo</a>.  Center for Bioinformatics and Integrative Biology (CBIB) · Universidad Andrés Bello.</li>

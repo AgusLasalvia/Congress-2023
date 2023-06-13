@@ -26,7 +26,7 @@ export default function Abstract() {
                                    <p>Abstract submission deadline: <br /><b>August 1st</b></p>
                               </div>
                               <div className="line">
-                                   <p>Abstract acceptance notification: <br /><b>September 1st</b></p>
+                                   <p>Abstract acceptance notification deadline: <br /><b>September 1st</b></p>
                               </div>
                               <br />
                               <div className="line heading">

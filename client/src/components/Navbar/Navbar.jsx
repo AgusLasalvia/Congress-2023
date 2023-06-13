@@ -9,8 +9,7 @@ export default function Navbar() {
 
      window.addEventListener("orientationchange", () => {
           setIsLandscape(!isLandscape);
-
-          console.log("orientation changed");
+          // console.log("orientation changed");
      });
 
      // Toggles css .open class on nav component
@@ -28,12 +27,9 @@ export default function Navbar() {
           }
      }
 
-
      useEffect(() => {
-
-          console.log("isMobile: " + isMobile);
-          console.log("landscape mode: " + isLandscape);
-
+          // console.log("isMobile: " + isMobile);
+          // console.log("landscape mode: " + isLandscape);
      }, [isLandscape, isMobile])
 
      return (

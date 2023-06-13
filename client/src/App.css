@@ -293,6 +293,16 @@ body {
   border-radius: 12px;
 }
 
+.speakers-ul li {
+  margin-bottom: 0.2rem;
+}
+
+.paypal-buttons {
+  z-index: 1;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+}
+
 /* for mobile devices in landscape */
 @media screen and (orientation: landscape) and (max-width: 1366px) {
   .page-title {
@@ -442,5 +452,25 @@ body {
   .upload-button {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .paypal-buttons {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .paypal-buttons {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .paypal-buttons {
+    z-index: 1;
+    margin-inline: auto;
+    width: 60%;
   }
 }

@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
+import PayPalTest from "../../../services/PayPal";
+import { useEffect, useState } from "react";
 
 export default function Fees() {
+     const [feeSelection, setFeeSelection] = useState("postdocs");
 
      const navigate = useNavigate();
-     // Scrolls to top when rendered.
-     // Otherwise when switching routes the user would remain at the same Y position in the window.
-     window.scrollTo(0, 0);
+
+     useEffect(() => {
+          // Scrolls to top when rendered.
+          // Otherwise when switching routes the user would remain at the same Y position in the window.
+          window.scrollTo(0, 0);
+     }, []);
 
      const goBack = () => {
           navigate("/quitel/registration");
@@ -131,7 +137,9 @@ export default function Fees() {
                               </div>
                               <div className="line-input">
                                    <label className="form-label" htmlFor="Email">Registration fee</label>
-                                   <select name="registration-fee" id="fee-select" className="form-select">
+                                   <select name="registration-fee" id="fee-select" className="form-select"
+                                        onChange={(e) => setFeeSelection(e.target.value)}
+                                   >
                                         <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
                                         <option value="phdstudents">Master / PhD Students - 271 USD</option>
                                         <option value="undergraduates">Undergraduate Students - 225 USD</option>
@@ -139,8 +147,14 @@ export default function Fees() {
                                         <option value="dinner"> Dinner - 40 USD</option>
                                    </select>
                               </div>
+
+                              {/* PayPal button */}
+                              <PayPalTest feeSelection={feeSelection} />
+                              <h1 className="info-title fees paypal">Registration form</h1>
+                              <div className="line">
+                                   <p>You can submit your registration before you make a payment.</p>
+                              </div>
                          </div>
-                         {/* TODO: add PayPal button */}
                          <div className="button-long-blue">Registration form</div>
                          <div className="button-long-pink" onClick={goBack}>Back</div>
 
