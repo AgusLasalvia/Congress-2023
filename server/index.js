@@ -127,7 +127,7 @@ const mail = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "aguslblumenfeld@gmail.com",
-    pass: "AgusGmailPrime1307!"
+    pass: "lnfzwfsumfidaxjd"
   }
 });
 
