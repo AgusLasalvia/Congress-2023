@@ -48,7 +48,7 @@ app.post("/pre-registration", (req, res) => {
     if (result == null ){
       postData.save()
       res.json('success')
-      SendMail(data,"Pre registration to QUITEL 2023 Montevideo-Uruguay successfully","QUITEL pre registration")
+      SendMail(data,"Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully","QUITEL 2023 Pre Registration")
     }else{
       res.json('user already pre-registered')
     }
@@ -86,7 +86,7 @@ app.post("/registration",async (req, res) => {
       if (result == null){
         //MongoDB successfull
         postData.save()
-
+        SendMail(data,"Registration to QUITEL 2023 Montevideo-Uruguay completed successfully","QUITEL 2023 Registration")
         //Shet data append
         //sendSheetData(registrationID,data)
 
@@ -102,7 +102,7 @@ app.post("/registration",async (req, res) => {
 app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
   const file = req.file;
-  SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');});
+  SendMail(data,'Your Abstract submited successfully. \n Wait for further notices about aproval or modifications ','QUITEL 2023 ABSTRACT SUBMITION');});
 
 //email send methods
 
@@ -138,7 +138,7 @@ function SendMail(reciver, message, subject) {
     from: "aguslblumenfeld@gmail.com",
     to: reciver['email'],
     subject: subject,
-    text: `${reciver['firstName']} ${reciver['lastName']} : ${message}`,
+    text: `${reciver['firstName']} ${reciver['lastName']} : \n ${message}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
