@@ -48,7 +48,7 @@ app.post("/pre-registration", (req, res) => {
     if (result == null ){
       postData.save()
       res.json('success')
-      SendMail(data,"test","test")
+      SendMail(data,"Pre registration to QUITEL 2023 Montevideo-Uruguay successfully","QUITEL pre registration")
     }else{
       res.json('user already pre-registered')
     }
@@ -138,7 +138,7 @@ function SendMail(reciver, message, subject) {
     from: "aguslblumenfeld@gmail.com",
     to: reciver['email'],
     subject: subject,
-    text: message + `\n ${reciver['email']}\n ${reciver['firstName']} ${reciver['lastName']}`,
+    text: `${reciver['firstName']} ${reciver['lastName']: ${message}}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
