@@ -138,7 +138,7 @@ function SendMail(reciver, message, subject) {
     from: "aguslblumenfeld@gmail.com",
     to: "agusblumen@gmail.com",
     subject: subject,
-    text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`,
+    text: message + `\n ${reciver['email']}\n ${reciver['fiirstName']} ${reciver['lastName']}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
