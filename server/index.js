@@ -29,7 +29,7 @@ console.log("server start")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
-app.use(cors());
+// app.use(cors());
 
 
 app.get('/',(req,res)=>{
