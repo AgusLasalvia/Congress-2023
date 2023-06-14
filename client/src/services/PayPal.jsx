@@ -2,6 +2,7 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 // import { useEffect } from "react";
 
+
 export default function PayPalTest({ feeSelection }) {
      console.log(feeSelection)
 
@@ -10,7 +11,7 @@ export default function PayPalTest({ feeSelection }) {
      // }, [feeSelection])
 
      return (
-          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": "AUNoHsYquqTOcMmPBWgAPdPF-2rQahxmpeRxBGfANvlbbTvEvQHYm7PMH02Fp3JDnsSiSDNQ3s4f1Jrq" }}>
+          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": import.meta.env.CLIENT_ID }}>
                {feeSelection == "postdocs" ? (
                     <PayPalButtons className="paypal-buttons"
                          createOrder={(data, actions) => {
