@@ -29,7 +29,7 @@ console.log("server start")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
-// app.use(cors());
+app.use(cors());
 
 
 app.get('/',(req,res)=>{
@@ -78,7 +78,8 @@ app.post('/get_personInfo',(req,res)=>{
 });
 
 app.post("/registration",async (req, res) => {
-  const data = req.body.registration;
+  const data = req.body;
+  console.log(data)
 
   let postData = new Register(data);
   Register.findOne({
