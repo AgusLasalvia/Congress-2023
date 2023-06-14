@@ -12,10 +12,12 @@ let registerSchema = new schema({
     institutionAddress: String,
     country: String,
     region: String,
-    postal: Number,
+    city: String,
+    zipCode: String,
     modality: String,
-    speacialMeal: String,
-    motherLanguage:String
+    firstTime: String,
+    specialMealReqs: String,
+    motherLanguage: String
     
 });
 
