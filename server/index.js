@@ -135,7 +135,7 @@ const mail = nodemailer.createTransport({
 function SendMail(reciver, message, subject) {
   //mail individual options
   let mailOptions = {
-    from: "aguslblumenfeld@gmail.com",
+    from: "agusblumen@gmail.com",
     to: reciver['email'],
     subject: subject,
     text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`,
