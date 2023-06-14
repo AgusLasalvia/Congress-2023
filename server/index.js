@@ -136,7 +136,7 @@ function SendMail(reciver, message, subject) {
   //mail individual options
   let mailOptions = {
     from: "quitel2023@gmail.com",
-    to: reciever['email'],
+    to: reciver['email'],
     subject: subject,
     text: message + `\n ${reciver['email']}\n ${reciver['firstName']} ${reciver['lastName']}`,
   };
