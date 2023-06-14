@@ -86,14 +86,16 @@ app.post("/registration",async (req, res) => {
     email:data['email']
   }).then(result =>{
       if (result == null){
+
         //MongoDB successfull
         postData.save()
+
+        //Send mailOptions
         SendMail(data,"Registration to QUITEL 2023 Montevideo-Uruguay completed successfully","QUITEL 2023 Registration")
+        
         //Shet data append
         //sendSheetData(registrationID,data)
 
-        //Send mailOptions
-        SendMail(data,'registered: ','registration')
       }else{
         res.json('already registered')
       }
