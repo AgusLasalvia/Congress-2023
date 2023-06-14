@@ -126,8 +126,8 @@ const mail = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "agusblumen@gmail.com",
-    pass: "Agusprime1307"
+    user: "aguslblumenfeld@gmail.com",
+    pass: "AgusGmailPrime1307!"
   }
 });
 
@@ -135,7 +135,7 @@ const mail = nodemailer.createTransport({
 function SendMail(reciver, message, subject) {
   //mail individual options
   let mailOptions = {
-    from: "agusblumen@gmail.com",
+    from: "aguslblumenfeld@gmail.com",
     to: reciver['email'],
     subject: subject,
     text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`,
