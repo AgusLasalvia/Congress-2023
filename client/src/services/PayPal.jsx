@@ -11,7 +11,7 @@ export default function PayPalTest({ feeSelection }) {
      // }, [feeSelection])
 
      return (
-          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": import.meta.env.CLIENT_ID }}>
+          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": "AUNoHsYquqTOcMmPBWgAPdPF-2rQahxmpeRxBGfANvlbbTvEvQHYm7PMH02Fp3JDnsSiSDNQ3s4f1Jrq" }}>
                {feeSelection == "postdocs" ? (
                     <PayPalButtons className="paypal-buttons"
                          createOrder={(data, actions) => {
