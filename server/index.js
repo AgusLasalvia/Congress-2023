@@ -21,14 +21,6 @@ db = mongoose.connection.once("open", () => {
   console.log('Mongodb connected')
 })
 console.log("server start")
-//email configuration
-var mail = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "",
-    pass: "",
-  },
-});
 
 
 
@@ -56,6 +48,7 @@ app.post("/pre-registration", (req, res) => {
     if (result == null ){
       postData.save()
       res.json('success')
+      SendMail(data,"test","test")
     }else{
       res.json('user already pre-registered')
     }
@@ -98,7 +91,7 @@ app.post("/registration",async (req, res) => {
         //sendSheetData(registrationID,data)
 
         //Send mailOptions
-        //SendMail(data,'registered: ','registration')
+        SendMail(data,'registered: ','registration')
       }else{
         res.json('already registered')
       }
@@ -109,15 +102,44 @@ app.post("/registration",async (req, res) => {
 app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
   const file = req.file;
-  SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');
-  });
+  SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');});
 
 //email send methods
-function SendMail(reciver,message,subject) {
+
+
+async function sendSheetData(folderID,data) {
+  const sheets = (await authentication).sheets;
+  const response = sheets.spreadsheets.values.append({
+    spreadsheetID: folderID,
+    range: 'Sheet1',
+    valueInputOption: "USER_ENTERED",
+    resource: [
+      []
+    ]
+  });
+}
+
+
+
+
+
+//email configuration
+const mail = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: "",
+    pass: ""
+  }
+});
+
+//Email send method
+function SendMail(reciver, message, subject) {
   //mail individual options
-  var mailOptions = {
+  let mailOptions = {
     from: "quitel2023@gmail.com",
-    to: reciver['email'],
+    to: "aguslblumenfeld@gmail.com",
     subject: subject,
     text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`,
   };
@@ -131,16 +153,5 @@ function SendMail(reciver,message,subject) {
   });
 };
 
-async function sendSheetData(folderID,data) {
-  const sheets = (await authentication).sheets;
-  const response = sheets.spreadsheets.values.append({
-    spreadsheetID: folderID,
-    range: 'Sheet1',
-    valueInputOption: "USER_ENTERED",
-    resource: [
-      []
-    ]
-  });
-}
 
 app.listen(port,()=>console.info(`server listening in port ${port}`));
