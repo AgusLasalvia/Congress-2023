@@ -10,7 +10,7 @@ export default function PayPalTest({ feeSelection }) {
      // }, [feeSelection])
 
      return (
-          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": "AUrklJDOQaEHqJBJ3wCn7X9xX60_LBSOLdkm32o-Okynn2A0FLZuC7nSko3Xg6gjE_i-8pGSlFh95LxY" }}>
+          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": "AUNoHsYquqTOcMmPBWgAPdPF-2rQahxmpeRxBGfANvlbbTvEvQHYm7PMH02Fp3JDnsSiSDNQ3s4f1Jrq" }}>
                {feeSelection == "postdocs" ? (
                     <PayPalButtons className="paypal-buttons"
                          createOrder={(data, actions) => {
@@ -96,7 +96,7 @@ export default function PayPalTest({ feeSelection }) {
                                              amount: {
                                                   currency_code: "USD",
                                                   // CHANGE THIS VALUE BACK TO 40.00 UNITED STATES DOLLARS FROM THE FEDERAL RESERVE OF NORTH AMERICA (DOLARES AMERICANOS 40.00)
-                                                  value: "1.00",
+                                                  value: "40.00",
                                              },
                                         },
                                    ],
