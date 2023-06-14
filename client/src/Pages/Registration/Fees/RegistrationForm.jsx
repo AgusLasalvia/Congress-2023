@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { preRegistration, sendPreRegistration } from "../../../services/FormsService";
+import { validateData } from "../../../hooks/validateData";
 import Footer from "../../../components/Footer/Footer";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
-import { preRegistration, sendPreRegistration } from "../../../services/FormsService";
-import { validateData } from "../../../hooks/validateData";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
+
 
 export default function PreRegistration() {
 
@@ -21,7 +24,7 @@ export default function PreRegistration() {
 
      // Goes to the next step in the form
      const nextStep = () => {
-          if (step <= 2) {
+          if (step <= 4) {
                setStep(step + 1);
           }
      }
@@ -51,13 +54,13 @@ export default function PreRegistration() {
 
                <div className="page-info form">
                     <div className="info-box">
-                         <h1 className="info-title">Pre-registration form</h1>
+                         <h1 className="info-title">Registration form</h1>
                          <div className="info-text">
                               <div className="line">
                                    <p>XLVI International Congress of Theoretical Chemists of Latin Expression</p>
                               </div>
                               <h1 className="info-counter">
-                                   {step < 3 ? "Step " + step + "/3" : "Last step!"}
+                                   {step < 5 ? "Step " + step + "/5" : "Last step!"}
                               </h1>
 
                               {/* Switches between steps */}
@@ -69,17 +72,21 @@ export default function PreRegistration() {
                                              return <Step2 formData={formData} setFormData={setFormData} />
                                         case 3:
                                              return <Step3 formData={formData} setFormData={setFormData} />
+                                        case 4:
+                                             return <Step4 formData={formData} setFormData={setFormData} />
+                                        case 5:
+                                             return <Step5 formData={formData} setFormData={setFormData} />
                                         default:
                                              return null
                                    }
                               })()}
 
-                              {hasEmptyFields && <p className="form-error-message">There are empty fields in one of the steps, please check.</p>}
+                              {hasEmptyFields && <p className="form-error-message">There may be empty fields in one of the steps, please check.</p>}
 
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
-                                   onClick={step == 3 ? handleSubmit : nextStep}
-                              >{step == 3 ? "Submit" : "Continue"}</div>
+                                   onClick={step == 5 ? handleSubmit : nextStep}
+                              >{step == 5 ? "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>

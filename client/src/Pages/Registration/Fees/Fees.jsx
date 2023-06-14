@@ -8,6 +8,9 @@ export default function Fees() {
 
      const navigate = useNavigate();
 
+     const navigateToForm = () => {
+          navigate("/Quitel/registration-form")
+     }
      useEffect(() => {
           // Scrolls to top when rendered.
           // Otherwise when switching routes the user would remain at the same Y position in the window.
@@ -155,7 +158,7 @@ export default function Fees() {
                                    <p>You can submit your registration before you make a payment.</p>
                               </div>
                          </div>
-                         <div className="button-long-blue">Registration form</div>
+                         <div className="button-long-blue" onClick={navigateToForm}>Registration form</div>
                          <div className="button-long-pink" onClick={goBack}>Back</div>
 
                     </div>

@@ -30,12 +30,12 @@ export default function Step2({ setFormData, formData }) {
                     </div>
                </div>
 
-               {/* Country */}
+               {/* Position */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Country">Country</label>
-                    <input className="form-input" type="text" id="country<" name="Country"
-                         value={formData.country}
-                         onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    <label className="form-label" htmlFor="Position">Position</label>
+                    <input className="form-input" type="text" id="position<" name="Position"
+                    // value={formData.country}
+                    // onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                     />
                </div>
                {/* Main Institution */}
@@ -44,6 +44,14 @@ export default function Step2({ setFormData, formData }) {
                     <input className="form-input" type="text" id="maininstitution" name="MainInstitution"
                          value={formData.mainInstitution}
                          onChange={(e) => setFormData({ ...formData, mainInstitution: e.target.value })}
+                    />
+               </div>
+               {/* Institutional address */}
+               <div className="form-input-wrapper">
+                    <label className="form-label" htmlFor="InstitutionalAddress">Institutional address</label>
+                    <input className="form-input" type="text" id="instaddress" name="InstitutionalAddress"
+                    // value={formData.mainInstitution}
+                    // onChange={(e) => setFormData({ ...formData, mainInstitution: e.target.value })}
                     />
                </div>
 
