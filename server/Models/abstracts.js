@@ -9,4 +9,4 @@ let abstractSchema = new schema({
     driveLink:String
 })
 
-let abstract = mongoose.model("Abstract",abstractSchema,"QUITEL")
+let abstract = mongoose.model("Abstract",abstractSchema)

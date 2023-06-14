@@ -120,17 +120,14 @@ async function sendSheetData(folderID,data) {
 }
 
 
-
-
-
 //email configuration
 const mail = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
   secure: true,
   auth: {
-    user: "aguslblumenfeld@gmail.com",
-    pass: "AgusGmailPrime1307!"
+    user: "agusblumen@gmail.com",
+    pass: "Agusprime1307"
   }
 });
 

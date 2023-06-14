@@ -20,6 +20,6 @@ let registerSchema = new schema({
 });
 
 
-let Register = mongoose.model("Register",registerSchema,"QUITEL");
+let Register = mongoose.model("Register",registerSchema);
 
 module.exports = Register;
