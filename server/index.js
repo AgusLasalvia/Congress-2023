@@ -121,6 +121,7 @@ app.post("/registration",async (req, res) => {
     });
 });
 
+
 //Abstract submition
 app.post("/submit_abstract",(req,res) =>{
   const data = req.body;
