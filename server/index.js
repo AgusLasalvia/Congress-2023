@@ -55,7 +55,6 @@ app.post("/pre-registration", (req, res) => {
       console.log(result);
       if (result == null) {
         postData.save();
-        res.json("success");
         SendMail(
           data,
           "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
