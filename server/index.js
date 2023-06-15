@@ -27,12 +27,14 @@ console.log("server start");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
+
 app.use(
   cors({
     origin: "http://localhost:58347",
     methods: ["GET", "POST"],
   })
 );
+
 app.use(fileUpload());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
