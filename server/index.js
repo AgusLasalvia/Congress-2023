@@ -31,10 +31,7 @@ app.use(bodyParse.json());
 
 // app.use(fileUpload());
 app.use(cors());
-app.use(fileUpload({
-  useTempFiles : true,
-  tempFileDir : '/tmp/'
-}));
+app.use(fileUpload());
 
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
@@ -88,9 +85,7 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const file = req.files;
-  console.log(file)
-  const data = req.body;
-  console.log(data)
+  const data = req.body.registration;
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
