@@ -80,6 +80,7 @@ app.post('/get_personInfo',(req,res)=>{
 app.post("/registration",async (req, res) => {
   const data = req.body;
   const files = req.files;
+  console.log(files)
   console.log(data)
 
   let postData = new Register(data);
