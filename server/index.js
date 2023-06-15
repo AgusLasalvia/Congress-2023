@@ -61,6 +61,7 @@ app.post("/pre-registration", (req, res) => {
           "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
           "QUITEL 2023 Pre Registration"
         );
+        res.redirect("https://quitel23.site/Quitel/");
       } else {
         res.json("user already pre-registered");
       }
