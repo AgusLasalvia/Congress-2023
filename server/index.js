@@ -55,11 +55,11 @@ app.post("/pre-registration", (req, res) => {
       console.log(result);
       if (result == null) {
         postData.save();
-        SendMail(
-          data,
-          "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
-          "QUITEL 2023 Pre Registration"
-        );
+        // SendMail(
+        //   data,
+        //   "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+        //   "QUITEL 2023 Pre Registration"
+        // );
         res.json('success');
       } else {
         res.json("user already pre-registered");
@@ -89,10 +89,7 @@ app.post("/get_personInfo", (req, res) => {
 });
 
 app.post("/registration", async (req, res) => {
-  const data = req.body.registration;
-  const file = req;
-  console.log(file);
-  console.log(data);
+  const data = req.body;
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
@@ -102,11 +99,11 @@ app.post("/registration", async (req, res) => {
       postData.save();
 
       //Send mailOptions
-      SendMail(
-        data,
-        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
-        "QUITEL 2023 Registration"
-      );
+      // SendMail(
+      //   data,
+      //   "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+      //   "QUITEL 2023 Registration"
+      // );
 
       //Shet data append
       //sendSheetData(registrationID,data)
