@@ -6,9 +6,8 @@ const nodemailer = require("nodemailer");
 const bodyParse = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-const fileUpload = require("multer");
+const fileUpload = require("express-fileupload");
 const cors = require("cors");
-const multer = require("multer");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -28,13 +27,13 @@ console.log("server start");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
+
 app.use(fileUpload());
 app.use(
   cors({
     methods: ["GET", "POST"],
   })
 );
-
 
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
@@ -43,7 +42,6 @@ app.get("/", (req, res) => {
 //Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
-
   console.log(data);
   let postData = new preRegister(data);
   preRegister
@@ -87,12 +85,11 @@ app.post("/get_personInfo", (req, res) => {
   }
 });
 
-app.post("/registration",multer() ,(req, res) => {
+app.post("/registration", async (req, res) => {
   const data = req.body.registration;
-  const file = req.files;
-  const {registrationPaymentReceipt} = req.body.registration;
-  console.log(registrationPaymentReceipt)
-
+  const file = req;
+  console.log(file);
+  console.log(data);
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
