@@ -88,9 +88,9 @@ app.post("/get_personInfo", (req, res) => {
   }
 });
 
-app.post("/registration",upload.single('file') ,async (req, res) => {
+app.post("/registration" ,async (req, res) => {
   const data = req.body.registration;
-  const file = req.file;
+  const file = req.files;
   console.log(file);
   console.log(data);
   let postData = new Register(data);
