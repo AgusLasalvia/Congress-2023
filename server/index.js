@@ -87,7 +87,7 @@ app.post("/get_personInfo", (req, res) => {
 app.post("/registration", async (req, res) => {
   const file = req.files;
   console.log(file)
-  const data = req.body.registration['data'];
+  const data = req.body.registration;
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
