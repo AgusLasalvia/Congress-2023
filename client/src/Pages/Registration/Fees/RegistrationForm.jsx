@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registration, sendRegistration } from "../../../services/FormsService";
+import { fileReceipts, registration, sendReceipts, sendRegistration } from "../../../services/FormsService";
 import { validateData } from "../../../hooks/validateData";
 import Footer from "../../../components/Footer/Footer";
 import Step1 from "./Step1";
@@ -14,6 +14,9 @@ export default function PreRegistration() {
 
      // form data object
      const [formData, setFormData] = useState(registration);
+     // receipts object
+     const [receipts, setReceipts] = useState(fileReceipts);
+
      // Empty fields boolean
      const [hasEmptyFields, setHasEmptyFields] = useState(false);
      // navigation hook
@@ -30,7 +33,7 @@ export default function PreRegistration() {
      }
 
      // Goes to the previous step in the form
-     // Or goes back to registration when on step 1
+     // Or goes back to registration when on step 1 (step == 1)
      const previousStep = () => {
           if (step == 1) {
                navigate("/Quitel/registration");
@@ -40,10 +43,11 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
-          console.log(formData)
+
           if (validateData(formData)) {
                setHasEmptyFields(false);
                sendRegistration(formData);
+               sendReceipts(receipts);
           } else {
                setHasEmptyFields(true);
           }
@@ -75,7 +79,7 @@ export default function PreRegistration() {
                                         case 4:
                                              return <Step4 formData={formData} setFormData={setFormData} />
                                         case 5:
-                                             return <Step5 formData={formData} setFormData={setFormData} />
+                                             return <Step5 receipts={receipts} setReceipts={setReceipts} />
                                         default:
                                              return null
                                    }

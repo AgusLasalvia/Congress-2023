@@ -11,13 +11,17 @@ export default function PreRegistration() {
 
      // form data object
      const [formData, setFormData] = useState(preRegistration);
-     // Empty fields boolean
-     const [hasEmptyFields, setHasEmptyFields] = useState(false);
+     // Error message
+     const [errorMessage, setErrorMessage] = useState("");
      // navigation hook
      const navigate = useNavigate();
      // step count state
      const [step, setStep] = useState(1);
 
+
+     const navigateOnSuccess = () => {
+          navigate("/Quitel/success");
+     }
 
      // Goes to the next step in the form
      const nextStep = () => {
@@ -39,10 +43,10 @@ export default function PreRegistration() {
      const handleSubmit = () => {
           console.log(formData)
           if (validateData(formData)) {
-               setHasEmptyFields(false);
-               sendPreRegistration(formData);
+               setErrorMessage("");
+               sendPreRegistration(formData, navigateOnSuccess, setErrorMessage);
           } else {
-               setHasEmptyFields(true);
+               setErrorMessage("There may be empty fields in one of the steps, please check.");
           }
      }
 
@@ -74,7 +78,7 @@ export default function PreRegistration() {
                                    }
                               })()}
 
-                              {hasEmptyFields && <p className="form-error-message">There are empty fields in one of the steps, please check.</p>}
+                              {errorMessage && <p className="form-error-message">{errorMessage}</p>}
 
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
@@ -86,7 +90,6 @@ export default function PreRegistration() {
                </div>
 
                <Footer />
-
           </div>
      )
 }

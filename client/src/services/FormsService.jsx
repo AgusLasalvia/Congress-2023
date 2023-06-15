@@ -1,5 +1,5 @@
 const preRegisterAPI = "https://api-quitel-production.up.railway.app/pre-registration";
-const registerAPI = "https://api-quitel-production.up.railway.app/registration";
+const registerAPI = "https://api-quitel-production.up.railway.app/pepe";
 
 // preRegistration object 
 export const preRegistration = {
@@ -32,6 +32,9 @@ export const registration = {
      firstTime: "",
      specialMealReqs: "",
      motherLanguage: "",
+}
+
+export const fileReceipts = {
      registrationPaymentReceipt: null,
      dinnerPaymentReceipt: null,
      accompanyingPaymentReceipt: null,
@@ -39,13 +42,66 @@ export const registration = {
 
 
 // pre registration POST
-export const sendPreRegistration = (formData) => {
+export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage) => {
      fetch(preRegisterAPI, {
           method: 'POST',
           headers: {
                'Content-Type': 'application/json'
           },
           body: JSON.stringify({ preRegistration: formData })
+     })
+          .then(response => response.json())
+          .then(data => {
+               // API response
+               console.log("data: " + data);
+               switch (data) {
+                    case "success":
+                         navigateOnSuccess();
+                         break;
+                    case "already-pre-registered":
+                         setErrorMessage("The email provided is already pre-registered");
+                         break;
+                    default:
+                         console.log("data: " + data);
+                         setErrorMessage(data);
+                         break;
+               }
+          })
+          .catch(error => {
+               // Error handling
+               console.error("error: " + error);
+               setErrorMessage("An unexpected error ocurred.");
+          });
+
+     // TODO: return
+}
+
+
+// formData.registrationPaymentReceipt = receipts.registrationPaymentReceipt;
+// formData.dinnerPaymentReceipt = receipts.dinnerPaymentReceipt;
+// formData.accompanyingPaymentReceipt = receipts.accompanyingPaymentReceipt;
+
+// const appendedFiles = new FormData();
+// appendedFiles.append('data', formData);
+
+// appendedFiles.append('registration', files.registrationPaymentReceipt);
+// appendedFiles.append('dinner', files.dinnerPaymentReceipt);
+// appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+
+// registration.receipts = appendedFiles;
+
+
+// registration POST
+export const sendRegistration = (formData) => {
+
+     console.log(formData);
+
+     fetch(registerAPI, {
+          method: 'POST',
+          headers: {
+               'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ registration: formData })
      })
           .then(response => response.json())
           .then(data => {
@@ -60,15 +116,18 @@ export const sendPreRegistration = (formData) => {
      // TODO: return
 }
 
+// registration receipts POST
+export const sendReceipts = (files) => {
+     console.log(files);
 
-// registration POST
-export const sendRegistration = (formData) => {
+     const appendedFiles = new FormData();
+     appendedFiles.append('registration', files.registrationPaymentReceipt);
+     appendedFiles.append('dinner', files.dinnerPaymentReceipt);
+     appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+
      fetch(registerAPI, {
           method: 'POST',
-          headers: {
-               'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ registration: formData })
+          body: appendedFiles
      })
           .then(response => response.json())
           .then(data => {
