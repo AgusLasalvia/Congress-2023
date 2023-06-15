@@ -88,7 +88,7 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const file = req.files;
-  console.log(file)
+  console.log(file['accompanying'].name)
   const data = req.body;
   console.log(data)
   let postData = new Register(data);
