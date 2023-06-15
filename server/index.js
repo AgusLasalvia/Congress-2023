@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const fileUpload = require("multer");
 const cors = require("cors");
+const multer = require("multer");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -86,7 +87,7 @@ app.post("/get_personInfo", (req, res) => {
   }
 });
 
-app.post("/registration", async (req, res) => {
+app.post("/registration",multer() ,(req, res) => {
   const data = req.body.registration;
   const file = req.files;
   const {registrationPaymentReceipt} = req.body.registration;
