@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors({
-  origin:"https://www.quitel23.site/",
+  origin:"https://www.quitel23.site",
   methods:["GET","POST"]
 }));
 app.use(fileUpload());
