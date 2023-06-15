@@ -30,7 +30,10 @@ console.log("server start")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
-app.use(cors());
+app.use(cors({
+  origin:"https://www.quitel23.site/",
+  methods:["GET","POST"]
+}));
 app.use(fileUpload());
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*');
@@ -86,7 +89,7 @@ app.post('/get_personInfo',(req,res)=>{
 
 app.post("/registration",async (req, res) => {
   const data = req.body;
-  const file = req.files.file;
+  const file = req.files;
   console.log(file)
   console.log(data)
   let postData = new Register(data);
