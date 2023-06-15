@@ -6,11 +6,14 @@ const nodemailer = require("nodemailer");
 const bodyParse = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
-
+const multer  = require('multer')
+const upload = multer({
+  dest: 'uploads/'
+})
 require("dotenv").config();
 
 const registrationID = process.env.REGISTRATION_FOLDER_ID;
@@ -85,9 +88,9 @@ app.post("/get_personInfo", (req, res) => {
   }
 });
 
-app.post("/registration", async (req, res) => {
+app.post("/registration",upload.single('file') ,async (req, res) => {
   const data = req.body.registration;
-  const file = req;
+  const file = req.file;
   console.log(file);
   console.log(data);
   let postData = new Register(data);
