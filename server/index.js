@@ -32,6 +32,7 @@ app.use(bodyParse.json());
 // app.use(fileUpload());
 app.use(cors());
 app.use(fileUpload());
+ 
 
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
