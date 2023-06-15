@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 
-app.use(fileUpload());
+// app.use(fileUpload());
 app.use(
   cors({
     methods: ["GET", "POST"],
