@@ -53,7 +53,7 @@ app.post("/pre-registration", (req, res) => {
     })
     .then((result) => {
       console.log(result);
-      if (result != null) {
+      if (result == null) {
         // postData.save();
         // SendMail(
         //   data,
@@ -90,23 +90,25 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body;
+  console.log(data)
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
   }).then((result) => {
     if (result == null) {
-      //MongoDB successfull
-      postData.save();
+      // //MongoDB successfull
+      // // postData.save();
 
-      //Send mailOptions
-      // SendMail(
-      //   data,
-      //   "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
-      //   "QUITEL 2023 Registration"
-      // );
+      // //Send mailOptions
+      // // SendMail(
+      // //   data,
+      // //   "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+      // //   "QUITEL 2023 Registration"
+      // // );
 
-      //Shet data append
-      //sendSheetData(registrationID,data)
+      // //Shet data append
+      // //sendSheetData(registrationID,data)
+      res.json('zi')
     } else {
       res.json("already registered");
     }
