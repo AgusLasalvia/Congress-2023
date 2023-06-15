@@ -10,10 +10,10 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
-const multer  = require('multer')
+const multer = require("multer");
 const upload = multer({
-  dest: 'uploads/'
-})
+  dest: "uploads/",
+});
 require("dotenv").config();
 
 const registrationID = process.env.REGISTRATION_FOLDER_ID;
@@ -88,7 +88,7 @@ app.post("/get_personInfo", (req, res) => {
   }
 });
 
-app.post("/registration" ,async (req, res) => {
+app.post("/registration", async (req, res) => {
   const data = req.body.registration;
   const file = req.files;
   console.log(file);
@@ -122,7 +122,8 @@ app.post("/submit_abstract", (req, res) => {
   const file = req.file;
   SendMail(
     data,
-    "Your Abstract submited successfully. \n Wait for further notices about aproval or modifications ",
+    "Your Abstract submited successfully. \n\
+    Wait for further notices about aproval or modifications ",
     "QUITEL 2023 ABSTRACT SUBMITION"
   );
 });
