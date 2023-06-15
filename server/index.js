@@ -1,29 +1,27 @@
-const authentication = require('./js/google-sheet')
+const authentication = require("./js/google-sheet");
 const preRegister = require("./Models/pre-register");
-const Register = require('./Models/registration');
-const uploadFile = require('./js/g_drive.js')
+const Register = require("./Models/registration");
+const uploadFile = require("./js/g_drive.js");
 const nodemailer = require("nodemailer");
-const bodyParse = require('body-parser');
+const bodyParse = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
-require('dotenv').config()
+require("dotenv").config();
 
-const registrationID = process.env.REGISTRATION_FOLDER_ID
-const preRegisterID = process.env.PREREGISTER_FOLDER_ID
+const registrationID = process.env.REGISTRATION_FOLDER_ID;
+const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
 
 //mongoose configuration
 mongoose.connect(process.env.MONGODB);
 db = mongoose.connection.once("open", () => {
-  console.log('Mongodb connected')
-})
-console.log("server start")
-
-
-
+  console.log("Mongodb connected");
+});
+console.log("server start");
 
 //express conficurations
 app.use(express.json());
@@ -35,32 +33,37 @@ app.use(
     useTempFiles: true,
     safeFileNames: true,
     preserveExtension: true,
-    tempFileDir: `${__dirname}/public/files/temp`
+    tempFileDir: `${__dirname}/public/files/temp`,
   })
 );
 
-
-app.get('/',(req,res)=>{
-  res.redirect('https://quitel23.site/Quitel/')
-})
+app.get("/", (req, res) => {
+  res.redirect("https://quitel23.site/Quitel/");
+});
 
 //Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
   console.log(data);
   let postData = new preRegister(data);
-  preRegister.findOne({
-    email:data['email']
-  }).then( result =>{
-    console.log((result))
-    if (result == null ){
-      postData.save()
-      res.json('success')
-      SendMail(data,"Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully","QUITEL 2023 Pre Registration")
-    }else{
-      res.json('user already pre-registered')
-    }
-  });
+  preRegister
+    .findOne({
+      email: data["email"],
+    })
+    .then((result) => {
+      console.log(result);
+      if (result == null) {
+        postData.save();
+        res.json("success");
+        SendMail(
+          data,
+          "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+          "QUITEL 2023 Pre Registration"
+        );
+      } else {
+        res.json("user already pre-registered");
+      }
+    });
 
   //Sheet data append
   // sendSheetData(registrationID,data);
@@ -69,90 +72,91 @@ app.post("/pre-registration", (req, res) => {
   // SendMail(data);
 });
 
-
-app.post('/get_personInfo',(req,res)=>{
+app.post("/get_personInfo", (req, res) => {
   const data = {
-    'email': req.body.email
-  }
+    email: req.body.email,
+  };
 
   var result = preRegister.findOne(data);
-  if (result != null){
-    res.send(result)
-  }else if(result === undefined){
-    console.log('error on database');
-  }else{
-    res.redirect('') //Change URL of the home
+  if (result != null) {
+    res.send(result);
+  } else if (result === undefined) {
+    console.log("error on database");
+  } else {
+    res.redirect(""); //Change URL of the home
   }
 });
 
-app.post("/registration",async (req, res) => {
+app.post("/registration", async (req, res) => {
   const data = req.body;
   const files = req.files.file;
-  console.log(files)
-  console.log(data)
+  console.log(files);
+  console.log(data);
   const name = uploadFile.name;
   const md5 = uploadFile.md5();
   const saveAs = `${md5}_${name}`;
-  uploadFile.mv(`${__dirname}/public/files/${saveAs}`, function(err) {
+  uploadFile.mv(`${__dirname}/public/files/${saveAs}`, function (err) {
     if (err) {
       return res.status(500).send(err);
     }
-    return res.status(200).json({ status: 'uploaded', name, saveAs });
+    return res.status(200).json({ status: "uploaded", name, saveAs });
   });
 
   let postData = new Register(data);
   Register.findOne({
-    email:data['email']
-  }).then(result =>{
-      if (result == null){
+    email: data["email"],
+  }).then((result) => {
+    if (result == null) {
+      //MongoDB successfull
+      postData.save();
 
-        //MongoDB successfull
-        postData.save()
+      //Send mailOptions
+      SendMail(
+        data,
+        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+        "QUITEL 2023 Registration"
+      );
 
-        //Send mailOptions
-        SendMail(data,"Registration to QUITEL 2023 Montevideo-Uruguay completed successfully","QUITEL 2023 Registration")
-        
-        //Shet data append
-        //sendSheetData(registrationID,data)
-
-      }else{
-        res.json('already registered')
-      }
-    });
+      //Shet data append
+      //sendSheetData(registrationID,data)
+    } else {
+      res.json("already registered");
+    }
+  });
 });
 
-
 //Abstract submition
-app.post("/submit_abstract",(req,res) =>{
+app.post("/submit_abstract", (req, res) => {
   const data = req.body;
   const file = req.file;
-  SendMail(data,'Your Abstract submited successfully. \n Wait for further notices about aproval or modifications ','QUITEL 2023 ABSTRACT SUBMITION');});
+  SendMail(
+    data,
+    "Your Abstract submited successfully. \n Wait for further notices about aproval or modifications ",
+    "QUITEL 2023 ABSTRACT SUBMITION"
+  );
+});
 
 //email send methods
 
-
-async function sendSheetData(folderID,data) {
+async function sendSheetData(folderID, data) {
   const sheets = (await authentication).sheets;
   const response = sheets.spreadsheets.values.append({
     spreadsheetID: folderID,
-    range: 'Sheet1',
+    range: "Sheet1",
     valueInputOption: "USER_ENTERED",
-    resource: [
-      []
-    ]
+    resource: [[]],
   });
 }
 
-
 //email configuration
 const mail = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
     user: "aguslblumenfeld@gmail.com",
-    pass: "lnfzwfsumfidaxjd"
-  }
+    pass: "lnfzwfsumfidaxjd",
+  },
 });
 
 //Email send method
@@ -160,9 +164,9 @@ function SendMail(reciver, message, subject) {
   //mail individual options
   let mailOptions = {
     from: "aguslblumenfeld@gmail.com",
-    to: reciver['email'],
+    to: reciver["email"],
     subject: subject,
-    text: `${reciver['firstName']} ${reciver['lastName']} : \n ${message}`,
+    text: `${reciver["firstName"]} ${reciver["lastName"]} : \n ${message}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
@@ -172,7 +176,6 @@ function SendMail(reciver, message, subject) {
       console.log("Email sent successfully: " + info.response);
     }
   });
-};
+}
 
-
-app.listen(port,()=>console.info(`server listening in port ${port}`));
+app.listen(port, () => console.info(`server listening in port ${port}`));
