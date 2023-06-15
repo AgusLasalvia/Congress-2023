@@ -78,7 +78,7 @@ app.post('/get_personInfo',(req,res)=>{
 });
 
 app.post("/registration",async (req, res) => {
-  const data = req.body.registration;
+  const data = req.body;
   console.log(data)
 
   let postData = new Register(data);
