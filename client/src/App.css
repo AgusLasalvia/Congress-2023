@@ -159,6 +159,15 @@ body {
   padding: 1rem;
   margin-inline: none;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-long-blue:hover,
+.button-long-pink:hover,
+.upload-button:hover {
+  scale: 1.01;
+  transition: all 0.2s;
+  box-shadow: 0px 0px 20px rgb(255, 255, 255);
 }
 
 .button-long-blue {

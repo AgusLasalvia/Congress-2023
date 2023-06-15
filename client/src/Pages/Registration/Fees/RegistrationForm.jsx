@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { preRegistration, sendPreRegistration } from "../../../services/FormsService";
+import { registration, sendRegistration } from "../../../services/FormsService";
 import { validateData } from "../../../hooks/validateData";
 import Footer from "../../../components/Footer/Footer";
 import Step1 from "./Step1";
@@ -13,7 +13,7 @@ import Step5 from "./Step5";
 export default function PreRegistration() {
 
      // form data object
-     const [formData, setFormData] = useState(preRegistration);
+     const [formData, setFormData] = useState(registration);
      // Empty fields boolean
      const [hasEmptyFields, setHasEmptyFields] = useState(false);
      // navigation hook
@@ -43,7 +43,7 @@ export default function PreRegistration() {
           console.log(formData)
           if (validateData(formData)) {
                setHasEmptyFields(false);
-               sendPreRegistration(formData);
+               sendRegistration(formData);
           } else {
                setHasEmptyFields(true);
           }

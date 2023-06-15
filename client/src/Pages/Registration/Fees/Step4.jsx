@@ -1,61 +1,69 @@
+import { useEffect } from "react";
+
 /* eslint react/prop-types: 0 */
-export default function Step3(
-     // { formData, setFormData }
-) {
+export default function Step3({ formData, setFormData }) {
+
+     useEffect(() => {
+          // Scrolls to top when rendered.
+          // Otherwise when switching routes the user would remain at the same Y position in the window.
+          window.scrollTo(0, 0);
+
+     }, [])
 
      return (
           <div>
-               {/* Country */}
+               {/* Modality */}
                <div className="form-input-wrapper form-first radio">
                     <label className="form-label">Modality in which you wish to participate</label>
                     <div className="form-radio-wrapper">
-                         <input type="radio" name="FirstSet" className="form-radio" value="yes"
-                         // checked={formData.hasAttended === "yes"}
-                         // onChange={(e) => setFormData({ ...formData, hasAttended: e.target.value })}
+                         <input type="radio" name="FirstSet" className="form-radio" value="presentation"
+                              checked={formData.modality === "presentation"}
+                              onChange={(e) => setFormData({ ...formData, modality: e.target.value })}
                          />
                          <label className="form-radio-label">Oral Presentation</label>
                     </div>
                     <div className="form-radio-wrapper">
-                         <input type="radio" name="FirstSet" className="form-radio" value="no"
-                         // checked={formData.hasAttended === "no"}
-                         // onChange={(e) => setFormData({ ...formData, hasAttended: e.target.value })}
+                         <input type="radio" name="FirstSet" className="form-radio" value="poster"
+                              checked={formData.modality === "poster"}
+                              onChange={(e) => setFormData({ ...formData, modality: e.target.value })}
                          />
                          <label className="form-radio-label">Poster</label>
                     </div>
                </div>
-
-               {/* Region */}
-               <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Region">Special meal requirements</label>
-                    <input className="form-input" type="text" id="region" name="Region"
-                    // value={formData.country}
-                    // onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    />
-               </div>
-               {/* Country */}
+               {/* First time registering */}
                <div className="form-input-wrapper form-first radio">
                     <label className="form-label">First time registering?</label>
                     <div className="form-radio-wrapper">
-                         <input type="radio" name="FirstSet" className="form-radio" value="yes"
-                         // checked={formData.hasAttended === "yes"}
-                         // onChange={(e) => setFormData({ ...formData, hasAttended: e.target.value })}
+                         <input type="radio" name="SecondSet" className="form-radio" value="yes"
+                              checked={formData.firstTime === "yes"}
+                              onChange={(e) => setFormData({ ...formData, firstTime: e.target.value })}
                          />
                          <label className="form-radio-label">Yes</label>
                     </div>
                     <div className="form-radio-wrapper">
-                         <input type="radio" name="FirstSet" className="form-radio" value="no"
-                         // checked={formData.hasAttended === "no"}
-                         // onChange={(e) => setFormData({ ...formData, hasAttended: e.target.value })}
+                         <input type="radio" name="SecondSet" className="form-radio" value="no"
+                              checked={formData.firstTime === "no"}
+                              onChange={(e) => setFormData({ ...formData, firstTime: e.target.value })}
                          />
                          <label className="form-radio-label">No</label>
                     </div>
                </div>
-               {/* Region */}
+
+               {/* Special meals */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Region">Mother language</label>
-                    <input className="form-input" type="text" id="region" name="Region"
-                    // value={formData.country}
-                    // onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    <label className="form-label" htmlFor="Special">Special meal requirements</label>
+                    <input className="form-input" type="text" id="special" name="Region"
+                         value={formData.specialMealReqs}
+                         onChange={(e) => setFormData({ ...formData, specialMealReqs: e.target.value })}
+                    />
+               </div>
+
+               {/* Mother language */}
+               <div className="form-input-wrapper">
+                    <label className="form-label" htmlFor="MLanguage">Mother language</label>
+                    <input className="form-input" type="text" id="mlanguage" name="MLanguage"
+                         value={formData.motherLanguage}
+                         onChange={(e) => setFormData({ ...formData, motherLanguage: e.target.value })}
                     />
                </div>
           </div>

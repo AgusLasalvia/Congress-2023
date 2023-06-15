@@ -1,8 +1,14 @@
+import { useEffect } from "react";
+
 /* eslint react/prop-types: 0 */
 export default function Step1({ setFormData, formData }) {
-     // Scrolls to top when rendered.
-     // Otherwise when switching routes the user would remain at the same Y position in the window.
-     window.scrollTo(0, 0);
+
+     useEffect(() => {
+          // Scrolls to top when rendered.
+          // Otherwise when switching routes the user would remain at the same Y position in the window.
+          window.scrollTo(0, 0);
+
+     }, [])
 
      return (
           <div>

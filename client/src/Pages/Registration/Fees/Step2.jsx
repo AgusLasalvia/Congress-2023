@@ -1,5 +1,15 @@
+import { useEffect } from "react";
+
 /* eslint react/prop-types: 0 */
 export default function Step2({ setFormData, formData }) {
+
+     useEffect(() => {
+          // Scrolls to top when rendered.
+          // Otherwise when switching routes the user would remain at the same Y position in the window.
+          window.scrollTo(0, 0);
+
+     }, [])
+
      return (
           <div>
                <div className="form-input-wrapper form-first radio">
@@ -34,8 +44,8 @@ export default function Step2({ setFormData, formData }) {
                <div className="form-input-wrapper">
                     <label className="form-label" htmlFor="Position">Position</label>
                     <input className="form-input" type="text" id="position<" name="Position"
-                    // value={formData.country}
-                    // onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                         value={formData.position}
+                         onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                     />
                </div>
                {/* Main Institution */}
@@ -50,8 +60,8 @@ export default function Step2({ setFormData, formData }) {
                <div className="form-input-wrapper">
                     <label className="form-label" htmlFor="InstitutionalAddress">Institutional address</label>
                     <input className="form-input" type="text" id="instaddress" name="InstitutionalAddress"
-                    // value={formData.mainInstitution}
-                    // onChange={(e) => setFormData({ ...formData, mainInstitution: e.target.value })}
+                         value={formData.institutionalAddress}
+                         onChange={(e) => setFormData({ ...formData, institutionalAddress: e.target.value })}
                     />
                </div>
 

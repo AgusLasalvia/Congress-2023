@@ -64,7 +64,7 @@ export default function Committees() {
                                    <li>Andrea Cavalli</li>
                                    <li>Marco Chaer Nascimento</li>
                                    <li>Benoît Champagne</li>
-                                   <li>TBA</li>
+                                   <li>Christopher Chipot</li>
                                    <li>Danilo Fernando González Nilo</li>
                                    <li>Alfonso Hernández Laguna</li>
                                    <li>Francesc Illas</li>
