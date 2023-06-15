@@ -62,7 +62,7 @@ app.post("/pre-registration", (req, res) => {
         // );
         res.json('success');
       } else {
-        res.json("already_pre_registered");
+        res.json("already-pre-registered");
       }
     });
 
