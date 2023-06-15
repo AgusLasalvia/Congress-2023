@@ -89,8 +89,6 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body;
-  const files = req.files.file;
-  console.log(files);
   console.log(data);
   const name = uploadFile.name;
   const md5 = uploadFile.md5();
