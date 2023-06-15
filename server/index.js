@@ -6,14 +6,12 @@ const nodemailer = require("nodemailer");
 const bodyParse = require("body-parser");
 const mongoose = require("mongoose");
 const express = require("express");
-// const fileUpload = require("express-fileupload");
+const fileUpload = require('express-fileupload');
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
-const multer = require("multer");
-const upload = multer({
-  dest: "uploads/",
-});
+
+
 require("dotenv").config();
 
 const registrationID = process.env.REGISTRATION_FOLDER_ID;
@@ -32,11 +30,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 
 // app.use(fileUpload());
-app.use(
-  cors({
-    methods: ["GET", "POST"],
-  })
-);
+app.use(cors());
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}));
 
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
@@ -89,7 +87,7 @@ app.post("/get_personInfo", (req, res) => {
 });
 
 app.post("/registration", async (req, res) => {
-  const data = req.body;
+  const data = req.file;
   console.log(data)
   let postData = new Register(data);
   Register.findOne({
