@@ -88,7 +88,7 @@ app.post("/get_personInfo", (req, res) => {
 });
 
 app.post("/registration", async (req, res) => {
-  const data = req.body;
+  const data = req.body.registration;
   const file = req;
   console.log(file);
   console.log(data);
