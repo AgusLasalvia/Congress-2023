@@ -88,6 +88,7 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body.registration;
+  const file = req.files;
   const {registrationPaymentReceipt} = req.body.registration;
   console.log(registrationPaymentReceipt)
 
