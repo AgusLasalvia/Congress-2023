@@ -27,14 +27,12 @@ console.log("server start");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
-
+app.use(fileUpload());
 app.use(
   cors({
     methods: ["GET", "POST"],
   })
 );
-
-app.use(fileUpload());
 
 
 app.get("/", (req, res) => {
@@ -89,7 +87,7 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body.registration;
-  const file = req;
+  const file = req.files;
   console.log(file);
   console.log(data);
   let postData = new Register(data);
