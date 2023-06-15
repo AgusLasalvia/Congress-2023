@@ -169,7 +169,9 @@ function SendMail(reciver, message, subject) {
 
 app.post('/pepe',(req,res)=>{
   const data = req.body;
+  const file = req.files;
   console.log(data)
+  console.log(file)
 })
 
 app.listen(port, () => console.info(`server listening in port ${port}`));
