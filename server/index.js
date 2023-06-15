@@ -42,6 +42,7 @@ app.get("/", (req, res) => {
 //Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
+
   console.log(data);
   let postData = new preRegister(data);
   preRegister
@@ -87,8 +88,9 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body.registration;
-  const file = req.files.file;
-  console.log(file);
+  const {registrationPaymentReceipt} = req.body.registration;
+  console.log(registrationPaymentReceipt)
+
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
