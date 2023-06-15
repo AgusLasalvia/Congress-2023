@@ -86,6 +86,7 @@ app.post("/get_personInfo", (req, res) => {
 
 app.post("/registration", async (req, res) => {
   const data = req.body.registration;
+  console.log()
   // const file = req.files;
   // console.log(file)
   let postData = new Register(data);
@@ -165,5 +166,10 @@ function SendMail(reciver, message, subject) {
     }
   });
 }
+
+app.post('/pepe',(req,res)=>{
+  const data = req.body;
+  console.log(data)
+})
 
 app.listen(port, () => console.info(`server listening in port ${port}`));
