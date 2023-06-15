@@ -72,7 +72,7 @@ app.post("/pre-registration", (req, res) => {
   //Mail with data
   // SendMail(data);
 });
-
+ 
 app.post("/get_personInfo", (req, res) => {
   const data = {
     email: req.body.email,
