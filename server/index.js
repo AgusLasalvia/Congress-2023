@@ -30,22 +30,12 @@ app.use(bodyParse.json());
 
 app.use(
   cors({
-    origin: "http://localhost:58347",
     methods: ["GET", "POST"],
   })
 );
 
 app.use(fileUpload());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "Content-Type",
-    "Authorization"
-  );
-  next();
-});
+
 
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
