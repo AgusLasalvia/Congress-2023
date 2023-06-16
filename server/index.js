@@ -147,7 +147,7 @@ function SendMail(receiver, message, subject) {
   //mail individual options
   let mailOptions = {
     from: "aguslblumenfeld@gmail.com",
-    to: reciver["email"],
+    to: receiver["email"],
     subject: subject,
     text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
   };
