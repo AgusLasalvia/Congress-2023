@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-
 /* eslint react/prop-types: 0 */
+
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 export default function Step3({ formData, setFormData }) {
 
      useEffect(() => {
@@ -11,7 +12,11 @@ export default function Step3({ formData, setFormData }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                {/* Modality */}
                <div className="form-input-wrapper form-first radio">
                     <label className="form-label">Modality in which you wish to participate</label>
@@ -66,6 +71,6 @@ export default function Step3({ formData, setFormData }) {
                          onChange={(e) => setFormData({ ...formData, motherLanguage: e.target.value })}
                     />
                </div>
-          </div>
+          </motion.div>
      )
 }

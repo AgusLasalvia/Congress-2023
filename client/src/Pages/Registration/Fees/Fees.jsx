@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 import PayPalTest from "../../../services/PayPal";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Fees() {
      const [feeSelection, setFeeSelection] = useState("postdocs");
@@ -21,7 +22,11 @@ export default function Fees() {
           navigate("/quitel/registration");
      }
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                {/* Page title */}
                <h1 className="page-title">
@@ -168,6 +173,6 @@ export default function Fees() {
                </div>
 
                <Footer />
-          </div>
+          </motion.div>
      )
 }

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import { motion } from "framer-motion";
 
 export default function AbstractForm() {
 
@@ -13,7 +14,11 @@ export default function AbstractForm() {
      window.scrollTo(0, 0);
 
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                <div className="page-info form">
                     {/* The origins */}
@@ -59,6 +64,6 @@ export default function AbstractForm() {
                     </div>
                </div>
                <Footer />
-          </div>
+          </motion.div>
      )
 }

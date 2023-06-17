@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-
 /* eslint react/prop-types: 0 */
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+
 export default function Step1({ setFormData, formData }) {
 
      useEffect(() => {
@@ -11,7 +12,11 @@ export default function Step1({ setFormData, formData }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                {/* Email */}
                <div className="form-input-wrapper form-first">
                     <label className="form-label" htmlFor="Email">Email</label>
@@ -53,6 +58,6 @@ export default function Step1({ setFormData, formData }) {
                          <option value="other">Other</option>
                     </select>
                </div>
-          </div>
+          </motion.div>
      )
 }

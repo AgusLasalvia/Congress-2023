@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-
 /* eslint react/prop-types: 0 */
+
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 export default function Step3({ formData, setFormData }) {
 
      useEffect(() => {
@@ -11,7 +12,11 @@ export default function Step3({ formData, setFormData }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                {/* Country */}
                <div className="form-input-wrapper form-first">
                     <label className="form-label" htmlFor="Country">Country</label>
@@ -44,6 +49,6 @@ export default function Step3({ formData, setFormData }) {
                          onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                     />
                </div>
-          </div>
+          </motion.div>
      )
 }

@@ -1,5 +1,7 @@
+import { NavLink } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import HomeCTA from "../../components/HomeCTA/HomeCTA";
+import { motion } from "framer-motion";
 
 export default function Home() {
      // Scrolls to top when rendered.
@@ -7,7 +9,11 @@ export default function Home() {
      window.scrollTo(0, 0);
 
      return (
-          <div className="home">
+          <motion.div className="home"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                <div className="hero">
                     <div className="hero-content">
 
@@ -77,9 +83,8 @@ export default function Home() {
                     <div className="info-box">
                          <h1 className="info-title">Where will it take place?</h1>
                          <div className="info-text">
-                              {/* TODO: add the link to the "Venue" page */}
                               <p>
-                                   QUITEL 2023 will take place at Universidad de la República, Montevideo Uruguay, in a great and emblematic multifunctional building José Luis Massera &quot;Faro&quot;, ideally located in the heart of the city near the nice riverside of Rio de La Plata river.
+                                   QUITEL 2023 will take place at Universidad de la República, Montevideo Uruguay, in a great and emblematic multifunctional building <NavLink to="/Quitel/venue">José Luis Massera &quot;Faro&quot;</NavLink>, ideally located in the heart of the city near the nice riverside of Rio de La Plata river.
                                    For more information please contact us at
                                    <a href="mailto:quitel2023@gmail.com"> quitel2023@gmail.com</a>
                               </p>
@@ -88,9 +93,8 @@ export default function Home() {
 
                </div>
 
-               {/* TODO: Footer */}
                <Footer />
-          </div>
+          </motion.div>
 
      )
 }

@@ -1,4 +1,5 @@
 import Footer from "../../components/Footer/Footer";
+import { motion } from "framer-motion";
 
 export default function About() {
      // Scrolls to top when rendered.
@@ -6,17 +7,21 @@ export default function About() {
      window.scrollTo(0, 0);
 
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                {/* Page title */}
-               <h1 className="page-title">
+               < h1 className="page-title" >
                     <p className="page-title-p">
                          About
                     </p>
                     <p className="page-title-p">
                          QUITEL/CHITEL
                     </p>
-               </h1>
+               </h1 >
 
                <div className="page-info">
                     {/* The origins */}
@@ -66,6 +71,6 @@ export default function About() {
 
                </div>
                <Footer />
-          </div>
+          </motion.div >
      )
 }

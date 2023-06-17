@@ -6,7 +6,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import { preRegistration, sendPreRegistration } from "../../../services/FormsService";
 import { validateData } from "../../../hooks/validateData";
-
+import { motion } from "framer-motion";
 export default function PreRegistration() {
 
      // form data object
@@ -51,7 +51,11 @@ export default function PreRegistration() {
      }
 
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                <div className="page-info form">
                     <div className="info-box">
@@ -90,6 +94,6 @@ export default function PreRegistration() {
                </div>
 
                <Footer />
-          </div>
+          </motion.div>
      )
 }

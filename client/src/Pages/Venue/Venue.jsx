@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Footer from "../../components/Footer/Footer";
 
 export default function Venue() {
@@ -7,7 +8,11 @@ export default function Venue() {
      window.scrollTo(0, 0);
 
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                {/* Page title */}
                <h1 className="page-title">
@@ -39,6 +44,6 @@ export default function Venue() {
 
 
                <Footer />
-          </div>
+          </motion.div>
      )
 }

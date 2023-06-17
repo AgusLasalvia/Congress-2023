@@ -1,6 +1,8 @@
-import { useEffect } from "react";
-
 /* eslint react/prop-types: 0 */
+
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+
 export default function Step3({ formData, setFormData }) {
      useEffect(() => {
           // Scrolls to top when rendered.
@@ -10,7 +12,11 @@ export default function Step3({ formData, setFormData }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                <div className="form-input-wrapper form-first radio">
                     <label className="form-label">Have you ever attended a Quitel/Chitel congress?</label>
                     <div className="form-radio-wrapper">
@@ -46,6 +52,6 @@ export default function Step3({ formData, setFormData }) {
                          <label className="form-radio-label">No</label>
                     </div>
                </div>
-          </div>
+          </motion.div>
      )
 }

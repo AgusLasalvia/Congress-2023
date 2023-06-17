@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fileReceipts, registration, sendReceipts, sendRegistration } from "../../../services/FormsService";
 import { validateData } from "../../../hooks/validateData";
+import { motion } from "framer-motion";
 import Footer from "../../../components/Footer/Footer";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -54,7 +55,11 @@ export default function PreRegistration() {
      }
 
      return (
-          <div className="page-wrapper">
+          <motion.div className="page-wrapper"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
 
                <div className="page-info form">
                     <div className="info-box">
@@ -98,6 +103,6 @@ export default function PreRegistration() {
 
                <Footer />
 
-          </div>
+          </motion.div>
      )
 }

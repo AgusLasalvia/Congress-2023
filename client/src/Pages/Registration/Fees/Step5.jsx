@@ -1,6 +1,8 @@
-import { useEffect, useRef } from "react";
-
 /* eslint react/prop-types: 0 */
+
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+
 export default function Step3({ receipts, setReceipts }) {
 
      const hiddenRegistrationButton = useRef(null);
@@ -15,7 +17,11 @@ export default function Step3({ receipts, setReceipts }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                {/* Registration payment receipt */}
                <div className="form-upload-wrapper">
                     <label className="form-label">Upload your Registration payment receipt</label>
@@ -72,6 +78,6 @@ export default function Step3({ receipts, setReceipts }) {
                          }}
                     />
                </div>
-          </div>
+          </motion.div>
      )
 }

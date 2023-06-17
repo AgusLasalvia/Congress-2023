@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-
 /* eslint react/prop-types: 0 */
+
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 export default function Step2({ setFormData, formData }) {
 
      useEffect(() => {
@@ -11,7 +12,11 @@ export default function Step2({ setFormData, formData }) {
      }, [])
 
      return (
-          <div>
+          <motion.div
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               exit={{ opacity: 0 }}
+          >
                <div className="form-input-wrapper form-first radio">
                     <label className="form-label">Level of education</label>
                     {/* Postdocs / Researchers / Professors*/}
@@ -65,6 +70,6 @@ export default function Step2({ setFormData, formData }) {
                     />
                </div>
 
-          </div>
+          </motion.div>
      )
 }
