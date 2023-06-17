@@ -10,6 +10,7 @@ function App() {
       <Navbar />
       {/* Pages */}
       <Outlet />
+      {/* Footer */}
     </div>
   )
 }
