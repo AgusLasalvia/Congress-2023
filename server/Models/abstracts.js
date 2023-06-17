@@ -8,4 +8,6 @@ let abstractSchema = new schema({
     title:String
 })
 
-let abstract = mongoose.model("Abstract",abstractSchema)
+let Abstract = mongoose.model("Abstract",abstractSchema);
+
+module.exports = Abstract;

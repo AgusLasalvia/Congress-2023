@@ -24,13 +24,24 @@ require("dotenv").config();
 const registrationID = process.env.REGISTRATION_FOLDER_ID;
 const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
 
-//mongoose configuration
+//Email configuration
+const mail = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "aguslblumenfeld@gmail.com",
+    pass: "lnfzwfsumfidaxjd",
+  },
+});
+
+//Mongoose configuration
 mongoose.connect(process.env.MONGODB);
 db = mongoose.connection.once("open", () => {
   console.log("Mongodb connected");
 });
 
-//express conficurations
+//Express conficurations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
@@ -83,6 +94,7 @@ app.post("/registration-data", (req, res) => {
     email: data["email"],
   }).then((result) => {
     if (result == null) {
+      
       //MongoDB successfull
       postData.save();
 
@@ -105,13 +117,20 @@ app.post("/registration-data", (req, res) => {
 //Abstract Data Form Submition
 app.post("/submit_abstract_data", (req, res) => {
   const body = req.body.abstract;
-  let tempAbstractData = {
-    email:'',
-    firstName:'',
-    lastName:'',
-    title:''
-  }
-  Abstract
+  let postData = new Abstract(body);
+  Abstract.findOne({
+    email:body['email']
+  }).then((result) =>{
+
+    if (result == null){
+      postData.save();
+      res.json('abstract data submited');
+
+    } else{
+      res.json('already submited');
+    }
+
+  });
 });
 
 //Abstract Files Form Submition
@@ -131,16 +150,6 @@ async function sendSheetData(folderID, data) {
   });
 }
 
-//email configuration
-const mail = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: "aguslblumenfeld@gmail.com",
-    pass: "lnfzwfsumfidaxjd",
-  },
-});
 
 //Email send method
 function SendMail(receiver, message, subject) {
@@ -162,4 +171,4 @@ function SendMail(receiver, message, subject) {
 }
 
 
-app.listen(port, () => console.info(`server listening in port ${port}`));
+app.listen(port, () => console.info(`server started correctly`));
