@@ -86,6 +86,9 @@ export default function Navbar() {
                                    <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
                               </li>
                               <li>
+                                   <NavLink className="nav-link" to="/Quitel/hotel">Hotel</NavLink>
+                              </li>
+                              <li>
                                    <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
                               </li>
                               {/* <li>

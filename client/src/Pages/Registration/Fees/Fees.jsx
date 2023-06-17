@@ -58,7 +58,7 @@ export default function Fees() {
                               {/* Additional */}
                               <div className="line heading second">
                                    <p>Additional</p>
-                                   <p>USD</p>
+                                   <p></p>
                               </div>
                               <div className="line">
                                    <p>Accompanying</p>
@@ -93,9 +93,9 @@ export default function Fees() {
                                    <p>250</p>
                               </div>
                               {/* Additional */}
-                              <div className="line header second">
+                              <div className="line heading second">
                                    <p>Additional</p>
-                                   <p>USD</p>
+                                   <p></p>
                               </div>
                               <div className="line">
                                    <p>Accompanying</p>

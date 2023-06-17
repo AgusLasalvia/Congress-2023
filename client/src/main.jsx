@@ -20,12 +20,14 @@ import Committees from './Pages/Commitees/Committees.jsx';
 import Contact from './Pages/Contact/Contact.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import Venue from './Pages/Venue/Venue.jsx';
+import Success from './Pages/Success/Success.jsx';
+import Hotel from './Pages/Hotel/Hotel.jsx';
+
 
 // component imports
 import './components/Navbar/Navbar.css';
 import './components/HomeCTA/HomeCTA.css';
 import './components/Footer/Footer.css';
-import Success from './Pages/Success/Success.jsx';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -42,6 +44,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/quitel/committees" element={<Committees />} />
     <Route path="/quitel/contact" element={<Contact />} />
     <Route path="/quitel/venue" element={<Venue />} />
+    <Route path="/quitel/hotel" element={<Hotel />} />
     <Route path="/quitel/success" element={<Success />} />
     <Route path="*" element={<ErrorPage />} />
   </Route>
