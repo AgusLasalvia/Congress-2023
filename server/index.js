@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 //Google API modules
 const authentication = require("./js/google-sheet");
-const uploadFile = require("./js/g_drive.js");
+const uploadFile = require("./js/google-drive.js");
 const nodemailer = require("nodemailer");
 
 //Express modules
@@ -17,7 +17,7 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
-//.env variables from railway
+//read .env from railway
 require("dotenv").config();
 
 //Google Drive Folder ID
@@ -149,7 +149,7 @@ function SendMail(receiver, message, subject) {
     from: "aguslblumenfeld@gmail.com",
     to: receiver["email"],
     subject: subject,
-    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
+    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`
   };
 
   mail.sendMail(mailOptions, function (err, info) {
