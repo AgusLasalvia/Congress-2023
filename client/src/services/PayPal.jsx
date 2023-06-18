@@ -4,7 +4,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 export default function PayPalTest({ feeSelection }) {
 
      return (
-          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": "AUNoHsYquqTOcMmPBWgAPdPF-2rQahxmpeRxBGfANvlbbTvEvQHYm7PMH02Fp3JDnsSiSDNQ3s4f1Jrq" }}>
+          <PayPalScriptProvider className="paypal-buttons" options={{ "client-id": import.meta.env.VITE_REACT_CLIENT_ID }}>
                {feeSelection == "postdocs" ? (
                     <PayPalButtons className="paypal-buttons"
                          createOrder={(data, actions) => {
@@ -90,7 +90,7 @@ export default function PayPalTest({ feeSelection }) {
                                              amount: {
                                                   currency_code: "USD",
                                                   // CHANGE THIS VALUE BACK TO 40.00 UNITED STATES DOLLARS FROM THE FEDERAL RESERVE OF NORTH AMERICA (DOLARES AMERICANOS 40.00)
-                                                  value: "40.00",
+                                                  value: "1.00",
                                              },
                                         },
                                    ],

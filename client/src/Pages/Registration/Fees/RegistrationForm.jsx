@@ -20,6 +20,10 @@ export default function PreRegistration() {
 
      // Error message
      const [errorMessage, setErrorMessage] = useState("");
+     // Button disabled boolean
+     const [isDisabled, setIsDisabled] = useState(false);
+
+
      // navigation hook
      const navigate = useNavigate();
      // step count state
@@ -47,10 +51,14 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
+          // This function will not be called as long as if isDisabled is
+          // true, therefore "disabling" the button until a server response is received.
+          setIsDisabled(true);
+
           // It is not mandatory to not send the receipts
           if (validateData(formData)) {
                setErrorMessage("");
-               sendRegistration(formData, navigateOnSuccess, setErrorMessage);
+               sendRegistration(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
                sendReceipts(receipts);
           } else {
                setErrorMessage("There may be empty fields in one of the steps, please check.");
@@ -97,7 +105,7 @@ export default function PreRegistration() {
 
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
-                                   onClick={step == 5 ? handleSubmit : nextStep}
+                                   onClick={step == 5 ? isDisabled ? null : handleSubmit : nextStep}
                               >{step == 5 ? "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>

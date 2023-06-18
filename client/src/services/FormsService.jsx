@@ -1,6 +1,8 @@
-const preRegisterAPI = "https://api-quitel-production.up.railway.app/pre-registration";
-const registerAPI = "https://api-quitel-production.up.railway.app/registration-data";
-const registerReceiptsAPI = "https://api-quitel-production.up.railway.app/registration-files";
+const preRegistrationURL = import.meta.env.VITE_REACT_PREREGISTRATION;
+const registrationURL = import.meta.env.VITE_REACT_REGISTRATION;
+const registrationReceiptsURL = import.meta.env.VITE_REACT_REGISTRATIONFILES;
+const abstractURL = import.meta.env.VITE_REACT_ABSTRACT;
+const abstractFilesURL = import.meta.env.VITE_REACT_ABSTRACTFILES;
 
 // preRegistration object 
 export const preRegistration = {
@@ -35,16 +37,32 @@ export const registration = {
      motherLanguage: "",
 }
 
+// receipt files object
 export const fileReceipts = {
      registrationPaymentReceipt: null,
      dinnerPaymentReceipt: null,
      accompanyingPaymentReceipt: null,
 }
 
+// abstract object
+export const abstract = {
+     email: "",
+     firstName: "",
+     lastName: "",
+     title: "",
+}
 
+// abstract files object
+export const abstractFiles = {
+     editableFormat: null,
+     pdfFormat: null,
+}
+
+// ------------------------------------------------------------------------------------------------
 // pre registration POST
-export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage) => {
-     fetch(preRegisterAPI, {
+// ------------------------------------------------------------------------------------------------
+export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+     fetch(preRegistrationURL, {
           method: 'POST',
           headers: {
                'Content-Type': 'application/json'
@@ -67,37 +85,27 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
                          setErrorMessage(data);
                          break;
                }
+               // "re-enables" the button
+               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error);
                setErrorMessage("An unexpected error ocurred.");
+               // "re-enables" the button
+               setIsDisabled(false);
           });
-
-     // TODO: return
 }
 
 
-// formData.registrationPaymentReceipt = receipts.registrationPaymentReceipt;
-// formData.dinnerPaymentReceipt = receipts.dinnerPaymentReceipt;
-// formData.accompanyingPaymentReceipt = receipts.accompanyingPaymentReceipt;
-
-// const appendedFiles = new FormData();
-// appendedFiles.append('data', formData);
-
-// appendedFiles.append('registration', files.registrationPaymentReceipt);
-// appendedFiles.append('dinner', files.dinnerPaymentReceipt);
-// appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
-
-// registration.receipts = appendedFiles;
-
-
+// ------------------------------------------------------------------------------------------------
 // registration POST
-export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage) => {
+// ------------------------------------------------------------------------------------------------
+export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
 
-     console.log(formData);
+     // console.log(formData);
 
-     fetch(registerAPI, {
+     fetch(registrationURL, {
           method: 'POST',
           headers: {
                'Content-Type': 'application/json'
@@ -112,7 +120,7 @@ export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage) =
                     case "success":
                          navigateOnSuccess();
                          break;
-                    case "already registered":
+                    case "already-registered":
                          setErrorMessage("The email provided is already registered");
                          break;
                     default:
@@ -120,26 +128,33 @@ export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage) =
                          setErrorMessage(data);
                          break;
                }
+               // "re-enables" the button
+               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error);
                setErrorMessage(error.message);
+               // "re-enables" the button
+               setIsDisabled(false);
           });
-
 }
 
+
+// ------------------------------------------------------------------------------------------------
 // registration receipts POST
+// ------------------------------------------------------------------------------------------------
 export const sendReceipts = (files) => {
-     console.log(files);
+     // console.log(files);
 
      const appendedFiles = new FormData();
      appendedFiles.append('registration', files.registrationPaymentReceipt);
      appendedFiles.append('dinner', files.dinnerPaymentReceipt);
      appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
 
-     fetch(registerReceiptsAPI, {
+     fetch(registrationReceiptsURL, {
           method: 'POST',
+          // No 'Content-Type' so that the browser will automatically use the adequate kind. 
           body: appendedFiles
      })
           .then(response => response.json())
@@ -153,5 +168,73 @@ export const sendReceipts = (files) => {
                console.error("error: " + error.message);
                // setErrorMessage(error.message);
           });
+}
 
+
+// ------------------------------------------------------------------------------------------------
+// abstract POST
+// ------------------------------------------------------------------------------------------------
+export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+     fetch(abstractURL, {
+          method: 'POST',
+          headers: {
+               'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ abstract: formData })
+     })
+          .then(response => response.json())
+          .then(data => {
+               // API response
+               console.log("data: " + data);
+               switch (data) {
+                    case "submitted-successfully":
+                         navigateOnSuccess();
+                         break;
+                    case "already-submitted":
+                         setErrorMessage("The email provided has already sent an abstract");
+                         break;
+                    default:
+                         console.log("data: " + data);
+                         setErrorMessage(data);
+                         break;
+               }
+               // "re-enables" the button
+               setIsDisabled(false);
+          })
+          .catch(error => {
+               // Error handling
+               console.error("error: " + error);
+               setErrorMessage(error.message);
+               // "re-enables" the button
+               setIsDisabled(false);
+          });
+}
+
+
+// ------------------------------------------------------------------------------------------------
+// abstract files POST
+// ------------------------------------------------------------------------------------------------
+export const sendAbstractFiles = (files) => {
+     // console.log(files);
+
+     const appendedFiles = new FormData();
+     appendedFiles.append('registration', files.registrationPaymentReceipt);
+     appendedFiles.append('dinner', files.dinnerPaymentReceipt);
+     appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+
+     fetch(abstractFilesURL, {
+          method: 'POST',
+          // No 'Content-Type' so that the browser will automatically use the adequate kind. 
+          body: appendedFiles
+     })
+          .then(response => response.json())
+          .then(data => {
+               // API response
+               console.log("data: " + data);
+          })
+          .catch(error => {
+               // Error handling
+               console.error("error: " + error.message);
+               // setErrorMessage(error.message);
+          });
 }

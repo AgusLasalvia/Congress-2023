@@ -11,8 +11,11 @@ export default function PreRegistration() {
 
      // form data object
      const [formData, setFormData] = useState(preRegistration);
+
      // Error message
      const [errorMessage, setErrorMessage] = useState("");
+     // Button disabled boolean
+     const [isDisabled, setIsDisabled] = useState(false);
 
      // navigation hook
      const navigate = useNavigate();
@@ -42,10 +45,13 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
-          console.log(formData)
+          // This function will not be called as long as if isDisabled is
+          // true, therefore "disabling" the button until a server response is received.
+          setIsDisabled(true);
+          // console.log(formData)
           if (validateData(formData)) {
                setErrorMessage("");
-               sendPreRegistration(formData, navigateOnSuccess, setErrorMessage);
+               sendPreRegistration(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
           } else {
                setErrorMessage("There may be empty fields in one of the steps, please check.");
           }
@@ -87,7 +93,7 @@ export default function PreRegistration() {
 
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
-                                   onClick={step == 3 ? handleSubmit : nextStep}
+                                   onClick={step == 3 ? isDisabled ? null : handleSubmit : nextStep}
                               >{step == 3 ? "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
