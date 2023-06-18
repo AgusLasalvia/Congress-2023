@@ -145,7 +145,7 @@ app.post("/submit-abstract-data", (req, res) => {
 app.post("/submit-abstract-files", (req, res) => {
   const files = req.files;
   console.log(files);
-  // uploadFile(files)
+  uploadFile(files)
 
 
   
