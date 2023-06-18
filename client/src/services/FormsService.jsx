@@ -215,12 +215,12 @@ export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIs
 // abstract files POST
 // ------------------------------------------------------------------------------------------------
 export const sendAbstractFiles = (files) => {
-     // console.log(files);
+     console.log(files);
 
      const appendedFiles = new FormData();
-     appendedFiles.append('registration', files.registrationPaymentReceipt);
-     appendedFiles.append('dinner', files.dinnerPaymentReceipt);
-     appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+     appendedFiles.append('editableFormat', files.editableFormat);
+     appendedFiles.append('pdfFormat', files.pdfFormat);
+
 
      fetch(abstractFilesURL, {
           method: 'POST',
