@@ -114,6 +114,11 @@ app.post("/registration-data", (req, res) => {
   });
 });
 
+
+app.post("/registration-files",(req,res)=>{
+    const files = req.files;  
+});
+
 //Abstract Data Form Submition
 app.post("/submit_abstract_data", (req, res) => {
   const body = req.body.abstract;
