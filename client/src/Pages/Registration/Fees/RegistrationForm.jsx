@@ -18,13 +18,16 @@ export default function PreRegistration() {
      // receipts object
      const [receipts, setReceipts] = useState(fileReceipts);
 
-     // Empty fields boolean
-     const [hasEmptyFields, setHasEmptyFields] = useState(false);
+     // Error message
+     const [errorMessage, setErrorMessage] = useState("");
      // navigation hook
      const navigate = useNavigate();
      // step count state
      const [step, setStep] = useState(1);
 
+     const navigateOnSuccess = () => {
+          navigate("/Quitel/success");
+     }
 
      // Goes to the next step in the form
      const nextStep = () => {
@@ -44,13 +47,13 @@ export default function PreRegistration() {
      }
 
      const handleSubmit = () => {
-
+          // It is not mandatory to not send the receipts
           if (validateData(formData)) {
-               setHasEmptyFields(false);
-               sendRegistration(formData);
+               setErrorMessage("");
+               sendRegistration(formData, navigateOnSuccess, setErrorMessage);
                sendReceipts(receipts);
           } else {
-               setHasEmptyFields(true);
+               setErrorMessage("There may be empty fields in one of the steps, please check.");
           }
      }
 
@@ -90,7 +93,7 @@ export default function PreRegistration() {
                                    }
                               })()}
 
-                              {hasEmptyFields && <p className="form-error-message">There may be empty fields in one of the steps, please check.</p>}
+                              {errorMessage && <p className="form-error-message">{errorMessage}</p>}
 
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"

@@ -1,5 +1,6 @@
 const preRegisterAPI = "https://api-quitel-production.up.railway.app/pre-registration";
-const registerAPI = "https://api-quitel-production.up.railway.app/pepe";
+const registerAPI = "https://api-quitel-production.up.railway.app/registration-data";
+const registerReceiptsAPI = "https://api-quitel-production.up.railway.app/registration-files";
 
 // preRegistration object 
 export const preRegistration = {
@@ -92,7 +93,7 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
 
 
 // registration POST
-export const sendRegistration = (formData) => {
+export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage) => {
 
      console.log(formData);
 
@@ -107,13 +108,25 @@ export const sendRegistration = (formData) => {
           .then(data => {
                // API response
                console.log("data: " + data);
+               switch (data) {
+                    case "success":
+                         navigateOnSuccess();
+                         break;
+                    case "already registered":
+                         setErrorMessage("The email provided is already registered");
+                         break;
+                    default:
+                         console.log("data: " + data);
+                         setErrorMessage(data);
+                         break;
+               }
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error);
+               setErrorMessage(error.message);
           });
 
-     // TODO: return
 }
 
 // registration receipts POST
@@ -125,7 +138,7 @@ export const sendReceipts = (files) => {
      appendedFiles.append('dinner', files.dinnerPaymentReceipt);
      appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
 
-     fetch(registerAPI, {
+     fetch(registerReceiptsAPI, {
           method: 'POST',
           body: appendedFiles
      })
@@ -133,11 +146,12 @@ export const sendReceipts = (files) => {
           .then(data => {
                // API response
                console.log("data: " + data);
+
           })
           .catch(error => {
                // Error handling
-               console.error("error: " + error);
+               console.error("error: " + error.message);
+               // setErrorMessage(error.message);
           });
 
-     // TODO: return
 }

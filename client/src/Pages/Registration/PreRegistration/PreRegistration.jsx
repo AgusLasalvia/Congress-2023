@@ -13,6 +13,7 @@ export default function PreRegistration() {
      const [formData, setFormData] = useState(preRegistration);
      // Error message
      const [errorMessage, setErrorMessage] = useState("");
+
      // navigation hook
      const navigate = useNavigate();
      // step count state
