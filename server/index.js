@@ -191,7 +191,7 @@ const uploadFile = async (fileObject) => {
     })
     .files.create({
       media: {
-        mimeType: fileObject.mimeType,
+        mimeType: fileObject.mimetype,
         body: bufferStream,
       },
       requestBody: {
