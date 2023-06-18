@@ -14,7 +14,7 @@ const nodemailer = require("nodemailer");
 const upload = multer();
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "./googlekey.json",
+  keyFile: "./credential.json",
   scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
