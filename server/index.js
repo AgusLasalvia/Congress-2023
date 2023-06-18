@@ -1,16 +1,26 @@
 //MongoDB Schemas
 const preRegister = require("./Models/pre-register");
 const Register = require("./Models/registration");
-const Abstract = require('./Models/abstracts');
+const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
+
+const stream = require("stream");
+const multer = require("multer");
 
 //Google API modules
 const authentication = require("./js/google-sheet");
-const uploadFile = require("./js/google-drive.js");
+const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
+const upload = multer();
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: "./googlekey.json",
+  scopes: ["https://www.googleapis.com/auth/drive"],
+});
+
 
 //Express modules
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 const bodyParse = require("body-parser");
 const express = require("express");
 const cors = require("cors");
@@ -47,7 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
 app.use(fileUpload());
- 
+
 //Home redirection Route
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
@@ -63,7 +73,6 @@ app.post("/pre-registration", (req, res) => {
       email: data["email"],
     })
     .then((result) => {
-      console.log(result);
       if (result == null) {
         //Save data on MongoDB
         postData.save();
@@ -74,7 +83,7 @@ app.post("/pre-registration", (req, res) => {
           "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
           "QUITEL 2023 Pre Registration"
         );
-        res.json('success');
+        res.json("success");
       } else {
         res.json("already-pre-registered");
       }
@@ -82,9 +91,8 @@ app.post("/pre-registration", (req, res) => {
 
   //Sheet data append
   // sendSheetData(registrationID,data);
-
 });
- 
+
 //Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
@@ -94,7 +102,6 @@ app.post("/registration-data", (req, res) => {
     email: data["email"],
   }).then((result) => {
     if (result == null) {
-      
       //MongoDB successfull
       postData.save();
 
@@ -107,42 +114,41 @@ app.post("/registration-data", (req, res) => {
 
       // //Shet data append
       // //sendSheetData(registrationID,data)
-      res.json('success')
+      res.json("success");
     } else {
       res.json("already registered");
     }
   });
 });
 
-
-app.post("/registration-files",(req,res)=>{
-    const files = req.files;  
+app.post("/registration-files", (req, res) => {
+  const files = req.files;
 });
 
 //Abstract Data Form Submition
-app.post("/submit_abstract_data", (req, res) => {
+app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract;
   let postData = new Abstract(body);
   Abstract.findOne({
-    email:body['email']
-  }).then((result) =>{
-
-    if (result == null){
+    email: body["email"],
+  }).then((result) => {
+    if (result == null) {
       postData.save();
-      res.json('abstract data submited');
-
-    } else{
-      res.json('already submited');
+    } else {
+      res.json("already submited");
     }
-
   });
 });
 
 //Abstract Files Form Submition
-app.post('/submit_abstract_files',(req,res) => {
+app.post("/submit-abstract-files", (req, res) => {
   const files = req.files;
-});
+  console.log(files);
+  uploadFile(files)
 
+
+  
+});
 
 //Google Drive Sheet send method
 async function sendSheetData(folderID, data) {
@@ -155,7 +161,6 @@ async function sendSheetData(folderID, data) {
   });
 }
 
-
 //Email send method
 function SendMail(receiver, message, subject) {
   //mail individual options
@@ -163,7 +168,7 @@ function SendMail(receiver, message, subject) {
     from: "aguslblumenfeld@gmail.com",
     to: receiver["email"],
     subject: subject,
-    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`
+    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
@@ -173,7 +178,26 @@ function SendMail(receiver, message, subject) {
       console.log("Email sent successfully: " + info.response);
     }
   });
-}
+};
 
+const uploadFile = async (fileObject) => {
+  const bufferStream = new stream.PassThrough();
+  bufferStream.end(fileObject.buffer);
+  const { data } = await google
+    .drive({
+      version: "v3",
+      auth: auth,
+    })
+    .files.create({
+      media: {
+        mimeType: fileObject.mimeType,
+        body: bufferStream,
+      },
+      requestBody: {
+        name: fileObject.original,
+        parents: ["1kmcixjW1Stxi3CwHtC1TQ9DoxkjLmMW7"],
+      },
+    });
+}
 
 app.listen(port, () => console.info(`server started correctly`));
