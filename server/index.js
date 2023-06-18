@@ -143,7 +143,7 @@ app.post("/submit-abstract-data", (req, res) => {
 
 //Abstract Files Form Submition
 app.post("/submit-abstract-files", (req, res) => {
-  const files = req;
+  const files = req.files;
   console.log(files);
   // uploadFile(files)
 
