@@ -89,7 +89,8 @@ export default function PayPalTest({ feeSelection }) {
                                              description: "Dinner",
                                              amount: {
                                                   currency_code: "USD",
-                                                  value: "40.00",
+                                                  // CHANGE THIS VALUE BACK TO 40.00 UNITED STATES DOLLARS FROM THE FEDERAL RESERVE OF NORTH AMERICA (DOLARES AMERICANOS 40.00)
+                                                  value: "1.00",
                                              },
                                         },
                                    ],

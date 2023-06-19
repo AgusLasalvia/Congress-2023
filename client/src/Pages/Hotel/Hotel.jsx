@@ -25,7 +25,7 @@ export default function Hotel() {
 
                <div className="page-info">
                     <div className="info-box">
-                         <h1 className="info-title fees">Corporate rates (per night)</h1>
+                         <h1 className="info-title fees">Corporate rates</h1>
                          <div className="info-text">
                               <div className="line heading">
                                    <p>Rooms</p>
