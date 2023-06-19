@@ -47,9 +47,9 @@ export default function PreRegistration() {
      const handleSubmit = () => {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
-          setIsDisabled(true);
-          // console.log(formData)
+
           if (validateData(formData)) {
+               setIsDisabled(true);
                setErrorMessage("");
                sendPreRegistration(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
           } else {
@@ -94,7 +94,7 @@ export default function PreRegistration() {
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
                                    onClick={step == 3 ? isDisabled ? null : handleSubmit : nextStep}
-                              >{step == 3 ? "Submit" : "Continue"}</div>
+                              >{step == 3 ? isDisabled ? "Sending..." : "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fileReceipts, registration, sendReceipts, sendRegistration } from "../../../services/FormsService";
+import { fileReceipts, registration, sendRegistration } from "../../../services/FormsService";
 import { validateData } from "../../../hooks/validateData";
 import { motion } from "framer-motion";
 import Footer from "../../../components/Footer/Footer";
@@ -53,13 +53,12 @@ export default function PreRegistration() {
      const handleSubmit = () => {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
-          setIsDisabled(true);
 
           // It is not mandatory to not send the receipts
-          if (validateData(formData)) {
+          if (validateData(formData) && validateData(receipts)) {
+               setIsDisabled(true);
                setErrorMessage("");
-               sendRegistration(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
-               sendReceipts(receipts);
+               sendRegistration(formData, receipts, navigateOnSuccess, setErrorMessage, setIsDisabled);
           } else {
                setErrorMessage("There may be empty fields in one of the steps, please check.");
           }
@@ -106,7 +105,7 @@ export default function PreRegistration() {
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
                                    onClick={step == 5 ? isDisabled ? null : handleSubmit : nextStep}
-                              >{step == 5 ? "Submit" : "Continue"}</div>
+                              >{step == 5 ? isDisabled ? "Sending..." : "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>
