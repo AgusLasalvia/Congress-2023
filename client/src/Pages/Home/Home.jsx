@@ -17,7 +17,7 @@ export default function Home() {
                <div className="hero">
                     <div className="hero-content">
 
-                         <img src="/assets/svg/quitel-letters.svg" alt="" className="quitel-letters" />
+                         <img src="assets/svg/quitel-letters.svg" alt="" className="quitel-letters" />
 
                          <h2 className="year">2023</h2>
 

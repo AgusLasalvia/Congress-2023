@@ -33,25 +33,24 @@ export default function Navbar() {
      }, [isLandscape, isMobile])
 
      return (
-
           <header>
                {/* arch bg */}
                <div className="header-visible">
                     {isMobile ?
                          isLandscape ? (
                               // isMobile && isLandscape
-                              <img className="nav-arch" src="/assets/svg/arch-landscape.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-landscape.svg" alt="" />
                          ) : (
                               // isMobile && !isLandscape
-                              <img className="nav-arch" src="/assets/svg/arch-portrait.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-portrait.svg" alt="" />
                          ) : (
                               // !isMobile && !isLandscape (Desktops)
-                              <img className="nav-arch" src="/assets/svg/arch-landscape.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-landscape.svg" alt="" />
                          )
                     }
 
                     {/* stamp */}
-                    <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="stamp" />
+                    <img src="assets/svg/stamp.svg" alt="QUITEL 2023" className="stamp" />
 
                     {/* hamburguer menu */}
                     <div id="menu-toggle">
@@ -91,12 +90,9 @@ export default function Navbar() {
                               <li>
                                    <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
                               </li>
-                              {/* <li>
-                                   <p className="language-selector">EN</p>
-                              </li> */}
                          </ul >
                          {/* menu stamp */}
-                         <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
+                         <img src="assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
                     </nav>
 
                </div>

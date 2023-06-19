@@ -26,7 +26,7 @@ export default function Venue() {
 
                <div className="page-info">
                     <div className="info-box">
-                         <img src="/assets/images/venue.jpg" className="venue-img" alt="Edificio Polifuncional José Luis Massera" role="img" />
+                         <img src="assets/images/venue.jpg" className="venue-img" alt="Edificio Polifuncional José Luis Massera" role="img" />
                          <h1 className="info-title">Edificio Polifuncional &quot;Jose Luis Massera&quot;</h1>
                          <div className="info-text">
                               <p>Senda Nelson Landoni 631, 11200 Montevideo</p>

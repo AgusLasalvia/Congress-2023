@@ -31,7 +31,7 @@ export default function HomeCTA() {
      return (
           <div className="home-cta" id="homeCta">
                <p className="text-cta">Find out more</p>
-               <img src="/assets/svg/arrow-cta.svg" alt="" className="arrow" />
+               <img src="assets/svg/arrow-cta.svg" alt="" className="arrow" />
           </div>
      )
 }
