@@ -145,6 +145,7 @@ app.post("/submit-abstract-data", (req, res) => {
 app.post("/submit-abstract-files",async (req, res) => {
   const files = req.files;
   for(let i = 0;i<files.length;i++){
+    console.log(files[i])
     await uploadFile(files[i])
   }
   console.log(files);
