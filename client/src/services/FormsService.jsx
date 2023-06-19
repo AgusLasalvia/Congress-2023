@@ -79,16 +79,14 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
                          break;
                     case "already-pre-registered":
                          setErrorMessage("The email provided is already pre-registered");
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
                }
+               // "re-enables" the button
+               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -103,7 +101,8 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
 // ------------------------------------------------------------------------------------------------
 // registration POST
 // ------------------------------------------------------------------------------------------------
-export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+
      // console.log(formData);
 
      fetch(registrationURL, {
@@ -119,22 +118,18 @@ export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMes
                console.log("data: " + data);
                switch (data) {
                     case "success":
-                         sendReceipts(files, navigateOnSuccess, setErrorMessage, setIsDisabled);
+                         navigateOnSuccess();
                          break;
-
                     case "already-registered":
                          setErrorMessage("The email provided is already registered");
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
-
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
                }
+               // "re-enables" the button
+               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -149,7 +144,7 @@ export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMes
 // ------------------------------------------------------------------------------------------------
 // registration receipts POST
 // ------------------------------------------------------------------------------------------------
-const sendReceipts = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+export const sendReceipts = (files) => {
      // console.log(files);
 
      const appendedFiles = new FormData();
@@ -166,14 +161,12 @@ const sendReceipts = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) 
           .then(data => {
                // API response
                console.log("data: " + data);
-               navigateOnSuccess();
+
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error.message);
-               setErrorMessage("There has been an error with the files.");
-               // "re-enables" the button
-               setIsDisabled(false);
+               // setErrorMessage(error.message);
           });
 }
 
@@ -181,7 +174,7 @@ const sendReceipts = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) 
 // ------------------------------------------------------------------------------------------------
 // abstract POST
 // ------------------------------------------------------------------------------------------------
-export const sendAbstract = (formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
      fetch(abstractURL, {
           method: 'POST',
           headers: {
@@ -193,26 +186,20 @@ export const sendAbstract = (formData, files, navigateOnSuccess, setErrorMessage
           .then(data => {
                // API response
                console.log("data: " + data);
-
                switch (data) {
-                    // Sends the abstract files if first POST request is successful
-                    case "data-validated":
-                         sendAbstractFiles(files, navigateOnSuccess, setErrorMessage, setIsDisabled);
+                    case "submitted-successfully":
+                         navigateOnSuccess();
                          break;
-
                     case "already-submitted":
                          setErrorMessage("The email provided has already sent an abstract");
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
-
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
-                         // "re-enables" the button
-                         setIsDisabled(false);
                          break;
                }
+               // "re-enables" the button
+               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -227,7 +214,8 @@ export const sendAbstract = (formData, files, navigateOnSuccess, setErrorMessage
 // ------------------------------------------------------------------------------------------------
 // abstract files POST
 // ------------------------------------------------------------------------------------------------
-const sendAbstractFiles = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+export const sendAbstractFiles = (files) => {
+     console.log(files);
 
      const appendedFiles = new FormData();
      appendedFiles.append('editableFormat', files.editableFormat);
@@ -243,13 +231,10 @@ const sendAbstractFiles = (files, navigateOnSuccess, setErrorMessage, setIsDisab
           .then(data => {
                // API response
                console.log("data: " + data);
-               navigateOnSuccess();
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error.message);
-               setErrorMessage("There has been an error with the files.");
-               // "re-enables" the button
-               setIsDisabled(false);
+               // setErrorMessage(error.message);
           });
 }

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { motion } from "framer-motion";
-import { abstract, abstractFiles, sendAbstract } from "../../services/FormsService";
+import { abstract, abstractFiles, sendAbstract, sendAbstractFiles } from "../../services/FormsService";
 import { validateData } from "../../hooks/validateData";
 import { useEffect, useRef, useState } from "react";
 
@@ -29,16 +29,19 @@ export default function AbstractForm() {
      const hiddenEditableFormatButton = useRef(null);
      const hiddenPdfFormatButton = useRef(null);
 
+
      const handleSubmit = () => {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
+          setIsDisabled(true);
 
-          if (validateData(formData) && validateData(files)) {
-               setIsDisabled(true);
+          // It is not mandatory to not send the receipts
+          if (validateData(formData)) {
                setErrorMessage("");
-               sendAbstract(formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled);
+               sendAbstract(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
+               sendAbstractFiles(files);
           } else {
-               setErrorMessage("There may be an empty field, please check.");
+               setErrorMessage("There may be empty fields in one of the steps, please check.");
           }
      }
 
@@ -50,7 +53,7 @@ export default function AbstractForm() {
           // Scrolls to top when rendered.
           // Otherwise when switching routes the user would remain at the same Y position in the window.
           window.scrollTo(0, 0);
-     }, []);
+     }, [])
 
      return (
           <motion.div className="page-wrapper"
@@ -139,7 +142,7 @@ export default function AbstractForm() {
                               {/* Submit button */}
                               <div className="button-long-blue abstract-submit-button"
                                    onClick={isDisabled ? null : handleSubmit}
-                              >{isDisabled ? "Sending..." : "Submit"}</div>
+                              >Submit</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>
