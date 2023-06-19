@@ -1,24 +1,22 @@
-//MongoDB Schemas
+// MongoDB Schemas
 const preRegister = require("./Models/pre-register");
 const Register = require("./Models/registration");
 const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
 
-const stream = require("stream");
-const multer = require("multer");
-
-//Google API modules
+// Google API required modules
 const authentication = require("./js/google-sheet");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
-const upload = multer();
+const stream = require("stream");
+
 
 const auth = new google.auth.GoogleAuth({
   keyFile: "./credential.json",
   scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
-//Express modules
+// Express modules
 const fileUpload = require("express-fileupload");
 const bodyParse = require("body-parser");
 const express = require("express");
@@ -26,14 +24,14 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
-//read .env from railway
+// Read .env from railway
 require("dotenv").config();
 
-//Google Drive Folder ID
+// Google Drive Folder ID
 const registrationID = process.env.REGISTRATION_FOLDER_ID;
 const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
 
-//Email configuration
+// Email configuration
 const mail = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -44,25 +42,25 @@ const mail = nodemailer.createTransport({
   },
 });
 
-//Mongoose configuration
+// Mongoose configuration
 mongoose.connect(process.env.MONGODB);
 db = mongoose.connection.once("open", () => {
   console.log("Mongodb connected");
 });
 
-//Express conficurations
+// Express conficurations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
 app.use(fileUpload());
 
-//Home redirection Route
+// Home redirection Route
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
 });
 
-//Routes POST
+// Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
   console.log(data);
@@ -73,10 +71,10 @@ app.post("/pre-registration", (req, res) => {
     })
     .then((result) => {
       if (result == null) {
-        //Save data on MongoDB
+        // Save data on MongoDB
         postData.save();
 
-        //Send confirmation mail
+        // Send confirmation mail
         SendMail(
           data,
           "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
@@ -88,43 +86,47 @@ app.post("/pre-registration", (req, res) => {
       }
     });
 
-  //Sheet data append
+  // Sheet data append
   // sendSheetData(registrationID,data);
 });
 
-//Registration Data Form Receiver
+// Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
-  // const file = req.files;
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
   }).then((result) => {
     if (result == null) {
-      //MongoDB successfull
+
+      // MongoDB successfull
       postData.save();
 
-      //Send mailOptions
+      // Send mailOptions
       SendMail(
         data,
         "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
         "QUITEL 2023 Registration"
       );
 
-      // //Shet data append
-      // //sendSheetData(registrationID,data)
+      // Shet data append
+      //sendSheetData(registrationID,data)
       res.json("success");
     } else {
-      res.json("already registered");
+      res.json("already-registered");
     }
   });
 });
 
-app.post("/registration-files", (req, res) => {
+app.post("/registration-files",async (req, res) => {
   const files = req.files;
+  await uploadFile(files.registration,process.env.REGISTRATION_FOLDER_ID)
+  await uploadFile(files.dinner,process.env.DINNER_FOLDER_ID)
+  await uploadFile(files.accompanying,process.env.ACCOMPANYING_FOLDER_ID)
+
 });
 
-//Abstract Data Form Submition
+// Abstract Data Form Submition
 app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract;
   let postData = new Abstract(body);
@@ -133,23 +135,24 @@ app.post("/submit-abstract-data", (req, res) => {
   }).then((result) => {
     if (result == null) {
       postData.save();
-      res.json("data-validated")
+      res.json("data-validated");
+
     } else {
       res.json("already-submitted");
     }
   });
 });
 
-//Abstract Files Form Submition
+// Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
     const files = req.files;
-    await uploadFile(files.editableFormat);
-    await uploadFile(files.pdfFormat);
+    await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
+    await uploadFile(files.pdfFormat,process.env.ABSTRACT_FOLDER_ID);
     res.json("submitted-successfully");
 
 });
 
-//Google Drive Sheet send method
+// Google Drive Sheet send method
 async function sendSheetData(folderID, data) {
   const sheets = (await authentication).sheets;
   const response = sheets.spreadsheets.values.append({
@@ -157,12 +160,13 @@ async function sendSheetData(folderID, data) {
     range: "Sheet1",
     valueInputOption: "USER_ENTERED",
     resource: [[]],
+    
   });
-}
+};
 
-//Email send method
+// Email send method
 function SendMail(receiver, message, subject) {
-  //mail individual options
+  // Mail individual options
   let mailOptions = {
     from: "aguslblumenfeld@gmail.com",
     to: receiver["email"],
@@ -179,7 +183,8 @@ function SendMail(receiver, message, subject) {
   });
 }
 
-const uploadFile = async (fileObject) => {
+// Google Drive API configuration
+const uploadFile = async (fileObject,parentFolder) => {
   const bufferStream = new stream.PassThrough();
   bufferStream.end(fileObject["data"]);
   const { data } = await google
@@ -194,7 +199,7 @@ const uploadFile = async (fileObject) => {
       },
       requestBody: {
         name: fileObject["name"],
-        parents: ["1kmcixjW1Stxi3CwHtC1TQ9DoxkjLmMW7"],
+        parents: [parentFolder],
       },
     });
 };
