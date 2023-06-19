@@ -146,8 +146,12 @@ app.post("/submit-abstract-data", (req, res) => {
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
     const files = req.files;
-    await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
+    if(files.editableFormat != undefined){
+      await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
+    }
+    if(files.pdfFormat != undefined){
     await uploadFile(files.pdfFormat,process.env.ABSTRACT_FOLDER_ID);
+    }
     res.json("submitted-successfully");
 
 });
