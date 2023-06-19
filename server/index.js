@@ -141,14 +141,11 @@ app.post("/submit-abstract-data", (req, res) => {
 
 //Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
-  try {
     const files = req.files;
     await uploadFile(files.editableFormat);
     await uploadFile(files.pdfFormat);
     res.json("submitted-successfully");
-  } catch {
-    res.json("error");
-  }
+
 });
 
 //Google Drive Sheet send method
