@@ -148,7 +148,6 @@ app.post("/submit-abstract-files",async (req, res) => {
     console.log(files[i])
     await uploadFile(files[i])
   }
-  console.log(files);
 
 
 
