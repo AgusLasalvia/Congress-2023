@@ -1,88 +1,177 @@
-//const upload = require('./js/g_drive.js')
+// MongoDB Schemas
 const preRegister = require("./Models/pre-register");
-const Register = require('./Models/registration')
-const nodemailer = require("nodemailer");
-const bodyParse = require('body-parser');
+const Register = require("./Models/registration");
+const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
+
+// Google API required modules
+const authentication = require("./js/google-sheet");
+const { google } = require("googleapis");
+const nodemailer = require("nodemailer");
+const stream = require("stream");
+
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: "./credential.json",
+  scopes: ["https://www.googleapis.com/auth/drive"],
+});
+
+// Express modules
+const fileUpload = require("express-fileupload");
+const bodyParse = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require('dotenv').config()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
-//mongoose configuration
-mongoose.connect(process.env.MONGODB);
-mongoose.connection.once("open", () => {
-  console.log('Mongodb connected')
-})
-console.log("server start")
-//email configuration
-var mail = nodemailer.createTransport({
-  service: "gmail",
+// Read .env from railway
+require("dotenv").config();
+
+// Google Drive Folder ID
+const registrationID = process.env.REGISTRATION_FOLDER_ID;
+const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
+
+// Email configuration
+const mail = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: "",
-    pass: "",
+    user: "aguslblumenfeld@gmail.com",
+    pass: "lnfzwfsumfidaxjd",
   },
 });
 
-//express conficurations
+// Mongoose configuration
+mongoose.connect(process.env.MONGODB);
+db = mongoose.connection.once("open", () => {
+  console.log("Mongodb connected");
+});
+
+// Express conficurations
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
+app.use(fileUpload());
 
-
-//Routes POST and PUT
-app.put("/pre_registration", (req, res) => {
-  const data = req.body;
-  preRegister.create(data);
-  SendMail(data)
-  res.redirect('https://quitel.site/')
+// Home redirection Route
+app.get("/", (req, res) => {
+  res.redirect("https://quitel23.site/Quitel/");
 });
 
+// Routes POST
+app.post("/pre-registration", (req, res) => {
+  const data = req.body.preRegistration;
+  console.log(data);
+  let postData = new preRegister(data);
+  preRegister
+    .findOne({
+      email: data["email"],
+    })
+    .then((result) => {
+      if (result == null) {
+        // Save data on MongoDB
+        postData.save();
 
-app.post('/get_personInfo',(req,res)=>{
-  const data = {
-    'email': req.body.email
-  }
+        // Send confirmation mail
+        SendMail(
+          data,
+          "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+          "QUITEL 2023 Pre Registration"
+        );
+        res.json("success");
+      } else {
+        res.json("already-pre-registered");
+      }
+    });
 
-  var result = preRegister.findOne(data);
-  if (result != null){
-    res.send(result)
-  }else if(result === undefined){
-    console.log('error on database');
-  }else{
-    res.redirect('') //Change URL of the home
-  }
+  // Sheet data append
+  // sendSheetData(registrationID,data);
 });
 
-app.put("/registration", (req, res) => {
-  const { email } = req.body.email;
-  const data = req.body
-  result = Register.findOne({'email':email});
-  if (result === undefined || result === null){
-    Register.create(data);
-  }else{
-    res.json({'message':'That person is already registed'})
-  }
-});
+// Registration Data Form Receiver
+app.post("/registration-data", (req, res) => {
+  const data = req.body.registration;
+  let postData = new Register(data);
+  Register.findOne({
+    email: data["email"],
+  }).then((result) => {
+    if (result == null) {
 
+      // MongoDB successfull
+      postData.save();
 
-app.put("/submit_abstract",(req,res) =>{
-  const data = req.body;
-  const file = req.body.file
-  SendMail(data,'Submition of Abstract from: ','Notification of abstract submition');
-  uploadFile();
+      // Send mailOptions
+      SendMail(
+        data,
+        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+        "QUITEL 2023 Registration"
+      );
+
+      // Shet data append
+      //sendSheetData(registrationID,data)
+      res.json("success");
+    } else {
+      res.json("already-registered");
+    }
   });
+});
 
-//email send methods
-function SendMail(reciver,message,subject) {
-  //mail individual options
-  var mailOptions = {
-    from: "quitel2023@gmail.com",
-    to: reciver['email'],
+app.post("/registration-files",async (req, res) => {
+  const files = req.files;
+  await uploadFile(files.registration,process.env.REGISTRATION_FOLDER_ID)
+  await uploadFile(files.dinner,process.env.DINNER_FOLDER_ID)
+  await uploadFile(files.accompanying,process.env.ACCOMPANYING_FOLDER_ID)
+
+});
+
+// Abstract Data Form Submition
+app.post("/submit-abstract-data", (req, res) => {
+  const body = req.body.abstract;
+  let postData = new Abstract(body);
+  Abstract.findOne({
+    email: body["email"],
+  }).then((result) => {
+    if (result == null) {
+      postData.save();
+      res.json("data-validated");
+
+    } else {
+      res.json("already-submitted");
+    }
+  });
+});
+
+// Abstract Files Form Submition
+app.post("/submit-abstract-files", async (req, res) => {
+    const files = req.files;
+    await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
+    await uploadFile(files.pdfFormat,process.env.ABSTRACT_FOLDER_ID);
+    res.json("submitted-successfully");
+
+});
+
+// Google Drive Sheet send method
+async function sendSheetData(folderID, data) {
+  const sheets = (await authentication).sheets;
+  const response = sheets.spreadsheets.values.append({
+    spreadsheetID: folderID,
+    range: "Sheet1",
+    valueInputOption: "USER_ENTERED",
+    resource: [[]],
+    
+  });
+};
+
+// Email send method
+function SendMail(receiver, message, subject) {
+  // Mail individual options
+  let mailOptions = {
+    from: "aguslblumenfeld@gmail.com",
+    to: receiver["email"],
     subject: subject,
-    text: message + `${reciver['email']}\n ${reciver['name']} ${reciver['lastName']}`
+    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
   };
 
   mail.sendMail(mailOptions, function (err, info) {
@@ -92,6 +181,27 @@ function SendMail(reciver,message,subject) {
       console.log("Email sent successfully: " + info.response);
     }
   });
+}
+
+// Google Drive API configuration
+const uploadFile = async (fileObject,parentFolder) => {
+  const bufferStream = new stream.PassThrough();
+  bufferStream.end(fileObject["data"]);
+  const { data } = await google
+    .drive({
+      version: "v3",
+      auth: auth,
+    })
+    .files.create({
+      media: {
+        mimeType: fileObject["mimetype"],
+        body: bufferStream,
+      },
+      requestBody: {
+        name: fileObject["name"],
+        parents: [parentFolder],
+      },
+    });
 };
 
-app.listen(port,()=>console.info(`server listening in port ${port}`));
+app.listen(port, () => console.info(`server started correctly`));

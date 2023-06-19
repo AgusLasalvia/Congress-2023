@@ -3,14 +3,14 @@ let schema = mongoose.Schema;
 
 let preRegisterSchema = new schema({
     email: String,
-    firtName:String,
+    firstName:String,
     lastName:String,
     gender:String,
-    level:String,
+    educationLevel:String,
     country:String,
-    institution:String,
-    attendend:String,
-    infromation:Boolean
+    mainIbnstitution:String,
+    hasAttended:String,
+    mail:String
 });
 
 let preRegister = mongoose.model("PreRegister",preRegisterSchema);
