@@ -183,7 +183,7 @@ function SendMail(receiver, message, subject) {
 
 const uploadFile = async (fileObject) => {
   const bufferStream = new stream.PassThrough();
-  bufferStream.end(fileObject.buffer);
+  bufferStream.end(fileObject.data);
   const { data } = await google
     .drive({
       version: "v3",
