@@ -143,11 +143,10 @@ app.post("/submit-abstract-data", (req, res) => {
 //Abstract Files Form Submition
 app.post("/submit-abstract-files",async (req, res) => {
   const files = req.files;
-  console.log(files.length)
-  for(let i = 0;i<files.length;i++){
-    console.log(files[i])
-    await uploadFile(files[i])
-  }
+  console.log(files.editableFormat);
+  console.log(files['editableFormat']);
+  await uploadFile(files.editableFormat)
+  await uploadFile(fileUpload['pdfFormat'])
 
 
 
