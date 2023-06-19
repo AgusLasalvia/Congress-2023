@@ -144,7 +144,7 @@ app.post("/submit-abstract-data", (req, res) => {
 app.post("/submit-abstract-files",async (req, res) => {
   const files = req.files;
   await uploadFile(files.editableFormat)
-  await new uploadFile(fileUpload.pdfFormat)
+  await uploadFile(files.pdfFormat)
 
 
 
