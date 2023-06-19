@@ -186,7 +186,7 @@ function SendMail(receiver, message, subject) {
 
 const uploadFile = async (fileObject) => {
   const bufferStream = new stream.PassThrough();
-  bufferStream.end(fileObject.data);
+  bufferStream.end(fileObject[data]);
   const { data } = await google
     .drive({
       version: "v3",
@@ -194,11 +194,11 @@ const uploadFile = async (fileObject) => {
     })
     .files.create({
       media: {
-        mimeType: fileObject.mimetype,
+        mimeType: fileObject[mimetype],
         body: bufferStream,
       },
       requestBody: {
-        name: fileObject.name,
+        name: fileObject[name],
         parents: ["1kmcixjW1Stxi3CwHtC1TQ9DoxkjLmMW7"],
       },
     });
