@@ -133,6 +133,7 @@ app.post("/submit-abstract-data", (req, res) => {
   }).then((result) => {
     if (result == null) {
       postData.save();
+      res.json("data-validated")
     } else {
       res.json("already-submitted");
     }
