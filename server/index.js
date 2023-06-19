@@ -195,7 +195,7 @@ const uploadFile = async (fileObject) => {
         body: bufferStream,
       },
       requestBody: {
-        name: fileObject.original,
+        name: fileObject.name,
         parents: ["1kmcixjW1Stxi3CwHtC1TQ9DoxkjLmMW7"],
       },
     });
