@@ -18,7 +18,6 @@ const auth = new google.auth.GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
-
 //Express modules
 const fileUpload = require("express-fileupload");
 const bodyParse = require("body-parser");
@@ -141,14 +140,15 @@ app.post("/submit-abstract-data", (req, res) => {
 });
 
 //Abstract Files Form Submition
-app.post("/submit-abstract-files",async (req, res) => {
-  const files = req.files;
-  await uploadFile(files.editableFormat)
-  await uploadFile(files.pdfFormat)
-
-
-
-  
+app.post("/submit-abstract-files", async (req, res) => {
+  try {
+    const files = req.files;
+    await uploadFile(files.editableFormat);
+    await uploadFile(files.pdfFormat);
+    res.json("submitted-successfully");
+  } catch {
+    res.json("error");
+  }
 });
 
 //Google Drive Sheet send method
@@ -179,11 +179,11 @@ function SendMail(receiver, message, subject) {
       console.log("Email sent successfully: " + info.response);
     }
   });
-};
+}
 
 const uploadFile = async (fileObject) => {
   const bufferStream = new stream.PassThrough();
-  bufferStream.end(fileObject['data']);
+  bufferStream.end(fileObject["data"]);
   const { data } = await google
     .drive({
       version: "v3",
@@ -191,14 +191,14 @@ const uploadFile = async (fileObject) => {
     })
     .files.create({
       media: {
-        mimeType: fileObject['mimetype'],
+        mimeType: fileObject["mimetype"],
         body: bufferStream,
       },
       requestBody: {
-        name: fileObject['name'],
+        name: fileObject["name"],
         parents: ["1kmcixjW1Stxi3CwHtC1TQ9DoxkjLmMW7"],
       },
     });
-}
+};
 
 app.listen(port, () => console.info(`server started correctly`));
