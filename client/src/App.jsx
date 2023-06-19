@@ -1,15 +1,16 @@
-import { Outlet } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import AnimatedRoutes from './AnimatedRoutes';
 import Navbar from './components/Navbar/Navbar';
+import './App.css';
 
 function App() {
 
   return (
     <div className="App">
-      {/* Navbar */}
-      <Navbar />
-      {/* Pages */}
-      <Outlet />
+      <Router>
+        <Navbar />
+        <AnimatedRoutes />
+      </Router>
     </div>
   )
 }

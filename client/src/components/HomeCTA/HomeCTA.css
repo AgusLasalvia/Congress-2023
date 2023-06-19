@@ -14,12 +14,33 @@
 }
 
 /* for mobile devices in landscape */
-@media screen and (orientation: landscape) and (max-width: 1024px) {
+@media screen and (orientation: landscape) and (max-width: 1366px) {
   .home-cta {
     margin-top: 8rem;
   }
 
   .text-cta {
     font-size: clamp(0.8rem, 2.2vw, 0.75rem);
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 1366px) {
+  .home-cta {
+    margin-top: 8rem;
+  }
+
+  .text-cta {
+    font-size: clamp(0.8rem, 2.2vw, 0.75rem);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1367px) {
+  .home-cta {
+    margin-top: 10rem;
+  }
+
+  .text-cta {
+    font-size: clamp(1rem, 2.2vw, 0.75rem);
   }
 }

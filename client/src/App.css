@@ -1,3 +1,4 @@
+/* common styles */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap");
 
 * {
@@ -7,8 +8,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
-  -webkit-tap-highlight-color: transparent;
+  /* scroll-behavior: smooth; */
   font-family: "Raleway", sans-serif;
 }
 
@@ -16,8 +16,9 @@
   --bg: #e0e0e0;
   --black: #212121;
   --white: #d9d9d9;
-  --gray: #c4c1ba;
+  --green: #506437;
   --blue: #546e7a;
+  --sweet-blue: #528aa4;
   --pink: #c97582;
   --darkpink: #a56063;
 }
@@ -29,6 +30,25 @@ body {
   background-color: var(--bg);
   overflow-x: hidden;
 }
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: var(--white);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--blue);
+}
+
+/* ------------------------- */
 
 .error {
   position: absolute;
@@ -50,8 +70,49 @@ body {
   font-size: clamp(1.6rem, 2.2vw, 0.75rem);
   font-weight: 400;
 }
+.error a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: underline;
+}
 
-/* info box */
+/* info box & common page styles */
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url("/assets/images/blobs.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.page-title {
+  margin-top: 10rem;
+  margin-inline: auto;
+  text-align: center;
+  width: 90vw;
+  color: var(--black);
+  font-size: clamp(2.2rem, 2.2vw, 0.75rem);
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.page-title-p:nth-child(1) {
+  font-weight: 400;
+}
+
+.page-title-p:nth-child(2) {
+  font-weight: 600;
+}
+
+.page-info {
+  margin-top: 4rem;
+  margin-inline: auto;
+  width: 90vw;
+}
+
+.page-info.form {
+  margin-top: 10rem;
+}
 
 .info-box {
   background-color: var(--white);
@@ -63,15 +124,32 @@ body {
   flex-direction: column;
 }
 
-.info-box:nth-child(3) {
-  margin-bottom: 0px;
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.info-title {
+.line-input {
+  display: flex;
+  flex-direction: column;
+  margin-block: 1rem;
+}
+
+.line-input p {
+  font-weight: 700;
+}
+
+.info-title,
+.info-counter {
   color: #212121;
   font-size: clamp(1.6rem, 2.2vw, 0.75rem);
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+.info-counter {
+  margin-top: 1rem;
 }
 
 .info-text p,
@@ -88,11 +166,187 @@ body {
 
 .info-text a {
   color: var(--blue);
+  font-weight: 600;
   text-decoration: underline;
 }
 
+.button-long-blue,
+.button-long-pink,
+.upload-button {
+  color: white;
+  margin-top: 1rem;
+  text-decoration: none;
+  text-align: center;
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-inline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-long-blue:hover,
+.button-long-pink:hover,
+.upload-button:hover {
+  scale: 1.01;
+  transition: all 0.2s;
+  box-shadow: 0px 0px 20px rgb(255, 255, 255);
+}
+
+.button-long-blue {
+  background-color: var(--sweet-blue);
+}
+
+.submit-button {
+  margin-top: 4rem;
+}
+
+.button-long-pink {
+  background-color: var(--pink);
+}
+
+.upload-button {
+  background-color: var(--green);
+}
+
+/* forms common */
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-wrapper.form-first {
+  margin-top: 2rem;
+}
+.form-input-wrapper.form-first.radio {
+  margin-bottom: 2rem;
+}
+
+.form-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.form-label,
+.info-box .form-error-message {
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  color: var(--black);
+  font-weight: 700;
+}
+
+.form-input {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: var(--black);
+
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  line-height: 1.65rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  transition: all 0.2s;
+  box-shadow: 0px 0px 4px rgb(255, 255, 255);
+}
+
+.form-select {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+
+  border: none;
+  border-radius: 12px;
+
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  color: var(--black);
+
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  line-height: 1.65rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+}
+
+.form-select option {
+  background-color: white;
+}
+
+.form-radio-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-radio-wrapper:nth-child(2) {
+  margin-top: 0.5rem;
+}
+
+.form-radio-label {
+  font-size: clamp(1rem, 2.2vw, 0.75rem);
+  color: var(--black);
+  font-weight: 400;
+}
+
+.form-radio {
+  color: var(--black);
+}
+
+.info-box .form-error-message {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.venue-img {
+  width: auto;
+  border: none;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+.map {
+  margin-top: 1rem;
+  width: auto;
+  border: none;
+  border-radius: 12px;
+}
+
+.speakers-ul li {
+  margin-bottom: 0.2rem;
+}
+
+.paypal-buttons {
+  z-index: 1;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+}
+
 /* for mobile devices in landscape */
-@media screen and (orientation: landscape) and (max-width: 1024px) {
+@media screen and (orientation: landscape) and (max-width: 1366px) {
+  .page-title {
+    margin-top: 6rem;
+    font-size: clamp(1.6rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
   .info-title {
     font-size: clamp(1rem, 2.2vw, 0.75rem);
   }
@@ -101,5 +355,155 @@ body {
   .info-text ul {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     line-height: 1.2rem;
+  }
+
+  .form-select {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+}
+
+/* for mobile devices in portrait */
+@media screen and (orientation: portrait) and (min-width: 768px) {
+  .info-box {
+    padding: 48px;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 2.2vw, 0.75rem);
+  }
+
+  .info-title {
+    font-size: clamp(1.5rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select option {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
+    font-size: clamp(0.95rem, 2.2vw, 0.75rem);
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 768px) {
+  .page-title {
+    width: 65vw;
+  }
+  .page-info {
+    width: 65vw;
+  }
+  .info-box {
+    padding: 48px;
+  }
+}
+
+@media screen and (min-width: 1367px) {
+  .page-title {
+    width: 50vw;
+  }
+
+  .page-info {
+    /* margin-inline: auto; */
+    width: 50vw;
+  }
+
+  .page-info.form {
+    width: 35vw;
+    margin-inline: auto;
+  }
+
+  .info-box {
+    padding: 64px;
+  }
+
+  .page-title {
+    margin-top: 12rem;
+    font-size: clamp(2rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
+  .info-title {
+    font-size: clamp(1.3rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    line-height: 1.2rem;
+  }
+
+  .form-select {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .paypal-buttons {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .paypal-buttons {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .paypal-buttons {
+    z-index: 1;
+    margin-inline: auto;
+    width: 60%;
   }
 }
