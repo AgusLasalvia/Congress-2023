@@ -142,10 +142,13 @@ app.post("/submit-abstract-data", (req, res) => {
 });
 
 //Abstract Files Form Submition
-app.post("/submit-abstract-files", (req, res) => {
+app.post("/submit-abstract-files",async (req, res) => {
   const files = req.files;
+  for(let i = 0;i<files.length;i++){
+    await uploadFile(files[i])
+  }
   console.log(files);
-  uploadFile(files)
+
 
 
   
