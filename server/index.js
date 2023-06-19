@@ -134,7 +134,7 @@ app.post("/submit-abstract-data", (req, res) => {
     if (result == null) {
       postData.save();
     } else {
-      res.json("already submited");
+      res.json("already-submitted");
     }
   });
 });
