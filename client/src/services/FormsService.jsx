@@ -54,6 +54,7 @@ export const abstract = {
 
 // abstract files object
 export const abstractFiles = {
+     email: "",
      editableFormat: null,
      pdfFormat: null,
 }

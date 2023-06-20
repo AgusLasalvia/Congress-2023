@@ -33,7 +33,7 @@ export default function AbstractForm() {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
 
-          if (validateData(formData) && validateData(files)) {
+          if (validateData(formData) && (files.editableFormat || files.pdfFormat)) {
                setIsDisabled(true);
                setErrorMessage("");
                sendAbstract(formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled);
@@ -72,7 +72,10 @@ export default function AbstractForm() {
                                    <label className="form-label" htmlFor="Email">Email</label>
                                    <input className="form-input" type="email" id="email" name="Email"
                                         value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        onChange={(e) => {
+                                             setFormData({ ...formData, email: e.target.value })
+                                             setFiles({ ...files, email: e.target.value })
+                                        }}
                                    />
                               </div>
                               {/* First name */}
