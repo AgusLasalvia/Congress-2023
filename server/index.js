@@ -10,7 +10,6 @@ const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
-
 const auth = new google.auth.GoogleAuth({
   keyFile: "./credential.json",
   scopes: ["https://www.googleapis.com/auth/drive"],
@@ -98,7 +97,6 @@ app.post("/registration-data", (req, res) => {
     email: data["email"],
   }).then((result) => {
     if (result == null) {
-
       // MongoDB successfull
       postData.save();
 
@@ -118,12 +116,11 @@ app.post("/registration-data", (req, res) => {
   });
 });
 
-app.post("/registration-files",async (req, res) => {
+app.post("/registration-files", async (req, res) => {
   const files = req.files;
-  await uploadFile(files.registration,process.env.REGISTRATION_FOLDER_ID)
-  await uploadFile(files.dinner,process.env.DINNER_FOLDER_ID)
-  await uploadFile(files.accompanying,process.env.ACCOMPANYING_FOLDER_ID)
-
+  await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
+  await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID);
+  await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
 });
 
 // Abstract Data Form Submition
@@ -136,7 +133,11 @@ app.post("/submit-abstract-data", (req, res) => {
     if (result == null) {
       postData.save();
       res.json("data-validated");
-
+      SendMail(
+        body,
+        "Abstract sent successfully, you will be notified if it has been approved,\n\
+      otherwise you will be asked for modifications",'QUITEL 2023 Abstract Submition'
+      );
     } else {
       res.json("already-submitted");
     }
@@ -145,17 +146,16 @@ app.post("/submit-abstract-data", (req, res) => {
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
-    const {body,files} = req;
-    console.log(body)
-    console.log(files)
-    if(files.editableFormat != (undefined || null)){
-      await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
-    }
-    if(files.pdfFormat != (undefined || null)){
-    await uploadFile(files.pdfFormat,process.env.ABSTRACT_FOLDER_ID);
-    }
-    res.json("submitted-successfully");
-
+  const { body, files } = req;
+  console.log(body);
+  console.log(files);
+  if (files.editableFormat != (undefined || null)) {
+    await uploadFile(files.editableFormat, process.env.ABSTRACT_FOLDER_ID);
+  }
+  if (files.pdfFormat != (undefined || null)) {
+    await uploadFile(files.pdfFormat, process.env.ABSTRACT_FOLDER_ID);
+  }
+  res.json("submitted-successfully");
 });
 
 // Google Drive Sheet send method
@@ -166,9 +166,8 @@ async function sendSheetData(folderID, data) {
     range: "Sheet1",
     valueInputOption: "USER_ENTERED",
     resource: [[]],
-    
   });
-};
+}
 
 // Email send method
 function SendMail(receiver, message, subject) {
@@ -190,7 +189,7 @@ function SendMail(receiver, message, subject) {
 }
 
 // Google Drive API configuration
-const uploadFile = async (fileObject,parentFolder) => {
+const uploadFile = async (fileObject, parentFolder) => {
   const bufferStream = new stream.PassThrough();
   bufferStream.end(fileObject["data"]);
   const { data } = await google
