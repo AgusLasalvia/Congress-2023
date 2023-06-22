@@ -118,15 +118,22 @@ app.post("/registration-data", (req, res) => {
 
 app.post("/registration-files", async (req, res) => {
   const files = req.files;
-  await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
-  await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID);
-  await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
+  if (files.registration != (undefined || null)) {
+    await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
+  }
+  if (files.dinner != (undefined || null)) {
+    await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID);
+  }
+  if (files.accompanying != (undefined || null)) {
+    await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
+  }
 });
 
 // Abstract Data Form Submition
 app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract;
   let postData = new Abstract(body);
+  console.log(body);
   Abstract.findOne({
     email: body["email"],
   }).then((result) => {
@@ -146,8 +153,7 @@ app.post("/submit-abstract-data", (req, res) => {
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
-  const { body, files } = req;
-  console.log(body);
+  const { files } = req;
   console.log(files);
   if (files.editableFormat != (undefined || null)) {
     await uploadFile(files.editableFormat, process.env.ABSTRACT_FOLDER_ID);
