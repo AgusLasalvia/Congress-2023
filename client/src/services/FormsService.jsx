@@ -79,7 +79,7 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
                          navigateOnSuccess();
                          break;
                     case "already-pre-registered":
-                         setErrorMessage("The email provided is already pre-registered");
+                         setErrorMessage("The email provided is already pre-registered.");
                          // "re-enables" the button
                          setIsDisabled(false);
                          break;
@@ -124,7 +124,7 @@ export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMes
                          break;
 
                     case "already-registered":
-                         setErrorMessage("The email provided is already registered");
+                         setErrorMessage("The email provided is already registered.");
                          // "re-enables" the button
                          setIsDisabled(false);
                          break;
@@ -202,7 +202,7 @@ export const sendAbstract = (formData, files, navigateOnSuccess, setErrorMessage
                          break;
 
                     case "already-submitted":
-                         setErrorMessage("The email provided has already sent an abstract");
+                         setErrorMessage("The email provided has already sent an abstract.");
                          // "re-enables" the button
                          setIsDisabled(false);
                          break;
