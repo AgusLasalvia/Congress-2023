@@ -36,6 +36,7 @@ export default function Registration() {
                          {/* button */}
                          <NavLink className="button-long-blue" to="/Quitel/preregistration-form">I want to pre-register</NavLink>
 
+
                     </div>
 
                     {/* registration */}

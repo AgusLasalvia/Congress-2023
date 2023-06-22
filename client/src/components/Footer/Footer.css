@@ -24,11 +24,6 @@
   width: 90vw;
 }
 
-.footer-stamp {
-  /* not shown on mobile devices */
-  display: none;
-}
-
 /* footer text */
 .footer-text {
   color: var(--black);

@@ -8,6 +8,17 @@ export default function Home() {
      // Otherwise when switching routes the user would remain at the same Y position in the window.
      window.scrollTo(0, 0);
 
+
+     // Variants will be filled only on devices with a screen wider than 1366 pixels
+     let variants = {};
+     if (window.innerWidth > 1366) {
+          variants = {
+               small: { opacity: 0.5, scale: 0.8 },
+               normal: { opacity: 1, scale: 1 },
+               duration: { duration: 0.5 },
+          }
+     }
+
      return (
           <motion.div className="home"
                initial={{ opacity: 0 }}
@@ -37,16 +48,20 @@ export default function Home() {
                {/* info */}
                <div className="congress-info">
 
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <h1 className="info-title">What we aim for.</h1>
                          <div className="info-text">
                               <p>
                                    Since its first edition in Modena, this prestigious congress aims to bring together scientists from all Latin American countries to share their interest in the field of theoretical chemistry and related sciences.
                               </p>
                          </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <h1 className="info-title">This year&apos;s edition.</h1>
                          <div className="info-text">
                               <p>
@@ -78,9 +93,11 @@ export default function Home() {
                               </ul>
 
                          </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <h1 className="info-title">Where will it take place?</h1>
                          <div className="info-text">
                               <p>
@@ -89,10 +106,9 @@ export default function Home() {
                                    <a href="mailto:quitel2023@gmail.com"> quitel2023@gmail.com</a>
                               </p>
                          </div>
-                    </div>
+                    </motion.div>
 
                </div>
-
                <Footer />
           </motion.div>
 

@@ -2,7 +2,6 @@ export default function Footer() {
      return (
           <div className="footer">
                <div className="footer-content">
-                    <img src="assets/svg/stamp.svg" alt="QUITEL 2023" className="footer-stamp" id="menuStamp" />
                     <div className="footer-text">
                          <p>
                               XLVI International Congress of

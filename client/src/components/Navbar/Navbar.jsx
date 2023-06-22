@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { checkIsMobile } from "../../hooks/checkIsMobile";
 import { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
 export default function Navbar() {
 
      const isMobile = checkIsMobile();
      const [isLandscape, setIsLandscape] = useState(window.orientation == 90 ? true : false);
-
+     const navigate = useNavigate();
      window.addEventListener("orientationchange", () => {
           setIsLandscape(!isLandscape);
           // console.log("orientation changed");
@@ -25,6 +25,10 @@ export default function Navbar() {
                     document.getElementById("checkbox").checked = false;
                }
           }
+     }
+
+     const navigateHome = () => {
+          navigate("/Quitel/");
      }
 
      useEffect(() => {
@@ -50,7 +54,7 @@ export default function Navbar() {
                     }
 
                     {/* stamp */}
-                    <img src="assets/svg/stamp.svg" alt="QUITEL 2023" className="stamp" />
+                    <img src="assets/images/stamp.png" alt="QUITEL 2023" className="stamp" onClick={navigateHome} />
 
                     {/* hamburguer menu */}
                     <div id="menu-toggle">
@@ -63,40 +67,48 @@ export default function Navbar() {
                     {/* nav */}
                     <nav role="navigation" id="nav">
                          <ul id="menu">
-                              <li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/abstract-submission">Abstract submission</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/hotel">Hotel</NavLink>
-                              </li>
-                              <li>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
                                    <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
-                              </li>
+                              </motion.li>
+
                          </ul >
                          {/* menu stamp */}
-                         <img src="assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
+                         <img src="assets/images/stamp.png" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
                     </nav>
-
                </div>
-
 
           </header >
      )

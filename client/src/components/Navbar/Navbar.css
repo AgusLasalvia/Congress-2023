@@ -18,6 +18,7 @@ header {
   margin-top: -0.5rem;
   left: clamp(2rem, 2.2vw, 0.65rem);
   width: 2rem;
+  cursor: pointer;
 }
 
 .nav-arch {
@@ -58,6 +59,7 @@ nav.open {
 }
 
 .menu-stamp {
+  width: 4rem;
   margin-top: 4rem;
 }
 
@@ -185,6 +187,9 @@ nav.open {
   .nav-link {
     font-size: clamp(1rem, 2.2vw, 0.65rem);
   }
+  .menu-stamp {
+    width: 5rem;
+  }
 }
 
 /* Desktops */
@@ -243,5 +248,11 @@ nav.open {
 @media screen and (min-width: 2100px) {
   .nav-link {
     font-size: clamp(1rem, 2.2vw, 0.65rem);
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  .stamp {
+    width: 5rem;
   }
 }
