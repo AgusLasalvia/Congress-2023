@@ -45,7 +45,9 @@ export default function Abstract() {
 
                     </div>
                </div>
+
                <Footer />
+
           </motion.div>
      )
 }
