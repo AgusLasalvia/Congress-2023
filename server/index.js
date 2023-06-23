@@ -118,6 +118,7 @@ app.post("/registration-data", (req, res) => {
 
 app.post("/registration-files", async (req, res) => {
   const files = req.files;
+  console.log(files)
   if (files.registrationPaymentReceipt != (undefined || null)) {
     await uploadFile(files.registrationPaymentReceipt, process.env.REGISTRATION_FOLDER_ID);
   }
