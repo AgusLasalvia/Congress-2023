@@ -18,7 +18,7 @@ export default function Step3({ formData, setFormData }) {
                exit={{ opacity: 0 }}
           >
                <div className="form-input-wrapper form-first radio">
-                    <label className="form-label">Have you ever attended a Quitel/Chitel congress?</label>
+                    <label className="form-label">Have you ever attended a Quitel/Chitel congress?<span>*</span></label>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="FirstSet" className="form-radio" value="yes"
                               checked={formData.hasAttended === "yes"}
@@ -36,7 +36,7 @@ export default function Step3({ formData, setFormData }) {
                </div>
 
                <div className="form-input-wrapper form-first radio">
-                    <label className="form-label">Would you like to receive information about the Congress?</label>
+                    <label className="form-label">Would you like to receive information about the Congress?<span>*</span></label>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="SecondSet" className="form-radio" value="yes"
                               checked={formData.mail === "yes"}

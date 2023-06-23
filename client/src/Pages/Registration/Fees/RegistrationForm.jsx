@@ -29,9 +29,7 @@ export default function PreRegistration() {
      // step count state
      const [step, setStep] = useState(1);
 
-     const navigateOnSuccess = () => {
-          navigate("/Quitel/success");
-     }
+     const navigateOnSuccess = () => { navigate("/Quitel/success"); }
 
      // Goes to the next step in the form
      const nextStep = () => {
@@ -54,8 +52,8 @@ export default function PreRegistration() {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
 
-          // It is not mandatory to not send the receipts
-          if (validateData(formData) && validateData(receipts)) {
+          // It is not mandatory to send the receipts
+          if (validateData(formData)) {
                setIsDisabled(true);
                setErrorMessage("");
                sendRegistration(formData, receipts, navigateOnSuccess, setErrorMessage, setIsDisabled);

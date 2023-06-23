@@ -69,7 +69,7 @@ export default function AbstractForm() {
 
                               {/* Email */}
                               <div className="form-input-wrapper form-first">
-                                   <label className="form-label" htmlFor="Email">Email</label>
+                                   <label className="form-label" htmlFor="Email">Email<span>*</span></label>
                                    <input className="form-input" type="email" id="email" name="Email"
                                         value={formData.email}
                                         onChange={(e) => {
@@ -80,7 +80,7 @@ export default function AbstractForm() {
                               </div>
                               {/* First name */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="FirstName">First name</label>
+                                   <label className="form-label" htmlFor="FirstName">First name<span>*</span></label>
                                    <input className="form-input" type="text" id="firstname" name="FirstName"
                                         value={formData.firstName}
                                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -88,7 +88,7 @@ export default function AbstractForm() {
                               </div>
                               {/* Last name */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="LastName">Last name</label>
+                                   <label className="form-label" htmlFor="LastName">Last name<span>*</span></label>
                                    <input className="form-input" type="text" id="lastname" name="LastName"
                                         value={formData.lastName}
                                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -96,7 +96,7 @@ export default function AbstractForm() {
                               </div>
                               {/* Abstract title */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="Title">Abstract title</label>
+                                   <label className="form-label" htmlFor="Title">Abstract title<span>*</span></label>
                                    <input className="form-input" type="text" id="title" name="Title"
                                         value={formData.title}
                                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}

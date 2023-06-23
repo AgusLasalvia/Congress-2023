@@ -19,7 +19,7 @@ export default function Step3({ formData, setFormData }) {
           >
                {/* Country */}
                <div className="form-input-wrapper form-first">
-                    <label className="form-label" htmlFor="Country">Country</label>
+                    <label className="form-label" htmlFor="Country">Country<span>*</span></label>
                     <input className="form-input" type="text" id="country" name="Country"
                          value={formData.country}
                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
@@ -27,7 +27,7 @@ export default function Step3({ formData, setFormData }) {
                </div>
                {/* Region */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Region">Region/State/Province</label>
+                    <label className="form-label" htmlFor="Region">Region/State/Province<span>*</span></label>
                     <input className="form-input" type="text" id="region" name="Region"
                          value={formData.region}
                          onChange={(e) => setFormData({ ...formData, region: e.target.value })}
@@ -35,7 +35,7 @@ export default function Step3({ formData, setFormData }) {
                </div>
                {/* City */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Region">City</label>
+                    <label className="form-label" htmlFor="Region">City<span>*</span></label>
                     <input className="form-input" type="text" id="city" name="City"
                          value={formData.city}
                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
@@ -43,7 +43,7 @@ export default function Step3({ formData, setFormData }) {
                </div>
                {/* Zip code */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Zipcode">Postal/Zip code</label>
+                    <label className="form-label" htmlFor="Zipcode">Postal/Zip code<span>*</span></label>
                     <input className="form-input" type="text" id="zipcode" name="Zipcode"
                          value={formData.zipCode}
                          onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}

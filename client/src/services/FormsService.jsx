@@ -153,29 +153,38 @@ export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMes
 const sendReceipts = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
      // console.log(files);
 
-     const appendedFiles = new FormData();
-     appendedFiles.append('registration', files.registrationPaymentReceipt);
-     appendedFiles.append('dinner', files.dinnerPaymentReceipt);
-     appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+     // It is not mandatory to send the receipts.
+     // Thus, if at least one file has been uploaded, the fetch will be executed.
+     if (files.registrationPaymentReceipt || files.dinnerPaymentReceipt || files.accompanyingPaymentReceipt) {
 
-     fetch(registrationReceiptsURL, {
-          method: 'POST',
-          // No 'Content-Type' so that the browser will automatically use the adequate kind. 
-          body: appendedFiles
-     })
-          .then(response => response.json())
-          .then(data => {
-               // API response
-               console.log("data: " + data);
-               navigateOnSuccess();
+          const appendedFiles = new FormData();
+          appendedFiles.append('registration', files.registrationPaymentReceipt);
+          appendedFiles.append('dinner', files.dinnerPaymentReceipt);
+          appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+
+          fetch(registrationReceiptsURL, {
+               method: 'POST',
+               // No 'Content-Type' so that the browser will automatically use the adequate kind. 
+               body: appendedFiles
           })
-          .catch(error => {
-               // Error handling
-               console.error("error: " + error.message);
-               setErrorMessage("There has been an error with the files.");
-               // "re-enables" the button
-               setIsDisabled(false);
-          });
+               .then(response => response.json())
+               .then(data => {
+                    // API response
+                    console.log("data: " + data);
+                    navigateOnSuccess();
+               })
+               .catch(error => {
+                    // Error handling
+                    console.error("error: " + error.message);
+                    setErrorMessage("There has been an error with the files.");
+                    // "re-enables" the button
+                    setIsDisabled(false);
+               });
+     } else {
+          // If no files are uploaded then no fetch will be executed and user will be redirected to the success page.
+          navigateOnSuccess();
+     }
+
 }
 
 
@@ -233,7 +242,6 @@ const sendAbstractFiles = (files, navigateOnSuccess, setErrorMessage, setIsDisab
      const appendedFiles = new FormData();
      appendedFiles.append('editableFormat', files.editableFormat);
      appendedFiles.append('pdfFormat', files.pdfFormat);
-
 
      fetch(abstractFilesURL, {
           method: 'POST',
