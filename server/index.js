@@ -92,6 +92,7 @@ app.post("/pre-registration", (req, res) => {
 // Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
+  console.log(data)
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
