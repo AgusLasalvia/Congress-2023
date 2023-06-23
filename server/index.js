@@ -118,14 +118,14 @@ app.post("/registration-data", (req, res) => {
 
 app.post("/registration-files", async (req, res) => {
   const files = req.files;
-  if (files.registration != (undefined || null)) {
-    await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
+  if (files.registrationPaymentReceipt != (undefined || null)) {
+    await uploadFile(files.registrationPaymentReceipt, process.env.REGISTRATION_FOLDER_ID);
   }
-  if (files.dinner != (undefined || null)) {
-    await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID);
+  if (files.dinnerPaymentReceipt != (undefined || null)) {
+    await uploadFile(files.dinnerPaymentReceipt, process.env.DINNER_FOLDER_ID);
   }
-  if (files.accompanying != (undefined || null)) {
-    await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
+  if (files.accompanyingPaymentReceipt != (undefined || null)) {
+    await uploadFile(files.accompanyingPaymentReceipt, process.env.ACCOMPANYING_FOLDER_ID);
   }
 });
 
