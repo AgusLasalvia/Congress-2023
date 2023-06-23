@@ -128,7 +128,7 @@ app.post("/registration-files", async (req, res) => {
   if (files.accompanyingPaymentReceipt != (undefined || null)) {
     await uploadFile(files.accompanyingPaymentReceipt, process.env.ACCOMPANYING_FOLDER_ID);
   }
-  res.json('submitted-successfully");
+  res.json('submitted-successfully');
 });
 
 // Abstract Data Form Submition
