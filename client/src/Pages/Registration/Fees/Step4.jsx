@@ -19,13 +19,13 @@ export default function Step3({ formData, setFormData }) {
           >
                {/* Modality */}
                <div className="form-input-wrapper form-first radio">
-                    <label className="form-label">Modality in which you wish to participate</label>
+                    <label className="form-label">Modality in which you wish to participate<span>*</span></label>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="FirstSet" className="form-radio" value="presentation"
                               checked={formData.modality === "presentation"}
                               onChange={(e) => setFormData({ ...formData, modality: e.target.value })}
                          />
-                         <label className="form-radio-label">Oral Presentation</label>
+                         <label className="form-radio-label">Oral Presentation<span>*</span></label>
                     </div>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="FirstSet" className="form-radio" value="poster"
@@ -37,7 +37,7 @@ export default function Step3({ formData, setFormData }) {
                </div>
                {/* First time registering */}
                <div className="form-input-wrapper form-first radio">
-                    <label className="form-label">First time registering?</label>
+                    <label className="form-label">First time registering?<span>*</span></label>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="SecondSet" className="form-radio" value="yes"
                               checked={formData.firstTime === "yes"}
@@ -56,7 +56,7 @@ export default function Step3({ formData, setFormData }) {
 
                {/* Special meals */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Special">Special meal requirements</label>
+                    <label className="form-label" htmlFor="Special">Special meal requirements<span>*</span></label>
                     <input className="form-input" type="text" id="special" name="Region"
                          value={formData.specialMealReqs}
                          onChange={(e) => setFormData({ ...formData, specialMealReqs: e.target.value })}
@@ -65,7 +65,7 @@ export default function Step3({ formData, setFormData }) {
 
                {/* Mother language */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="MLanguage">Mother language</label>
+                    <label className="form-label" htmlFor="MLanguage">Mother language<span>*</span></label>
                     <input className="form-input" type="text" id="mlanguage" name="MLanguage"
                          value={formData.motherLanguage}
                          onChange={(e) => setFormData({ ...formData, motherLanguage: e.target.value })}

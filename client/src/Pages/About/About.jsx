@@ -6,6 +6,16 @@ export default function About() {
      // Otherwise when switching routes the user would remain at the same Y position in the window.
      window.scrollTo(0, 0);
 
+     // Variants will be filled only on devices with a screen wider than 1366 pixels
+     let variants = {};
+     if (window.innerWidth > 1366) {
+          variants = {
+               small: { opacity: 0.5, scale: 0.8 },
+               normal: { opacity: 1, scale: 1 },
+               duration: { duration: 0.5 },
+          }
+     }
+
      return (
           <motion.div className="page-wrapper"
                initial={{ opacity: 0 }}
@@ -45,7 +55,9 @@ export default function About() {
                     </div>
 
                     {/* The first meeting */}
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <h1 className="info-title">The first meeting.</h1>
                          <div className="info-text">
                               <p>
@@ -53,10 +65,12 @@ export default function About() {
                               </p>
 
                          </div>
-                    </div>
+                    </motion.div>
 
                     {/* The present */}
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <h1 className="info-title">The present.</h1>
                          <div className="info-text">
                               {/* TODO: add the link to the "Venue" page */}
@@ -67,7 +81,7 @@ export default function About() {
                                    Since 2006, QUITEL has alternated between Europe, Africa and America.
                               </p>
                          </div>
-                    </div>
+                    </motion.div>
 
                </div>
                <Footer />

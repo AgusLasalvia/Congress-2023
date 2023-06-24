@@ -24,7 +24,7 @@ export default function Step3({ receipts, setReceipts }) {
           >
                {/* Registration payment receipt */}
                <div className="form-upload-wrapper">
-                    <label className="form-label">Upload your Registration payment receipt</label>
+                    <label className="form-label">Upload your Registration payment receipt (optional)</label>
                     {receipts.registrationPaymentReceipt && <div className="line">{receipts.registrationPaymentReceipt.name}</div>}
 
                     <div className="upload-button"
@@ -42,7 +42,7 @@ export default function Step3({ receipts, setReceipts }) {
 
                {/* Dinner payment receipt */}
                <div className="form-upload-wrapper">
-                    <label className="form-label">Upload your Dinner payment receipt</label>
+                    <label className="form-label">Upload your Dinner payment receipt (optional)</label>
                     {receipts.dinnerPaymentReceipt && <div className="line">{receipts.dinnerPaymentReceipt.name}</div>}
 
                     <div className="upload-button"
@@ -60,7 +60,7 @@ export default function Step3({ receipts, setReceipts }) {
 
                {/* Accompanying payment receipt */}
                <div className="form-upload-wrapper">
-                    <label className="form-label">Upload your Accompanying payment receipt</label>
+                    <label className="form-label">Upload your Accompanying payment receipt (optional)</label>
                     {receipts.accompanyingPaymentReceipt && <div className="line">{receipts.accompanyingPaymentReceipt.name}</div>}
 
                     <div className="upload-button"

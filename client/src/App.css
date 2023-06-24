@@ -8,7 +8,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* scroll-behavior: smooth; */
   font-family: "Raleway", sans-serif;
 }
 
@@ -237,6 +236,10 @@ body {
   font-weight: 700;
 }
 
+.form-label span {
+  color: #e53935;
+}
+
 .form-input {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
@@ -308,7 +311,11 @@ body {
 .info-box .form-error-message {
   margin-top: 2rem;
   text-align: center;
-  color: var(--blue);
+  color: #e53935;
+  background-color: #ffcdd2;
+  border-radius: 12px;
+  padding: 8px;
+  border: 2px solid #e53935;
   font-weight: 600;
 }
 

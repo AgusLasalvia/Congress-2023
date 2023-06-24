@@ -4,7 +4,7 @@ import eslintPlugin from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/Quitel/",
+  base: "/",
   plugins: [
     react(),
     eslintPlugin({
@@ -14,7 +14,9 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: process.env.PORT,
+    port: 3475,
     host: `0.0.0.0`,
+    historyApiFallback: true,
   },
+  appType: 'spa',
 });

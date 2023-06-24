@@ -18,7 +18,7 @@ export default function Step2({ setFormData, formData }) {
                exit={{ opacity: 0 }}
           >
                <div className="form-input-wrapper form-first radio">
-                    <label className="form-label">Level of education</label>
+                    <label className="form-label">Level of education<span>*</span></label>
                     {/* Postdocs / Researchers / Professors*/}
                     <div className="form-radio-wrapper">
                          <input type="radio" name="edlevel" className="form-radio" value="postdocs"
@@ -47,7 +47,7 @@ export default function Step2({ setFormData, formData }) {
 
                {/* Country */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Country">Country</label>
+                    <label className="form-label" htmlFor="Country">Country<span>*</span></label>
                     <input className="form-input" type="text" id="country<" name="Country"
                          value={formData.country}
                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
@@ -55,7 +55,7 @@ export default function Step2({ setFormData, formData }) {
                </div>
                {/* Main Institution */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="MainInstitution">Main Institution</label>
+                    <label className="form-label" htmlFor="MainInstitution">Main Institution<span>*</span></label>
                     <input className="form-input" type="text" id="maininstitution" name="MainInstitution"
                          value={formData.mainInstitution}
                          onChange={(e) => setFormData({ ...formData, mainInstitution: e.target.value })}

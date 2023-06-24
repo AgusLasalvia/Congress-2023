@@ -6,6 +6,16 @@ export default function Committees() {
      // Otherwise when switching routes the user would remain at the same Y position in the window.
      window.scrollTo(0, 0);
 
+     // Variants will be filled only on devices with a screen wider than 1366 pixels
+     let variants = {};
+     if (window.innerWidth > 1366) {
+          variants = {
+               small: { opacity: 0.5, scale: 0.8 },
+               normal: { opacity: 1, scale: 1 },
+               duration: { duration: 0.5 },
+          }
+     }
+
      return (
           <motion.div className="page-wrapper"
                initial={{ opacity: 0 }}
@@ -42,7 +52,9 @@ export default function Committees() {
                          </div>
                     </div>
 
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <div className="info-text">
                               <h1 className="info-title">Local Scientific Committee</h1>
                               <ul>
@@ -59,9 +71,11 @@ export default function Committees() {
                                    <li>Ari Zeida</li>
                               </ul>
                          </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="info-box">
+                    <motion.div className="info-box"
+                         variants={variants} initial="small" whileInView="normal" transition="duration" viewport={{ once: true }}
+                    >
                          <div className="info-text">
                               <h1 className="info-title">International Scientific Committee (preliminary)</h1>
                               <ul>
@@ -91,9 +105,8 @@ export default function Committees() {
                                    <li>Mario Ernesto Valdés</li>
                               </ul>
                          </div>
-                    </div>
+                    </motion.div>
                </div>
-
 
                <Footer />
           </motion.div>

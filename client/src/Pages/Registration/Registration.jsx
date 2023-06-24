@@ -34,7 +34,8 @@ export default function Registration() {
                               </p>
                          </div>
                          {/* button */}
-                         <NavLink className="button-long-blue" to="/Quitel/preregistration-form">I want to pre-register</NavLink>
+                         <NavLink className="button-long-blue" to="/preregistration-form">I want to pre-register</NavLink>
+
 
                     </div>
 
@@ -47,7 +48,7 @@ export default function Registration() {
                               </p>
                          </div>
                          {/* button */}
-                         <NavLink className="button-long-pink" to="/Quitel/registration-info">I want to register</NavLink>
+                         <NavLink className="button-long-pink" to="/registration-info">I want to register</NavLink>
 
                     </div>
                </div>

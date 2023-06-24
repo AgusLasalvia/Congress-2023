@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { motion } from "framer-motion";
-import { abstract, abstractFiles, sendAbstract, sendAbstractFiles } from "../../services/FormsService";
+import { abstract, abstractFiles, sendAbstract } from "../../services/FormsService";
 import { validateData } from "../../hooks/validateData";
 import { useEffect, useRef, useState } from "react";
 
@@ -22,38 +22,35 @@ export default function AbstractForm() {
 
 
      const navigateOnSuccess = () => {
-          navigate("/Quitel/success");
+          navigate("/success");
      }
 
      // hidden button refs
      const hiddenEditableFormatButton = useRef(null);
      const hiddenPdfFormatButton = useRef(null);
 
-
      const handleSubmit = () => {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
-          setIsDisabled(true);
 
-          // It is not mandatory to not send the receipts
-          if (validateData(formData)) {
+          if (validateData(formData) && (files.editableFormat || files.pdfFormat)) {
+               setIsDisabled(true);
                setErrorMessage("");
-               sendAbstract(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
-               sendAbstractFiles(files);
+               sendAbstract(formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled);
           } else {
-               setErrorMessage("There may be empty fields in one of the steps, please check.");
+               setErrorMessage("There may be an empty field, please check.");
           }
      }
 
      const previousStep = () => {
-          navigate("/Quitel/abstract-submission");
+          navigate("/abstract-submission");
      }
 
      useEffect(() => {
           // Scrolls to top when rendered.
           // Otherwise when switching routes the user would remain at the same Y position in the window.
           window.scrollTo(0, 0);
-     }, [])
+     }, []);
 
      return (
           <motion.div className="page-wrapper"
@@ -72,15 +69,18 @@ export default function AbstractForm() {
 
                               {/* Email */}
                               <div className="form-input-wrapper form-first">
-                                   <label className="form-label" htmlFor="Email">Email</label>
+                                   <label className="form-label" htmlFor="Email">Email<span>*</span></label>
                                    <input className="form-input" type="email" id="email" name="Email"
                                         value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        onChange={(e) => {
+                                             setFormData({ ...formData, email: e.target.value })
+                                             setFiles({ ...files, email: e.target.value })
+                                        }}
                                    />
                               </div>
                               {/* First name */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="FirstName">First name</label>
+                                   <label className="form-label" htmlFor="FirstName">First name<span>*</span></label>
                                    <input className="form-input" type="text" id="firstname" name="FirstName"
                                         value={formData.firstName}
                                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -88,7 +88,7 @@ export default function AbstractForm() {
                               </div>
                               {/* Last name */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="LastName">Last name</label>
+                                   <label className="form-label" htmlFor="LastName">Last name<span>*</span></label>
                                    <input className="form-input" type="text" id="lastname" name="LastName"
                                         value={formData.lastName}
                                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -96,7 +96,7 @@ export default function AbstractForm() {
                               </div>
                               {/* Abstract title */}
                               <div className="form-input-wrapper">
-                                   <label className="form-label" htmlFor="Title">Title</label>
+                                   <label className="form-label" htmlFor="Title">Abstract title<span>*</span></label>
                                    <input className="form-input" type="text" id="title" name="Title"
                                         value={formData.title}
                                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -142,7 +142,7 @@ export default function AbstractForm() {
                               {/* Submit button */}
                               <div className="button-long-blue abstract-submit-button"
                                    onClick={isDisabled ? null : handleSubmit}
-                              >Submit</div>
+                              >{isDisabled ? "Sending..." : "Submit"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>

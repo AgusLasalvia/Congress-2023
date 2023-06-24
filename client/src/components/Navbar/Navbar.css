@@ -18,6 +18,7 @@ header {
   margin-top: -0.5rem;
   left: clamp(2rem, 2.2vw, 0.65rem);
   width: 2rem;
+  cursor: pointer;
 }
 
 .nav-arch {
@@ -58,6 +59,7 @@ nav.open {
 }
 
 .menu-stamp {
+  width: 4rem;
   margin-top: 4rem;
 }
 
@@ -185,29 +187,15 @@ nav.open {
   .nav-link {
     font-size: clamp(1rem, 2.2vw, 0.65rem);
   }
-}
-
-@media screen and (orientation: landscape) and (min-width: 1180px) {
-  nav {
-    flex-direction: row-reverse;
-    gap: 8rem;
-  }
-
-  #menu li {
-    padding: 12px;
-    text-align: left;
-    list-style: none;
-  }
-
-  .nav-link {
-    font-size: clamp(1rem, 2.2vw, 0.65rem);
+  .menu-stamp {
+    width: 5rem;
   }
 }
 
 /* Desktops */
 @media screen and (min-width: 1367px) {
   .stamp {
-    width: 3rem;
+    width: 4rem;
     left: clamp(4rem, 2.2vw, 0.65rem);
     margin-top: -1.5rem;
   }
@@ -260,5 +248,11 @@ nav.open {
 @media screen and (min-width: 2100px) {
   .nav-link {
     font-size: clamp(1rem, 2.2vw, 0.65rem);
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  .stamp {
+    width: 5rem;
   }
 }

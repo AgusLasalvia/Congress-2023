@@ -54,6 +54,7 @@ export const abstract = {
 
 // abstract files object
 export const abstractFiles = {
+     email: "",
      editableFormat: null,
      pdfFormat: null,
 }
@@ -78,15 +79,17 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
                          navigateOnSuccess();
                          break;
                     case "already-pre-registered":
-                         setErrorMessage("The email provided is already pre-registered");
+                         setErrorMessage("The email provided is already pre-registered.");
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
                }
-               // "re-enables" the button
-               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -101,8 +104,7 @@ export const sendPreRegistration = (formData, navigateOnSuccess, setErrorMessage
 // ------------------------------------------------------------------------------------------------
 // registration POST
 // ------------------------------------------------------------------------------------------------
-export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
-
+export const sendRegistration = (formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
      // console.log(formData);
 
      fetch(registrationURL, {
@@ -118,18 +120,22 @@ export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage, s
                console.log("data: " + data);
                switch (data) {
                     case "success":
-                         navigateOnSuccess();
+                         sendReceipts(files, navigateOnSuccess, setErrorMessage, setIsDisabled);
                          break;
+
                     case "already-registered":
-                         setErrorMessage("The email provided is already registered");
+                         setErrorMessage("The email provided is already registered.");
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
+
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
                }
-               // "re-enables" the button
-               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -144,37 +150,48 @@ export const sendRegistration = (formData, navigateOnSuccess, setErrorMessage, s
 // ------------------------------------------------------------------------------------------------
 // registration receipts POST
 // ------------------------------------------------------------------------------------------------
-export const sendReceipts = (files) => {
+const sendReceipts = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
      // console.log(files);
 
-     const appendedFiles = new FormData();
-     appendedFiles.append('registration', files.registrationPaymentReceipt);
-     appendedFiles.append('dinner', files.dinnerPaymentReceipt);
-     appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
+     // It is not mandatory to send the receipts.
+     // Thus, if at least one file has been uploaded, the fetch will be executed.
+     if (files.registrationPaymentReceipt || files.dinnerPaymentReceipt || files.accompanyingPaymentReceipt) {
 
-     fetch(registrationReceiptsURL, {
-          method: 'POST',
-          // No 'Content-Type' so that the browser will automatically use the adequate kind. 
-          body: appendedFiles
-     })
-          .then(response => response.json())
-          .then(data => {
-               // API response
-               console.log("data: " + data);
+          const appendedFiles = new FormData();
+          appendedFiles.append('registration', files.registrationPaymentReceipt);
+          appendedFiles.append('dinner', files.dinnerPaymentReceipt);
+          appendedFiles.append('accompanying', files.accompanyingPaymentReceipt);
 
+          fetch(registrationReceiptsURL, {
+               method: 'POST',
+               // No 'Content-Type' so that the browser will automatically use the adequate kind. 
+               body: appendedFiles
           })
-          .catch(error => {
-               // Error handling
-               console.error("error: " + error.message);
-               // setErrorMessage(error.message);
-          });
+               .then(response => response.json())
+               .then(data => {
+                    // API response
+                    console.log("data: " + data);
+                    navigateOnSuccess();
+               })
+               .catch(error => {
+                    // Error handling
+                    console.error("error: " + error.message);
+                    setErrorMessage("There has been an error with the files.");
+                    // "re-enables" the button
+                    setIsDisabled(false);
+               });
+     } else {
+          // If no files are uploaded then no fetch will be executed and user will be redirected to the success page.
+          navigateOnSuccess();
+     }
+
 }
 
 
 // ------------------------------------------------------------------------------------------------
 // abstract POST
 // ------------------------------------------------------------------------------------------------
-export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
+export const sendAbstract = (formData, files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
      fetch(abstractURL, {
           method: 'POST',
           headers: {
@@ -186,20 +203,26 @@ export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIs
           .then(data => {
                // API response
                console.log("data: " + data);
+
                switch (data) {
-                    case "submitted-successfully":
-                         navigateOnSuccess();
+                    // Sends the abstract files if first POST request is successful
+                    case "data-validated":
+                         sendAbstractFiles(files, navigateOnSuccess, setErrorMessage, setIsDisabled);
                          break;
+
                     case "already-submitted":
-                         setErrorMessage("The email provided has already sent an abstract");
+                         setErrorMessage("The email provided has already sent an abstract.");
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
+
                     default:
                          console.log("data: " + data);
                          setErrorMessage(data);
+                         // "re-enables" the button
+                         setIsDisabled(false);
                          break;
                }
-               // "re-enables" the button
-               setIsDisabled(false);
           })
           .catch(error => {
                // Error handling
@@ -214,13 +237,11 @@ export const sendAbstract = (formData, navigateOnSuccess, setErrorMessage, setIs
 // ------------------------------------------------------------------------------------------------
 // abstract files POST
 // ------------------------------------------------------------------------------------------------
-export const sendAbstractFiles = (files) => {
-     console.log(files);
+const sendAbstractFiles = (files, navigateOnSuccess, setErrorMessage, setIsDisabled) => {
 
      const appendedFiles = new FormData();
      appendedFiles.append('editableFormat', files.editableFormat);
      appendedFiles.append('pdfFormat', files.pdfFormat);
-
 
      fetch(abstractFilesURL, {
           method: 'POST',
@@ -231,10 +252,13 @@ export const sendAbstractFiles = (files) => {
           .then(data => {
                // API response
                console.log("data: " + data);
+               navigateOnSuccess();
           })
           .catch(error => {
                // Error handling
                console.error("error: " + error.message);
-               // setErrorMessage(error.message);
+               setErrorMessage("There has been an error with the files.");
+               // "re-enables" the button
+               setIsDisabled(false);
           });
 }
