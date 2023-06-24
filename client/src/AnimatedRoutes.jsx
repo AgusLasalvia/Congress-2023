@@ -26,20 +26,20 @@ function AnimatedRoutes() {
      return (
           <AnimatePresence>
                <Routes location={location} key={location.pathname}>
-                    <Route index path="/quitel/" element={<Home />} />
-                    <Route path="/quitel/about" element={<About />} />
-                    <Route path="/quitel/registration" element={<Registration />} />
-                    <Route path="/quitel/registration-info" element={<Fees />} />
-                    <Route path="/quitel/registration-form" element={<RegistrationForm />} />
-                    <Route path="/quitel/preregistration-form" element={<PreRegistration />} />
-                    <Route path="/quitel/abstract-submission" element={<Abstract />} />
-                    <Route path="/quitel/abstract-submission-form" element={<AbstractForm />} />
-                    <Route path="/quitel/speakers" element={<Speakers />} />
-                    <Route path="/quitel/committees" element={<Committees />} />
-                    <Route path="/quitel/contact" element={<Contact />} />
-                    <Route path="/quitel/venue" element={<Venue />} />
-                    <Route path="/quitel/hotel" element={<Hotel />} />
-                    <Route path="/quitel/success" element={<Success />} />
+                    <Route index path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/registration-info" element={<Fees />} />
+                    <Route path="/registration-form" element={<RegistrationForm />} />
+                    <Route path="/preregistration-form" element={<PreRegistration />} />
+                    <Route path="/abstract-submission" element={<Abstract />} />
+                    <Route path="/abstract-submission-form" element={<AbstractForm />} />
+                    <Route path="/speakers" element={<Speakers />} />
+                    <Route path="/committees" element={<Committees />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/venue" element={<Venue />} />
+                    <Route path="/hotel" element={<Hotel />} />
+                    <Route path="/success" element={<Success />} />
                     <Route path="*" element={<ErrorPage />} />
                </Routes>
           </AnimatePresence>

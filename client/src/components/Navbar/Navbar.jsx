@@ -28,7 +28,7 @@ export default function Navbar() {
      }
 
      const navigateHome = () => {
-          navigate("/Quitel/");
+          navigate("/");
      }
 
      useEffect(() => {
@@ -69,39 +69,39 @@ export default function Navbar() {
                          <ul id="menu">
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
+                                   <NavLink className="nav-link" to="/">Home</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
+                                   <NavLink className="nav-link" to="/about">About</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
+                                   <NavLink className="nav-link" to="/committees">Committees</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
+                                   <NavLink className="nav-link" to="/registration">Registration</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
+                                   <NavLink className="nav-link" to="/speakers">Speakers</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/abstract-submission">Abstract submission</NavLink>
+                                   <NavLink className="nav-link" to="/abstract-submission">Abstract submission</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
+                                   <NavLink className="nav-link" to="/venue">Venue</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/hotel">Hotel</NavLink>
+                                   <NavLink className="nav-link" to="/hotel">Hotel</NavLink>
                               </motion.li>
 
                               <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
-                                   <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
+                                   <NavLink className="nav-link" to="/contact">Contact us</NavLink>
                               </motion.li>
 
                          </ul >

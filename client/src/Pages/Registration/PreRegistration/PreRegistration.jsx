@@ -24,7 +24,7 @@ export default function PreRegistration() {
 
 
      const navigateOnSuccess = () => {
-          navigate("/Quitel/success");
+          navigate("/success");
      }
 
      // Goes to the next step in the form
@@ -38,7 +38,7 @@ export default function PreRegistration() {
      // Or goes back to registration when on step 1
      const previousStep = () => {
           if (step == 1) {
-               navigate("/Quitel/registration");
+               navigate("/registration");
           } else {
                setStep(step - 1);
           }

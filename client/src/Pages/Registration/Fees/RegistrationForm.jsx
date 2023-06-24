@@ -29,7 +29,7 @@ export default function PreRegistration() {
      // step count state
      const [step, setStep] = useState(1);
 
-     const navigateOnSuccess = () => { navigate("/Quitel/success"); }
+     const navigateOnSuccess = () => { navigate("/success"); }
 
      // Goes to the next step in the form
      const nextStep = () => {
@@ -42,7 +42,7 @@ export default function PreRegistration() {
      // Or goes back to registration when on step 1 (step == 1)
      const previousStep = () => {
           if (step == 1) {
-               navigate("/Quitel/registration");
+               navigate("/registration");
           } else {
                setStep(step - 1);
           }

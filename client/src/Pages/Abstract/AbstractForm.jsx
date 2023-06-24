@@ -22,7 +22,7 @@ export default function AbstractForm() {
 
 
      const navigateOnSuccess = () => {
-          navigate("/Quitel/success");
+          navigate("/success");
      }
 
      // hidden button refs
@@ -43,7 +43,7 @@ export default function AbstractForm() {
      }
 
      const previousStep = () => {
-          navigate("/Quitel/abstract-submission");
+          navigate("/abstract-submission");
      }
 
      useEffect(() => {

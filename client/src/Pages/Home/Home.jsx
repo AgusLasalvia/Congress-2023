@@ -101,7 +101,7 @@ export default function Home() {
                          <h1 className="info-title">Where will it take place?</h1>
                          <div className="info-text">
                               <p>
-                                   QUITEL 2023 will take place at Universidad de la República, Montevideo Uruguay, in a great and emblematic multifunctional building <NavLink to="/Quitel/venue">José Luis Massera &quot;Faro&quot;</NavLink>, ideally located in the heart of the city near the nice riverside of Rio de La Plata river.
+                                   QUITEL 2023 will take place at Universidad de la República, Montevideo Uruguay, in a great and emblematic multifunctional building <NavLink to="/venue">José Luis Massera &quot;Faro&quot;</NavLink>, ideally located in the heart of the city near the nice riverside of Rio de La Plata river.
                                    For more information please contact us at
                                    <a href="mailto:quitel2023@gmail.com"> quitel2023@gmail.com</a>
                               </p>
