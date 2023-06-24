@@ -3,9 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:58347",
   "scripts": {
-    "start": "npx http-server ./dist --port 3475 -P https://congress-2023-production.up.railway.app/",
+    "start": "npx http-server ./dist --port 3475 --proxy http://192.168.1.10:3475?",
     "mkmove": "cd ./dist && mkdir Quitel && mv ./index.html ./Quitel/  && mv ./quitel.svg  ./Quitel/ && mv ./assets ./Quitel/",
     "dev": "vite",
     "build": "npm install && vite build && ls ./dist",
