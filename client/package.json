@@ -6,7 +6,7 @@
   "proxy": "http://localhost:58347",
   "scripts": {
     "start": "npx http-server ./dist",
-    "mkmove":"cd ./dist && mkdir Quitel && mv ./* ./Quitel && ls ./dist",
+    "mkmove":"cd ./dist && mkdir Quitel && ls ./dist",
     "dev": "vite",
     "build": "npm install && vite build && npm run mkmove",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
