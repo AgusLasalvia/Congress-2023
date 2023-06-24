@@ -14,7 +14,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: process.env.PORT,
+    port: 3475,
     host: `0.0.0.0`,
     historyApiFallback: true,
   },
