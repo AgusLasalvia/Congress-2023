@@ -5,8 +5,10 @@
   "type": "module",
   "proxy": "http://localhost:58347",
   "scripts": {
+    "start": "npx http-server ./dist",
+    "mkmove":"cd ./dist && mkdir Quitel && move ./* ./Quitel",
     "dev": "vite",
-    "build": "npm install && vite build",
+    "build": "npm install && vite build && npm run mkmove",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -14,6 +16,7 @@
     "@paypal/react-paypal-js": "^8.0.0",
     "dotenv": "^16.1.4",
     "framer-motion": "^10.12.16",
+    "https-server": "^0.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2"
