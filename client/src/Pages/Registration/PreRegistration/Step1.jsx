@@ -19,7 +19,7 @@ export default function Step1({ setFormData, formData }) {
           >
                {/* Email */}
                <div className="form-input-wrapper form-first">
-                    <label className="form-label" htmlFor="Email">Email</label>
+                    <label className="form-label" htmlFor="Email">Email<span>*</span></label>
                     <input className="form-input" type="email" id="email" name="Email"
                          value={formData.email}
                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -28,7 +28,7 @@ export default function Step1({ setFormData, formData }) {
 
                {/* First name */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="FirstName">First name</label>
+                    <label className="form-label" htmlFor="FirstName">First name<span>*</span></label>
                     <input className="form-input" type="text" id="firstname" name="FirstName"
                          value={formData.firstName}
                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -37,7 +37,7 @@ export default function Step1({ setFormData, formData }) {
 
                {/* Last name */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="LastName">Last name</label>
+                    <label className="form-label" htmlFor="LastName">Last name<span>*</span></label>
                     <input className="form-input" type="text" id="lastname" name="LastName"
                          value={formData.lastName}
                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -46,7 +46,7 @@ export default function Step1({ setFormData, formData }) {
 
                {/* Gender */}
                <div className="form-input-wrapper">
-                    <label className="form-label" htmlFor="Gender">Gender</label>
+                    <label className="form-label" htmlFor="Gender">Gender<span>*</span></label>
                     <select name="Gender" id="gender-select" className="form-select"
                          value={formData.gender}
                          onChange={(e) => setFormData({ ...formData, gender: e.target.value })}

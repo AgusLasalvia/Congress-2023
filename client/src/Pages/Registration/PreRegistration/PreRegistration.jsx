@@ -24,7 +24,7 @@ export default function PreRegistration() {
 
 
      const navigateOnSuccess = () => {
-          navigate("/Quitel/success");
+          navigate("/success");
      }
 
      // Goes to the next step in the form
@@ -38,7 +38,7 @@ export default function PreRegistration() {
      // Or goes back to registration when on step 1
      const previousStep = () => {
           if (step == 1) {
-               navigate("/Quitel/registration");
+               navigate("/registration");
           } else {
                setStep(step - 1);
           }
@@ -47,9 +47,9 @@ export default function PreRegistration() {
      const handleSubmit = () => {
           // This function will not be called as long as if isDisabled is
           // true, therefore "disabling" the button until a server response is received.
-          setIsDisabled(true);
-          // console.log(formData)
+
           if (validateData(formData)) {
+               setIsDisabled(true);
                setErrorMessage("");
                sendPreRegistration(formData, navigateOnSuccess, setErrorMessage, setIsDisabled);
           } else {
@@ -94,7 +94,7 @@ export default function PreRegistration() {
                               {/* Form buttons */}
                               <div className="button-long-blue submit-button"
                                    onClick={step == 3 ? isDisabled ? null : handleSubmit : nextStep}
-                              >{step == 3 ? "Submit" : "Continue"}</div>
+                              >{step == 3 ? isDisabled ? "Sending..." : "Submit" : "Continue"}</div>
                               <div className="button-long-pink" onClick={previousStep}>Back</div>
                          </div>
                     </div>

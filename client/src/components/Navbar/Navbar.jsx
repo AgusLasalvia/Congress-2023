@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { checkIsMobile } from "../../hooks/checkIsMobile";
 import { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
 export default function Navbar() {
 
      const isMobile = checkIsMobile();
      const [isLandscape, setIsLandscape] = useState(window.orientation == 90 ? true : false);
-
+     const navigate = useNavigate();
      window.addEventListener("orientationchange", () => {
           setIsLandscape(!isLandscape);
           // console.log("orientation changed");
@@ -27,31 +27,34 @@ export default function Navbar() {
           }
      }
 
+     const navigateHome = () => {
+          navigate("/");
+     }
+
      useEffect(() => {
           // console.log("isMobile: " + isMobile);
           // console.log("landscape mode: " + isLandscape);
      }, [isLandscape, isMobile])
 
      return (
-
           <header>
                {/* arch bg */}
                <div className="header-visible">
                     {isMobile ?
                          isLandscape ? (
                               // isMobile && isLandscape
-                              <img className="nav-arch" src="/assets/svg/arch-landscape.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-landscape.svg" alt="" />
                          ) : (
                               // isMobile && !isLandscape
-                              <img className="nav-arch" src="/assets/svg/arch-portrait.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-portrait.svg" alt="" />
                          ) : (
                               // !isMobile && !isLandscape (Desktops)
-                              <img className="nav-arch" src="/assets/svg/arch-landscape.svg" alt="" />
+                              <img className="nav-arch" src="assets/svg/arch-landscape.svg" alt="" />
                          )
                     }
 
                     {/* stamp */}
-                    <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="stamp" />
+                    <img src="assets/images/stamp.png" alt="QUITEL 2023" className="stamp" onClick={navigateHome} />
 
                     {/* hamburguer menu */}
                     <div id="menu-toggle">
@@ -64,43 +67,48 @@ export default function Navbar() {
                     {/* nav */}
                     <nav role="navigation" id="nav">
                          <ul id="menu">
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/">Home</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/about">About</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/committees">Committees</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/registration">Registration</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/speakers">Speakers</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/abstract-submission">Abstract submission</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/venue">Venue</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/hotel">Hotel</NavLink>
-                              </li>
-                              <li>
-                                   <NavLink className="nav-link" to="/Quitel/contact">Contact us</NavLink>
-                              </li>
-                              {/* <li>
-                                   <p className="language-selector">EN</p>
-                              </li> */}
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/">Home</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/about">About</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/committees">Committees</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/registration">Registration</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/speakers">Speakers</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/abstract-submission">Abstract submission</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/venue">Venue</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/hotel">Hotel</NavLink>
+                              </motion.li>
+
+                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                                   <NavLink className="nav-link" to="/contact">Contact us</NavLink>
+                              </motion.li>
+
                          </ul >
                          {/* menu stamp */}
-                         <img src="/assets/svg/stamp.svg" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
+                         <img src="assets/images/stamp.png" alt="QUITEL 2023" className="menu-stamp" id="menuStamp" />
                     </nav>
-
                </div>
-
 
           </header >
      )

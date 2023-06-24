@@ -29,7 +29,7 @@ export default function Speakers() {
                               <ul className="speakers-ul">
                                    <li>Dr. <a href="https://scholar.google.com/citations?user=bDtZleMAAAAJ" rel="noreferrer" target="_blank">Adrian Roitberg</a>. University of Florida. Roitberg Group. Computational Chemistry. USA.</li>
 
-                                   <li>Dr. <a href="https://scholar.google.com/citations?user=4xTOvaMAAAAJ&hl=en" rel="noreferrer" target="_blank">Andrea Cavalli</a>. University of Bologna and Research Director at the Italian Istitute of Tecnology, Genova, Italy</li>
+                                   <li>Dr. <a href="https://scholar.google.com/citations?user=4xTOvaMAAAAJ&hl=en" rel="noreferrer" target="_blank">Andrea Cavalli</a>. University of Bologna and Research Director at the Italian Istitute of Tecnology, Genova, Italy.</li>
 
                                    <li>Dr. <a href="https://scholar.google.com/citations?user=p7_WRcAAAAAJ&hl=es" rel="noreferrer" target="_blank">Danilo Gonzalez Nilo</a>.  Center for Bioinformatics and Integrative Biology (CBIB) · Universidad Andrés Bello.</li>
 
@@ -39,11 +39,13 @@ export default function Speakers() {
 
                                    <li>Dr. <a href="https://scholar.google.es/citations?user=AcIVuwMAAAAJ" rel="noreferrer" target="_blank">Alejandro Toro-Labbé</a>, Laboratorio de Química Teórica Computacional (QTC), Pontificia Universidad Católica de Chile.</li>
 
-                                   <li>Dr. <a href="https://scholar.google.com.br/citations?user=IQFmoEgAAAAJ" rel="noreferrer" target="_blank">Julio Sambrano</a>, Modelling and Computational Simulation Group, DM, UNESP. Brazil</li>
+                                   <li>Dr. <a href="https://scholar.google.com.br/citations?user=IQFmoEgAAAAJ" rel="noreferrer" target="_blank">Julio Sambrano</a>, Modelling and Computational Simulation Group, DM, UNESP. Brazil.</li>
 
                                    <li>Dr. <a href="https://scholar.google.com.co/citations?user=-j4-Do4AAAAJ" rel="noreferrer" target="_blank">Gian Pietro Miscione</a>, Computational Bio-Organic Chemistry Bogotá (COBO), Universidad de Los Andes, Bogotá, Colombia.</li>
 
-                                   <li>Dr. <a href="https://scholar.google.com/citations?user=OHmp6A4AAAAJ&hl=nl" rel="noreferrer" target="_blank">Elson Longo</a>, Universidade Federal de São Carlos, São Carlos, Brasil</li>
+                                   <li>Dr. <a href="https://scholar.google.com/citations?user=OHmp6A4AAAAJ&hl=nl" rel="noreferrer" target="_blank">Elson Longo</a>, Universidade Federal de São Carlos, São Carlos, Brasil.</li>
+
+                                   <li>Dr. <a href="https://ri.conicet.gov.ar/author/1709" rel="noreferrer" target="_blank">Alfredo Juan</a>, Department of Physics Universidad Nacional del Sur, Bahía Blanca, Argentina.</li>
                               </ul>
                          </div>
                     </div>

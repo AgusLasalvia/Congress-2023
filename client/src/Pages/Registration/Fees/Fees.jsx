@@ -10,7 +10,7 @@ export default function Fees() {
      const navigate = useNavigate();
 
      const navigateToForm = () => {
-          navigate("/Quitel/registration-form")
+          navigate("/registration-form")
      }
      useEffect(() => {
           // Scrolls to top when rendered.
@@ -19,7 +19,7 @@ export default function Fees() {
      }, []);
 
      const goBack = () => {
-          navigate("/quitel/registration");
+          navigate("/registration");
      }
      return (
           <motion.div className="page-wrapper"
