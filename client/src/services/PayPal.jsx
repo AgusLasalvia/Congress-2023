@@ -33,7 +33,7 @@ export default function PayPalTest({ feeSelection }) {
                                              description: "Master / PhD Students",
                                              amount: {
                                                   currency_code: "USD",
-                                                  value: "271.00",
+                                                  value: "270.00",
                                              },
                                         },
                                    ],
