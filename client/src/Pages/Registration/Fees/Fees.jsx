@@ -149,7 +149,7 @@ export default function Fees() {
                                         onChange={(e) => setFeeSelection(e.target.value)}
                                    >
                                         <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
-                                        <option value="phdstudents">Master / PhD Students - 271 USD</option>
+                                        <option value="phdstudents">Master / PhD Students - 270 USD</option>
                                         <option value="undergraduates">Undergraduate Students - 225 USD</option>
                                         <option value="accompanying">Accompanying - 180 USD</option>
                                         <option value="dinner"> Dinner - 40 USD</option>
