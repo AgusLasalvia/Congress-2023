@@ -10,10 +10,11 @@ const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
-
+//Google Authentication init
 const auth = new google.auth.GoogleAuth({
-  keyFile: "./credential.json",
-  scopes: ["https://www.googleapis.com/auth/drive"],
+    //Keyfile are the credentials given by Google Developer site
+    keyFile: "",
+    scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
 // Express modules
@@ -24,21 +25,20 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Read .env from railway
+// Read .env
 require("dotenv").config();
-
-// Google Drive Folder ID
-const registrationID = process.env.REGISTRATION_FOLDER_ID;
-const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
 
 // Email configuration
 const mail = nodemailer.createTransport({
   host: "smtp.gmail.com",
+  //default port for send mail via Gmail
   port: 465,
   secure: true,
   auth: {
-    user: "aguslblumenfeld@gmail.com",
-    pass: "lnfzwfsumfidaxjd",
+    //Email user
+    user: "",
+    //Password generated for apps
+    pass: "",
   },
 });
 
@@ -57,7 +57,7 @@ app.use(fileUpload());
 
 // Home redirection Route
 app.get("/", (req, res) => {
-  res.redirect("https://quitel23.site/Quitel/");
+  res.redirect("https://quitel23.site/");
 });
 
 // Routes POST
@@ -77,40 +77,36 @@ app.post("/pre-registration", (req, res) => {
         // Send confirmation mail
         SendMail(
           data,
-          "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+          "Pre registration to QUITEL 2023 completed successfully",
           "QUITEL 2023 Pre Registration"
         );
         res.json("success");
       } else {
+        //Response to Frontend if username already exist in DB
         res.json("already-pre-registered");
       }
     });
-
-  // Sheet data append
-  // sendSheetData(registrationID,data);
 });
 
 // Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
+  console.log(data)
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
   }).then((result) => {
     if (result == null) {
-
       // MongoDB successfull
       postData.save();
 
       // Send mailOptions
       SendMail(
         data,
-        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+        "Registration to QUITEL 2023 completed successfully",
         "QUITEL 2023 Registration"
       );
 
-      // Shet data append
-      //sendSheetData(registrationID,data)
       res.json("success");
     } else {
       res.json("already-registered");
@@ -118,25 +114,37 @@ app.post("/registration-data", (req, res) => {
   });
 });
 
-app.post("/registration-files",async (req, res) => {
+app.post("/registration-files", async (req, res) => {
   const files = req.files;
-  await uploadFile(files.registration,process.env.REGISTRATION_FOLDER_ID)
-  await uploadFile(files.dinner,process.env.DINNER_FOLDER_ID)
-  await uploadFile(files.accompanying,process.env.ACCOMPANYING_FOLDER_ID)
-
+  console.log(files)
+  if (files.registration != (undefined || null)) {
+    await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
+  }
+  if (files.dinner != (undefined || null)) {
+    await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID);
+  }
+  if (files.accompanying != (undefined || null)) {
+    await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
+  }
+  res.json('submitted-successfully');
 });
 
 // Abstract Data Form Submition
 app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract;
   let postData = new Abstract(body);
+  console.log(body);
   Abstract.findOne({
     email: body["email"],
   }).then((result) => {
     if (result == null) {
       postData.save();
       res.json("data-validated");
-
+      SendMail(
+        body,
+        "Abstract sent successfully, you will be notified if it has been approved,\n\
+      otherwise you will be asked for modifications",'QUITEL 2023 Abstract Submition'
+      );
     } else {
       res.json("already-submitted");
     }
@@ -145,24 +153,19 @@ app.post("/submit-abstract-data", (req, res) => {
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
-    const files = req.files;
-    await uploadFile(files.editableFormat,process.env.ABSTRACT_FOLDER_ID);
-    await uploadFile(files.pdfFormat,process.env.ABSTRACT_FOLDER_ID);
-    res.json("submitted-successfully");
-
+  const { files } = req;
+  // Check for existing files
+  // In case it exists, save it on a google drive folder
+  console.log(files);
+  if (files.editableFormat != (undefined || null)) {
+    await uploadFile(files.editableFormat, process.env.ABSTRACT_FOLDER_ID);
+  }
+  if (files.pdfFormat != (undefined || null)) {
+    await uploadFile(files.pdfFormat, process.env.ABSTRACT_FOLDER_ID);
+  }
+  //Response to Frontend
+  res.json("submitted-successfully");
 });
-
-// Google Drive Sheet send method
-async function sendSheetData(folderID, data) {
-  const sheets = (await authentication).sheets;
-  const response = sheets.spreadsheets.values.append({
-    spreadsheetID: folderID,
-    range: "Sheet1",
-    valueInputOption: "USER_ENTERED",
-    resource: [[]],
-    
-  });
-};
 
 // Email send method
 function SendMail(receiver, message, subject) {
@@ -184,7 +187,7 @@ function SendMail(receiver, message, subject) {
 }
 
 // Google Drive API configuration
-const uploadFile = async (fileObject,parentFolder) => {
+const uploadFile = async (fileObject, parentFolder) => {
   const bufferStream = new stream.PassThrough();
   bufferStream.end(fileObject["data"]);
   const { data } = await google
