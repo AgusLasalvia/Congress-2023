@@ -131,7 +131,7 @@ export default function Fees() {
                                    <p>Researchers and Students belonging to PEDECIBA (Uruguay):</p>
                               </div>
                               <p>
-                                   Researchers and students who belong to PEDECIBA and who wish to pay through PEDECIBA must complete the following <a href="https://drive.google.com/file/d/1Ctr87tIPmz5BkRSXfdCY3ddYxlVduWxo/view" rel="noreferrer" target="_blank">form</a> and attach it to the <b>Registration payment receipt</b> section found in the registration form.
+                                   Researchers and students who belong to PEDECIBA and who wish to pay through PEDECIBA <a href="https://drive.google.com/file/d/1Ctr87tIPmz5BkRSXfdCY3ddYxlVduWxo/view" rel="noreferrer" target="_blank">must complete the following form</a> and attach it to the <b>Registration payment receipt</b> section found in the registration form.
                               </p>
                          </div>
                     </div>
@@ -164,7 +164,7 @@ export default function Fees() {
                               {/* <PayPalTest feeSelection={feeSelection} /> */}
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
-                                   <p>You can submit your registration before you make a payment.</p>
+                                   <p>You can submit your registration before you make a payment. If you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
                               </div>
                          </div>
                          <div className="button-long-blue" onClick={navigateToForm}>Registration form</div>
