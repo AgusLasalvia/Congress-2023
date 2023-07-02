@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
-import PayPalTest from "../../../services/PayPal";
-import { useEffect, useState } from "react";
+// import PayPalTest from "../../../services/PayPal";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function Fees() {
-     const [feeSelection, setFeeSelection] = useState("postdocs");
+     // const [feeSelection, setFeeSelection] = useState("postdocs");
 
      const navigate = useNavigate();
 
@@ -140,7 +140,7 @@ export default function Fees() {
                     <div className="info-box">
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
-                              <div className="line">
+                              {/* <div className="line">
                                    <p>Payments can be made with PayPal using a credit or debit card.</p>
                               </div>
                               <div className="line-input">
@@ -154,10 +154,14 @@ export default function Fees() {
                                         <option value="accompanying">Accompanying - 180 USD</option>
                                         <option value="dinner"> Dinner - 40 USD</option>
                                    </select>
-                              </div>
+                              </div> */}
 
                               {/* PayPal button */}
-                              <PayPalTest feeSelection={feeSelection} />
+                              <div className="line">
+                                   <p><b>Sorry! Payments have been temporarily disabled. They will return soon.</b></p>
+                              </div>
+                              <br />
+                              {/* <PayPalTest feeSelection={feeSelection} /> */}
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
                                    <p>You can submit your registration before you make a payment.</p>
