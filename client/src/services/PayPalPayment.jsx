@@ -102,7 +102,7 @@ export default function PayPalPayment({ feeSelection, setPaypalMessage }) {
                                              description: "Dinner",
                                              amount: {
                                                   currency_code: "USD",
-                                                  value: "1.00",
+                                                  value: "40.00",
                                              },
                                         },
                                    ],

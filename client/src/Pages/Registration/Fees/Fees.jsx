@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
-// import PayPalTest from "../../../services/PayPal";
+// import PayPalPayment from "../../../services/PayPalPayment";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -161,7 +161,7 @@ export default function Fees() {
                                    <p><b>Sorry! Payments have been temporarily disabled. They will return soon.</b></p>
                               </div>
                               <br />
-                              {/* <PayPalTest feeSelection={feeSelection} /> */}
+                              {/* <PayPalPayment feeSelection={feeSelection} /> */}
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
                                    <p>You can submit your registration before you make a payment. If you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
