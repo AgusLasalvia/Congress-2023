@@ -250,7 +250,7 @@ app.post("/create_preference", (req, res) => {
       values.unit_price = 40;
       break;
 
-    case "Accompanying":
+    case "accompanying":
       values.title = "Accompanying ";
       values.unit_price = 180;
       break;
@@ -260,8 +260,8 @@ app.post("/create_preference", (req, res) => {
   let preference = {
     items: [values],
     back_urls: {
-      success: "",
-      failure: "",
+      success: "https://quitel23.site/registration-info",
+      failure: "https://quitel23.site/registration-info",
       pending: "",
     },
     auto_return: "approved",
