@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 // MercadoPago Checkout Pro API
 const mercadopago = require("mercadopago");
 mercadopago.configure({
-  access_token: process.env.MERCADOPAGO_TOCKEN
-})
+  access_token: process.env.MERCADOPAGO_TOCKEN,
+});
 
 // Google API required modules
 const authentication = require("./js/google-sheet");
@@ -222,14 +222,43 @@ const uploadFile = async (fileObject, parentFolder) => {
 };
 
 app.post("/create_preference", (req, res) => {
+  const { description } = req.body;
+  const values = {
+    title: "",
+    unit_price: 0,
+    quantity: 1,
+    currency_id: "USD",
+  };
+  switch (description) {
+    case "postdocs":
+      values.title = "Postdocs / Reasearchers / Proffessors ";
+      values.unit_price = 405;
+      break;
+
+    case "phdstudents":
+      values.title = "Master / PhD Students ";
+      values.unit_price = 270;
+      break;
+
+    case "undergraduate":
+      values.title = "Undergraduate Students ";
+      values.unit_price = 225;
+      break;
+
+    case "dinner":
+      values.title = "Dinner ";
+      values.unit_price = 40;
+      break;
+
+    case "Accompanying":
+      values.title = "Accompanying ";
+      values.unit_price = 180;
+      break;
+  }
+
+  console.log(values)
   let preference = {
-    items: [
-      {
-        title: req.body.description,
-        unit_price: Number(req.body.price),
-        quantity: Number(req.body.quantity),
-      },
-    ],
+    items: [values],
     back_urls: {
       success: "",
       failure: "",
@@ -240,12 +269,13 @@ app.post("/create_preference", (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then(function (response) {
-      res.json({ id: response.body.id 
-      });
+      res.json({ id: response.body.id });
     })
-    .catch({function(error){
-      console.log(error);
-    }});
+    .catch({
+      function(error) {
+        console.log(error);
+      },
+    });
 });
 
 app.listen(port, () => console.info(`server started correctly`));
