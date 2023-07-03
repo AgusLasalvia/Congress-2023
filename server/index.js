@@ -227,7 +227,7 @@ app.post("/create_preference", (req, res) => {
       {
         title: req.body.description,
         unit_price: Number(req.body.price),
-        quantity: 1,
+        quantity: Number(req.body.quantity),
       },
     ],
     back_urls: {
