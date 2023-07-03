@@ -231,7 +231,7 @@ app.post("/create_preference", (req, res) => {
   };
   switch (description) {
     case "postdocs":
-      values.title = "Postdocs / Reasearchers / Proffessors ";
+      values.title = "Postdocs / Reasearchers / Professors ";
       values.unit_price = 405;
       break;
 
@@ -240,7 +240,7 @@ app.post("/create_preference", (req, res) => {
       values.unit_price = 270;
       break;
 
-    case "undergraduate":
+    case "undergraduates":
       values.title = "Undergraduate Students ";
       values.unit_price = 225;
       break;
