@@ -4,6 +4,8 @@ const Register = require("./Models/registration");
 const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
 
+const mercadopago = require("mercadopago");
+
 // Google API required modules
 const authentication = require("./js/google-sheet");
 const { google } = require("googleapis");
@@ -92,7 +94,7 @@ app.post("/pre-registration", (req, res) => {
 // Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
-  console.log(data)
+  console.log(data);
   let postData = new Register(data);
   Register.findOne({
     email: data["email"],
@@ -119,7 +121,7 @@ app.post("/registration-data", (req, res) => {
 
 app.post("/registration-files", async (req, res) => {
   const files = req.files;
-  console.log(files)
+  console.log(files);
   if (files.registration != (undefined || null)) {
     await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
   }
@@ -129,7 +131,7 @@ app.post("/registration-files", async (req, res) => {
   if (files.accompanying != (undefined || null)) {
     await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
   }
-  res.json('submitted-successfully');
+  res.json("submitted-successfully");
 });
 
 // Abstract Data Form Submition
@@ -146,7 +148,8 @@ app.post("/submit-abstract-data", (req, res) => {
       SendMail(
         body,
         "Abstract sent successfully, you will be notified if it has been approved,\n\
-      otherwise you will be asked for modifications",'QUITEL 2023 Abstract Submition'
+      otherwise you will be asked for modifications",
+        "QUITEL 2023 Abstract Submition"
       );
     } else {
       res.json("already-submitted");
@@ -217,5 +220,32 @@ const uploadFile = async (fileObject, parentFolder) => {
       },
     });
 };
+
+app.post("/create_preference", (req, res) => {
+  let preference = {
+    items: [
+      {
+        title: req.body.description,
+        unit_price: Number(req.body.price),
+        quantity: 1,
+      },
+    ],
+    back_urls: {
+      success: "",
+      failure: "",
+      pending: "",
+    },
+    auto_return: "approved",
+  };
+  mercadopago.preferences
+    .create(preference)
+    .then(function (response) {
+      res.json({ id: response.body.id 
+      });
+    })
+    .catch({function(error){
+      console.log(error);
+    }});
+});
 
 app.listen(port, () => console.info(`server started correctly`));
