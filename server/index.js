@@ -4,7 +4,11 @@ const Register = require("./Models/registration");
 const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
 
+// MercadoPago Checkout Pro API
 const mercadopago = require("mercadopago");
+mercadopago.configure({
+  access_token: process.env.MERCADOPAGO_TOCKEN
+})
 
 // Google API required modules
 const authentication = require("./js/google-sheet");
@@ -27,10 +31,6 @@ const port = process.env.PORT || 5000;
 
 // Read .env from railway
 require("dotenv").config();
-
-// Google Drive Folder ID
-const registrationID = process.env.REGISTRATION_FOLDER_ID;
-const preRegisterID = process.env.PREREGISTER_FOLDER_ID;
 
 // Email configuration
 const mail = nodemailer.createTransport({
