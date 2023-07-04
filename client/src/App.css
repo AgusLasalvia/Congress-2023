@@ -49,6 +49,12 @@ body {
 
 /* ------------------------- */
 
+.mercado-pago span {
+  color: white;
+  font-weight: 500;
+  /* padding: 1rem; */
+}
+
 .error {
   position: absolute;
   margin: 0 auto;
@@ -171,7 +177,8 @@ body {
 
 .button-long-blue,
 .button-long-pink,
-.upload-button {
+.upload-button,
+.button-long-MP {
   color: white;
   margin-top: 1rem;
   text-decoration: none;
@@ -187,7 +194,8 @@ body {
 
 .button-long-blue:hover,
 .button-long-pink:hover,
-.upload-button:hover {
+.upload-button:hover,
+.button-long-MP:hover {
   scale: 1.01;
   transition: all 0.2s;
   box-shadow: 0px 0px 20px rgb(255, 255, 255);
@@ -195,6 +203,10 @@ body {
 
 .button-long-blue {
   background-color: var(--sweet-blue);
+}
+
+.button-long-MP {
+  background-color: #0091d0;
 }
 
 .submit-button {
@@ -378,6 +390,7 @@ body {
 
   .button-long-blue,
   .button-long-pink,
+  .button-long-MP,
   .upload-button {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 1rem;
@@ -420,7 +433,8 @@ body {
 
   .button-long-blue,
   .button-long-pink,
-  .upload-button {
+  .upload-button,
+  .button-long-MP {
     font-size: clamp(0.95rem, 2.2vw, 0.75rem);
   }
 }
@@ -437,14 +451,19 @@ body {
   }
 }
 
+/* intended for 1920x1080 */
 @media screen and (min-width: 1367px) {
+  .form-input {
+    padding: 0.25rem;
+    padding-inline: 0.5rem;
+  }
+
   .page-title {
     width: 50vw;
   }
 
   .page-info {
-    /* margin-inline: auto; */
-    width: 50vw;
+    width: 40vw;
   }
 
   .page-info.form {
@@ -457,7 +476,88 @@ body {
   }
 
   .page-title {
-    margin-top: 12rem;
+    margin-top: 10rem;
+    font-size: clamp(1.8rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
+  .info-title {
+    font-size: clamp(1.1rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    line-height: 1.2rem;
+  }
+
+  .info-counter {
+    font-size: clamp(1.3rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 0.65rem;
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button,
+  .button-long-MP {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .paypal-buttons {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .paypal-buttons {
+    width: 80%;
+  }
+}
+
+/* intended for the largest screens */
+@media screen and (min-width: 1921px) {
+  .paypal-buttons {
+    z-index: 1;
+    margin-inline: auto;
+    width: 60%;
+  }
+
+  .page-title {
+    width: 40vw;
+  }
+
+  .page-info {
+    width: 40vw;
+  }
+
+  .page-info.form {
+    width: 35vw;
+    margin-inline: auto;
+  }
+
+  .info-box {
+    padding: 64px;
+  }
+
+  .page-title {
+    margin-top: 14rem;
     font-size: clamp(2rem, 2.2vw, 0.75rem);
   }
 
@@ -489,28 +589,9 @@ body {
 
   .button-long-blue,
   .button-long-pink,
-  .upload-button {
+  .upload-button,
+  .button-long-MP {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .paypal-buttons {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .paypal-buttons {
-    width: 80%;
-  }
-}
-
-@media screen and (min-width: 1921px) {
-  .paypal-buttons {
-    z-index: 1;
-    margin-inline: auto;
-    width: 60%;
   }
 }

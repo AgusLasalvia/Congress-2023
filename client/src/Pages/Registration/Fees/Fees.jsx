@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 // import PayPalPayment from "../../../services/PayPalPayment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import MPButton from "../../../services/MercadoPago";
 
 export default function Fees() {
-     // const [feeSelection, setFeeSelection] = useState("postdocs");
+
+     const [feeSelection, setFeeSelection] = useState("postdocs");
 
      const navigate = useNavigate();
 
@@ -140,13 +142,15 @@ export default function Fees() {
                     <div className="info-box">
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
-                              {/* <div className="line">
-                                   <p>Payments can be made with PayPal using a credit or debit card.</p>
+                              <div className="line">
+                                   <p>Payments can be made with <i>PayPal</i> and <i>Mercado Pago</i> using a credit or debit card.</p>
                               </div>
                               <div className="line-input">
                                    <label className="form-label" htmlFor="Email">Registration fee</label>
                                    <select name="registration-fee" id="fee-select" className="form-select"
-                                        onChange={(e) => setFeeSelection(e.target.value)}
+                                        onChange={(e) => {
+                                             setFeeSelection(e.target.value)
+                                        }}
                                    >
                                         <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
                                         <option value="phdstudents">Master / PhD Students - 270 USD</option>
@@ -154,12 +158,13 @@ export default function Fees() {
                                         <option value="accompanying">Accompanying - 180 USD</option>
                                         <option value="dinner"> Dinner - 40 USD</option>
                                    </select>
-                              </div> */}
-
-                              {/* PayPal button */}
-                              <div className="line">
-                                   <p><b>Sorry! Payments have been temporarily disabled. They will return soon.</b></p>
                               </div>
+                              {/* MercadoPago */}
+                              <MPButton feeSelection={feeSelection} />
+
+                              {/* <div className="line">
+                                   <p><b>Sorry! Payments have been temporarily disabled. They will return soon.</b></p>
+                              </div> */}
                               <br />
                               {/* <PayPalPayment feeSelection={feeSelection} /> */}
                               <h1 className="info-title fees paypal">Registration form</h1>
