@@ -247,7 +247,7 @@ app.post("/create_preference", (req, res) => {
 
     case "dinner":
       values.title = "Dinner ";
-      values.unit_price = 40;
+      values.unit_price = 1;
       break;
 
     case "accompanying":
