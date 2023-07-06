@@ -5,7 +5,7 @@ import axios from "axios";
 import { checkIsMobile } from "../hooks/checkIsMobile";
 
 // ----------------- ACA ADENTRO VA UN ENV ---------------------
-initMercadoPago('TEST-f999e5c8-f5d9-487c-abeb-0709e53086bc');
+initMercadoPago('TEST-5353f92b-e4e8-4f5a-aff1-3724650b3cca');
 // -------------------------------------------------------------
 
 export default function MPButton({ feeSelection }) {
@@ -39,6 +39,7 @@ export default function MPButton({ feeSelection }) {
           }
      }
 
+     // Disables the button and makes a call to createPreference(), then re-enables the button once there is an ID.
      const handleBuy = async () => {
           setIsDisabled(true);
           const id = await createPreference();
