@@ -7,15 +7,16 @@ const mongoose = require("mongoose");
 // MercadoPago Checkout Pro API
 const mercadopago = require("mercadopago");
 mercadopago.configure({
-  access_token: process.env.MERCADOPAGO_TOCKEN,
+  access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
 });
 
 // Google API required modules
-const authentication = require("./js/google-sheet");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
+
+// Google Authentication credentials init
 const auth = new google.auth.GoogleAuth({
   keyFile: "./credential.json",
   scopes: ["https://www.googleapis.com/auth/drive"],
@@ -35,18 +36,18 @@ require("dotenv").config();
 // Email configuration
 const mail = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
+  port: 465,  // Default Gmail smtp port
   secure: true,
   auth: {
-    user: "aguslblumenfeld@gmail.com",
-    pass: "lnfzwfsumfidaxjd",
+    user: "aguslblumenfeld@gmail.com", 
+    pass: "lnfzwfsumfidaxjd", // Password created from gmail for apps
   },
 });
 
 // Mongoose configuration
-mongoose.connect(process.env.MONGODB);
+mongoose.connect(process.env.MONGODB); // MongoDB connection String
 db = mongoose.connection.once("open", () => {
-  console.log("Mongodb connected");
+  console.log("Mongodb connected"); // Connnection verification message
 });
 
 // Express conficurations
@@ -72,6 +73,7 @@ app.post("/pre-registration", (req, res) => {
     })
     .then((result) => {
       if (result == null) {
+
         // Save data on MongoDB
         postData.save();
 
@@ -86,9 +88,6 @@ app.post("/pre-registration", (req, res) => {
         res.json("already-pre-registered");
       }
     });
-
-  // Sheet data append
-  // sendSheetData(registrationID,data);
 });
 
 // Registration Data Form Receiver
@@ -97,9 +96,10 @@ app.post("/registration-data", (req, res) => {
   console.log(data);
   let postData = new Register(data);
   Register.findOne({
-    email: data["email"],
+    email: data["email"], // Search for existing email on MongoDB
   }).then((result) => {
     if (result == null) {
+
       // MongoDB successfull
       postData.save();
 
@@ -110,18 +110,18 @@ app.post("/registration-data", (req, res) => {
         "QUITEL 2023 Registration"
       );
 
-      // Shet data append
-      //sendSheetData(registrationID,data)
-      res.json("success");
+      res.json("success"); // Response to Frontend
     } else {
-      res.json("already-registered");
+      res.json("already-registered"); // Response to Frontend
     }
   });
 });
 
 app.post("/registration-files", async (req, res) => {
-  const files = req.files;
+  const files = req.files; // Get all files from incoming Form
   console.log(files);
+
+  // Check existing files, if exists, save it on Google Drive
   if (files.registration != (undefined || null)) {
     await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
   }
@@ -136,11 +136,11 @@ app.post("/registration-files", async (req, res) => {
 
 // Abstract Data Form Submition
 app.post("/submit-abstract-data", (req, res) => {
-  const body = req.body.abstract;
-  let postData = new Abstract(body);
+  const body = req.body.abstract; // Get incoming Form Data
+  let postData = new Abstract(body); // Declare a new model with Form data
   console.log(body);
   Abstract.findOne({
-    email: body["email"],
+    email: body["email"], // Search for an existing email in MongoDB
   }).then((result) => {
     if (result == null) {
       postData.save();
@@ -153,12 +153,13 @@ app.post("/submit-abstract-data", (req, res) => {
       );
     } else {
       res.json("already-submitted");
-    }
+    } 
   });
 });
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
+  // All same as registraiton-files
   const { files } = req;
   console.log(files);
   if (files.editableFormat != (undefined || null)) {
@@ -169,17 +170,6 @@ app.post("/submit-abstract-files", async (req, res) => {
   }
   res.json("submitted-successfully");
 });
-
-// Google Drive Sheet send method
-async function sendSheetData(folderID, data) {
-  const sheets = (await authentication).sheets;
-  const response = sheets.spreadsheets.values.append({
-    spreadsheetID: folderID,
-    range: "Sheet1",
-    valueInputOption: "USER_ENTERED",
-    resource: [[]],
-  });
-}
 
 // Email send method
 function SendMail(receiver, message, subject) {
@@ -195,7 +185,7 @@ function SendMail(receiver, message, subject) {
     if (err) {
       console.log(err);
     } else {
-      console.log("Email sent successfully: " + info.response);
+      console.log("Email sent successfully to: " + receiver["email"]);
     }
   });
 }
