@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
-// import PayPalPayment from "../../../services/PayPalPayment";
+import PayPalPayment from "../../../services/PayPalPayment";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import MPButton from "../../../services/MercadoPago";
@@ -8,6 +8,7 @@ import MPButton from "../../../services/MercadoPago";
 export default function Fees() {
 
      const [feeSelection, setFeeSelection] = useState("postdocs");
+     const [paypalMessage, setPaypalMessage] = useState("");
 
      const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ export default function Fees() {
      const goBack = () => {
           navigate("/registration");
      }
+
      return (
           <motion.div className="page-wrapper"
                initial={{ opacity: 0 }}
@@ -143,13 +145,14 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> and <i>Mercado Pago</i> using a credit or debit card.</p>
+                                   <p>Payments can be made with <i>PayPal</i> or <i>Mercado Pago</i> using a credit or debit card.</p>
                               </div>
                               <div className="line-input">
                                    <label className="form-label" htmlFor="Email">Registration fee</label>
                                    <select name="registration-fee" id="fee-select" className="form-select"
                                         onChange={(e) => {
-                                             setFeeSelection(e.target.value)
+                                             setFeeSelection(e.target.value);
+                                             setPaypalMessage("");
                                         }}
                                    >
                                         <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
@@ -159,28 +162,34 @@ export default function Fees() {
                                         <option value="dinner"> Dinner - 40 USD</option>
                                    </select>
                               </div>
+
                               {/* MercadoPago */}
                               <MPButton feeSelection={feeSelection} />
 
-                              {/* <div className="line">
-                                   <p><b>Sorry! Payments have been temporarily disabled. They will return soon.</b></p>
-                              </div> */}
-                              <br />
-                              {/* <PayPalPayment feeSelection={feeSelection} /> */}
+                              {/* PayPal */}
+                              <PayPalPayment feeSelection={feeSelection} setPaypalMessage={setPaypalMessage} />
+                              {paypalMessage &&
+                                   <p className="paypal-success">PayPal payment for {paypalMessage} was successful!</p>
+                              }
+                         </div>
+                    </div>
+
+
+                    {/* Form button */}
+                    <div className="info-box">
+                         <div className="info-text">
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
                                    <p>You can submit your registration before you make a payment. If you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
                               </div>
+
                          </div>
                          <div className="button-long-blue" onClick={navigateToForm}>Registration form</div>
                          <div className="button-long-pink" onClick={goBack}>Back</div>
-
                     </div>
 
 
-
                </div>
-
                <Footer />
           </motion.div>
      )

@@ -49,12 +49,16 @@ body {
 
 /* ------------------------- */
 
+.mercado-pago {
+  margin-block: 2rem;
+}
 .mercado-pago span {
   color: white;
   font-weight: 500;
   /* padding: 1rem; */
 }
 
+/* error page */
 .error {
   position: absolute;
   margin: 0 auto;
@@ -82,7 +86,6 @@ body {
 }
 
 /* info box & common page styles */
-
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -248,6 +251,7 @@ body {
   font-weight: 700;
 }
 
+/* asterisk */
 .form-label span {
   color: #e53935;
 }
@@ -352,7 +356,20 @@ body {
 .paypal-buttons {
   z-index: 1;
   margin-inline: auto;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.info-box .paypal-success {
+  margin-inline: auto;
+  width: 100%;
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #499626;
+  background-color: #bad8ac;
+  border-radius: 12px;
+  padding: 8px;
+  border: 2px solid #499626;
+  font-weight: 600;
 }
 
 /* for mobile devices in landscape */
@@ -459,7 +476,7 @@ body {
   }
 
   .page-title {
-    width: 50vw;
+    width: 40vw;
   }
 
   .page-info {
