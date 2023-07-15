@@ -139,22 +139,14 @@ app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract; // Get incoming Form Data
   let postData = new Abstract(body); // Declare a new model with Form data
   console.log(body);
-  Abstract.findOne({
-    email: body["email"], // Search for an existing email in MongoDB
-  }).then((result) => {
-    if (result == null) {
-      postData.save();
-      res.json("data-validated");
-      SendMail(
+  postData.save();
+  res.json("data-validated");
+  SendMail(
         body,
         "Abstract sent successfully, you will be notified if it has been approved,\n\
       otherwise you will be asked for modifications",
         "QUITEL 2023 Abstract Submition"
-      );
-    } else {
-      res.json("already-submitted");
-    } 
-  });
+  );
 });
 
 // Abstract Files Form Submition
