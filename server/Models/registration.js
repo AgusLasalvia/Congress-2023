@@ -6,7 +6,7 @@ let registerSchema = new schema({
     firstName:String,
     lastName: String,
     gender: String,
-    levelEducatino: String,
+    educationLevel: String,
     position: String,
     mainInstitution: String,
     institutionalAddress: String,
