@@ -9,7 +9,7 @@ let registerSchema = new schema({
     levelEducatino: String,
     position: String,
     mainInstitution: String,
-    institutionAddress: String,
+    institutionalAddress: String,
     country: String,
     region: String,
     city: String,
