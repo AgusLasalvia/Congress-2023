@@ -10,7 +10,7 @@ import Lenis from '@studio-freight/lenis'
 function App() {
 
   // smooth-scroll
-  const lenis = new Lenis({ duration: 0.8 })
+  const lenis = new Lenis({ duration: 0.65 })
 
   lenis.on('scroll', (e) => {
     console.log(e)

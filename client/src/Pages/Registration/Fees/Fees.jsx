@@ -141,7 +141,11 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card. You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a> </p>
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card. You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a>
+                                        <br />
+                                        <br />
+                                        Please refer to the fees stated upon the top part of the page and specify in PayPal which fees are being paid. We thank you in advance.
+                                   </p>
                               </div>
                          </div>
 
