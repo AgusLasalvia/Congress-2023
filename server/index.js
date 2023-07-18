@@ -5,10 +5,10 @@ const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
 
 // MercadoPago Checkout Pro API
-const mercadopago = require("mercadopago");
-mercadopago.configure({
-  access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
-});
+// const mercadopago = require("mercadopago");
+// mercadopago.configure({
+//   access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
+// });
 
 // Google API required modules
 const { google } = require("googleapis");
@@ -203,61 +203,61 @@ const uploadFile = async (fileObject, parentFolder) => {
     });
 };
 
-app.post("/create_preference", (req, res) => {
-  const { description } = req.body;
-  const values = {
-    title: "",
-    unit_price: 0,
-    quantity: 1,
-    currency_id: "USD",
-  };
-  switch (description) {
-    case "postdocs":
-      values.title = "Postdocs / Reasearchers / Professors ";
-      values.unit_price = 405;
-      break;
-
-    case "phdstudents":
-      values.title = "Master / PhD Students ";
-      values.unit_price = 270;
-      break;
-
-    case "undergraduates":
-      values.title = "Undergraduate Students ";
-      values.unit_price = 225;
-      break;
-
-    case "dinner":
-      values.title = "Dinner ";
-      values.unit_price = 1;
-      break;
-
-    case "accompanying":
-      values.title = "Accompanying ";
-      values.unit_price = 180;
-      break;
-  }
-
-  console.log(values)
-  let preference = {
-    items: [values],
-    back_urls: {
-      success: "https://quitel23.site/registration-info",
-      failure: "https://quitel23.site/registration-info",
-      pending: "",
-    },
-    auto_return: "approved",
-  };
-  mercadopago.preferences
-    .create(preference)
-    .then(function (response) {
-      res.json({ id: response.body.id });
-    })
-    .catch({
-      function(error) {
-        console.log(error);
-      },
-    });
-});
+// app.post("/create_preference", (req, res) => {
+//   const { description } = req.body;
+//   const values = {
+//     title: "",
+//     unit_price: 0,
+//     quantity: 1,
+//     currency_id: "USD",
+//   };
+//   switch (description) {
+//     case "postdocs":
+//       values.title = "Postdocs / Reasearchers / Professors ";
+//       values.unit_price = 405;
+//       break;
+//
+//     case "phdstudents":
+//       values.title = "Master / PhD Students ";
+//       values.unit_price = 270;
+//       break;
+//
+//     case "undergraduates":
+//       values.title = "Undergraduate Students ";
+//       values.unit_price = 225;
+//       break;
+//
+//     case "dinner":
+//       values.title = "Dinner ";
+//       values.unit_price = 1;
+//       break;
+//
+//     case "accompanying":
+//       values.title = "Accompanying ";
+//       values.unit_price = 180;
+//       break;
+//   }
+//
+//   console.log(values)
+//   let preference = {
+//     items: [values],
+//     back_urls: {
+//       success: "https://quitel23.site/registration-info",
+//       failure: "https://quitel23.site/registration-info",
+//       pending: "",
+//     },
+//     auto_return: "approved",
+//   };
+//   mercadopago.preferences
+//     .create(preference)
+//     .then(function (response) {
+//       res.json({ id: response.body.id });
+//     })
+//     .catch({
+//       function(error) {
+//         console.log(error);
+//       },
+//     });
+// });
 
 app.listen(port, () => console.info(`server started correctly`));
