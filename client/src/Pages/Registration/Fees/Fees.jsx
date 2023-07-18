@@ -1,14 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
-import PayPalPayment from "../../../services/PayPalPayment";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import MPButton from "../../../services/MercadoPago";
 
 export default function Fees() {
-
-     const [feeSelection, setFeeSelection] = useState("postdocs");
-     const [paypalMessage, setPaypalMessage] = useState("");
 
      const navigate = useNavigate();
 
@@ -145,33 +140,14 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> or <i>Mercado Pago</i> using a credit or debit card.</p>
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card. You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a> </p>
                               </div>
-                              <div className="line-input">
-                                   <label className="form-label" htmlFor="Email">Registration fee</label>
-                                   <select name="registration-fee" id="fee-select" className="form-select"
-                                        onChange={(e) => {
-                                             setFeeSelection(e.target.value);
-                                             setPaypalMessage("");
-                                        }}
-                                   >
-                                        <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
-                                        <option value="phdstudents">Master / PhD Students - 270 USD</option>
-                                        <option value="undergraduates">Undergraduate Students - 225 USD</option>
-                                        <option value="accompanying">Accompanying - 180 USD</option>
-                                        <option value="dinner"> Dinner - 40 USD</option>
-                                   </select>
-                              </div>
-
-                              {/* MercadoPago */}
-                              <MPButton feeSelection={feeSelection} />
-
-                              {/* PayPal */}
-                              <PayPalPayment feeSelection={feeSelection} setPaypalMessage={setPaypalMessage} />
-                              {paypalMessage &&
-                                   <p className="paypal-success">PayPal payment for {paypalMessage} was successful!</p>
-                              }
                          </div>
+
+                         {/* Paypal.me */}
+                         <a className="button-long-PP" href="https://www.paypal.com/paypalme/fundaquim" rel="noreferrer" target="_blank">
+                              <i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
+                         </a>
                     </div>
 
 
@@ -180,7 +156,9 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
-                                   <p>You can submit your registration before you make a payment. If you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
+                                   <p>You can submit your registration before you make a payment.
+                                        <br />
+                                        Please remember that if you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
                               </div>
 
                          </div>
