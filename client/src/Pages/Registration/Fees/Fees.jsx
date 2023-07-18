@@ -20,6 +20,7 @@ export default function Fees() {
           navigate("/registration");
      }
 
+
      return (
           <motion.div className="page-wrapper"
                initial={{ opacity: 0 }}
