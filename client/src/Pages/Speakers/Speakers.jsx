@@ -50,7 +50,7 @@ export default function Speakers() {
 
                          </div>
                          <br />
-                         <a className="button-long-blue" href="assets/files/schedule-quitel2023.pdf" download>Download schedule</a>
+                         <a className="button-long-blue" href="assets/files/schedule-quitel2023.pdf" download>Download program</a>
                     </div>
                </div>
                <Footer />

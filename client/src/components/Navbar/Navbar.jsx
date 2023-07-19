@@ -94,7 +94,7 @@ export default function Navbar() {
                               </motion.li>
 
                               <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
-                                   <motion.NavLink className="nav-link" to="/hotel">Hotel</motion.NavLink>
+                                   <NavLink className="nav-link" to="/hotel">Hotel</NavLink>
                               </motion.li>
 
                               <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
