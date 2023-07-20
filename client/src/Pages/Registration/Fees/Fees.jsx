@@ -146,7 +146,6 @@ export default function Fees() {
                                         Please refer to the fees stated upon the top part of the page and specify either in PayPal or in the transfer which fees are being paid. We thank you in advance.
                                         <br />
                                         <br />
-                                        You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a>
                                    </p>
                               </div>
                          </div>
@@ -191,9 +190,7 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
-                                   <p>You can submit your registration before you make a payment.
-                                        <br />
-                                        Please remember that if you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
+                                   <p>You can submit your registration before you make a payment.</p>
                               </div>
 
                          </div>
