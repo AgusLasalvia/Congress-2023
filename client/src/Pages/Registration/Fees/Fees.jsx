@@ -141,14 +141,44 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card. You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a>
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by wire transfer to any of the bank accounts.
+                                        <br />
+                                        Please refer to the fees stated upon the top part of the page and specify either in PayPal or in the transfer which fees are being paid. We thank you in advance.
                                         <br />
                                         <br />
-                                        Please refer to the fees stated upon the top part of the page and specify in PayPal which fees are being paid. We thank you in advance.
+                                        You can then send the receipts through the registration form, or send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a>
                                    </p>
                               </div>
                          </div>
 
+
+
+
+                         <div className="info-text">
+                              <div className="line">
+                                   <ul>
+                                        {/* brou */}
+                                        <li><b>BROU Bank (only amounts greater than U$S 100)</b>
+                                             <ul>
+                                                  <li>001570119-00006 ($ Uruguayan Peso)</li>
+                                                  <li>001570119-00003 (U$S United States Dollar)</li>
+                                             </ul>
+                                        </li>
+
+                                        <br />
+
+                                        {/* santander  */}
+                                        <li><b>Santander Bank</b></li>
+                                        <ul>
+                                             <li>075-5316316 ($ Uruguayan Peso)</li>
+                                             <li>075-5316316 (U$S United States Dollar)</li>
+                                             <li>075-4772431 (€ Euro)</li>
+                                        </ul>
+                                   </ul>
+                              </div>
+                         </div>
+
+                         <br />
                          {/* Paypal.me */}
                          <a className="button-long-PP" href="https://www.paypal.com/paypalme/fundaquim" rel="noreferrer" target="_blank">
                               <i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
