@@ -49,6 +49,11 @@ body {
 
 /* ------------------------- */
 
+.copy {
+  cursor: pointer;
+  padding-left: 4px;
+}
+
 /* error page */
 .error {
   position: absolute;
@@ -361,6 +366,10 @@ body {
   padding: 8px;
   border: 2px solid #499626;
   font-weight: 600;
+}
+
+.wire {
+  background-color: #1eb381;
 }
 
 /* for mobile devices in landscape */

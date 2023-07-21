@@ -3,6 +3,8 @@ import Footer from "../../../components/Footer/Footer";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 
+
+
 export default function Fees() {
 
      const navigate = useNavigate();
@@ -145,46 +147,20 @@ export default function Fees() {
                               <div className="line">
                                    <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by <i>wire transfer</i> to any of the bank accounts.
                                         <br />
-                                        Please refer to the fees stated upon the top part of the page and specify either in PayPal or in the transfer which fees are being paid. We thank you in advance.
+                                        We thank you in advance.
                                         <br />
                                         <br />
                                    </p>
                               </div>
                          </div>
 
-
-
-
-                         <div className="info-text">
-                              <div className="line heading"><p>Bank accounts</p></div>
-                              <div className="line">
-                                   <ul>
-                                        {/* brou */}
-                                        <li><b>BROU Bank (only amounts greater than U$S 100)</b>
-                                             <ul>
-                                                  <li>001570119-00006 ($ Uruguayan Peso)</li>
-                                                  <li>001570119-00003 (U$S United States Dollar)</li>
-                                             </ul>
-                                        </li>
-
-                                        <br />
-
-                                        {/* santander  */}
-                                        <li><b>Santander Bank (All amounts)</b></li>
-                                        <ul>
-                                             <li>075-5316316 ($ Uruguayan Peso)</li>
-                                             <li>075-5316316 (U$S United States Dollar)</li>
-                                             <li>075-4772431 (€ Euro)</li>
-                                        </ul>
-                                   </ul>
-                              </div>
-
-                         </div>
-
-                         <br />
                          {/* Paypal.me */}
                          <NavLink className="button-long-PP" to="/payment">
-                              <span style={{ color: "black", fontWeight: "800" }}>I want to pay with </span><i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
+                              <span style={{ color: "black", fontWeight: "800" }}>I want to pay through </span><i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
+                         </NavLink>
+                         {/* Wire transfer */}
+                         <NavLink className="button-long-PP wire" to="/bank-payment">
+                              <span style={{ color: "black", fontWeight: "800" }}>I want to make a </span><span style={{ color: "#002E80", fontWeight: "800" }}>Wire transfer</span>
                          </NavLink>
                     </div>
 
