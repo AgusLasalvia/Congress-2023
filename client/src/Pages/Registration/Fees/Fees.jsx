@@ -1,26 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
-import PayPalTest from "../../../services/PayPal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function Fees() {
-     const [feeSelection, setFeeSelection] = useState("postdocs");
 
      const navigate = useNavigate();
 
      const navigateToForm = () => {
           navigate("/registration-form")
      }
+
+     const goBack = () => {
+          navigate("/registration");
+     }
+
+
      useEffect(() => {
           // Scrolls to top when rendered.
           // Otherwise when switching routes the user would remain at the same Y position in the window.
           window.scrollTo(0, 0);
      }, []);
 
-     const goBack = () => {
-          navigate("/registration");
-     }
+
      return (
           <motion.div className="page-wrapper"
                initial={{ opacity: 0 }}
@@ -131,7 +133,7 @@ export default function Fees() {
                                    <p>Researchers and Students belonging to PEDECIBA (Uruguay):</p>
                               </div>
                               <p>
-                                   Researchers and students who belong to PEDECIBA and who wish to pay through PEDECIBA must complete the following <a href="https://drive.google.com/file/d/1Ctr87tIPmz5BkRSXfdCY3ddYxlVduWxo/view" rel="noreferrer" target="_blank">form</a> and attach it to the <b>Registration payment receipt</b> section found in the registration form.
+                                   Researchers and students who belong to PEDECIBA and who wish to pay through PEDECIBA <a href="https://drive.google.com/file/d/1Ctr87tIPmz5BkRSXfdCY3ddYxlVduWxo/view" rel="noreferrer" target="_blank">must complete the following form</a> and attach it to the <b>Registration payment receipt</b> section found in the registration form.
                               </p>
                          </div>
                     </div>
@@ -141,37 +143,67 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with PayPal using a credit or debit card.</p>
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by <i>wire transfer</i> to any of the bank accounts.
+                                        <br />
+                                        Please refer to the fees stated upon the top part of the page and specify either in PayPal or in the transfer which fees are being paid. We thank you in advance.
+                                        <br />
+                                        <br />
+                                   </p>
                               </div>
-                              <div className="line-input">
-                                   <label className="form-label" htmlFor="Email">Registration fee</label>
-                                   <select name="registration-fee" id="fee-select" className="form-select"
-                                        onChange={(e) => setFeeSelection(e.target.value)}
-                                   >
-                                        <option value="postdocs">Postdocs / Researchers / Professors - 405 USD</option>
-                                        <option value="phdstudents">Master / PhD Students - 271 USD</option>
-                                        <option value="undergraduates">Undergraduate Students - 225 USD</option>
-                                        <option value="accompanying">Accompanying - 180 USD</option>
-                                        <option value="dinner"> Dinner - 40 USD</option>
-                                   </select>
+                         </div>
+
+
+
+
+                         <div className="info-text">
+                              <div className="line heading"><p>Bank accounts</p></div>
+                              <div className="line">
+                                   <ul>
+                                        {/* brou */}
+                                        <li><b>BROU Bank (only amounts greater than U$S 100)</b>
+                                             <ul>
+                                                  <li>001570119-00006 ($ Uruguayan Peso)</li>
+                                                  <li>001570119-00003 (U$S United States Dollar)</li>
+                                             </ul>
+                                        </li>
+
+                                        <br />
+
+                                        {/* santander  */}
+                                        <li><b>Santander Bank (All amounts)</b></li>
+                                        <ul>
+                                             <li>075-5316316 ($ Uruguayan Peso)</li>
+                                             <li>075-5316316 (U$S United States Dollar)</li>
+                                             <li>075-4772431 (€ Euro)</li>
+                                        </ul>
+                                   </ul>
                               </div>
 
-                              {/* PayPal button */}
-                              <PayPalTest feeSelection={feeSelection} />
+                         </div>
+
+                         <br />
+                         {/* Paypal.me */}
+                         <NavLink className="button-long-PP" to="/payment">
+                              <span style={{ color: "black", fontWeight: "800" }}>I want to pay with </span><i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
+                         </NavLink>
+                    </div>
+
+
+                    {/* Form button */}
+                    <div className="info-box">
+                         <div className="info-text">
                               <h1 className="info-title fees paypal">Registration form</h1>
                               <div className="line">
                                    <p>You can submit your registration before you make a payment.</p>
                               </div>
+
                          </div>
                          <div className="button-long-blue" onClick={navigateToForm}>Registration form</div>
                          <div className="button-long-pink" onClick={goBack}>Back</div>
-
                     </div>
 
 
-
                </div>
-
                <Footer />
           </motion.div>
      )

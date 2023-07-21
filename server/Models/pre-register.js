@@ -8,7 +8,7 @@ let preRegisterSchema = new schema({
     gender:String,
     educationLevel:String,
     country:String,
-    mainIbnstitution:String,
+    mainInstitution:String,
     hasAttended:String,
     mail:String
 });

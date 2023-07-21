@@ -31,3 +31,17 @@
     margin-bottom: 0.5rem;
   }
 }
+
+@media screen and (min-width: 1367px) and (max-width: 1921px) {
+  .info-title.fees {
+    margin-bottom: 1.2rem;
+  }
+
+  .info-title.fees.paypal {
+    margin-bottom: 1rem;
+  }
+
+  .page-title-p.fees {
+    font-size: clamp(0.8rem, 2.2vw, 0.75rem);
+  }
+}

@@ -22,6 +22,9 @@ export default function Step3({ receipts, setReceipts }) {
                animate={{ opacity: 1 }}
                exit={{ opacity: 0 }}
           >
+               <div className="line">
+                    <p>You can submit your registration before you make a payment. If you don&apos;t attach the payment receipts in the form, you must send them later to: <a href="mailto:quitel2023@gmail.com">quitel2023@gmail.com</a></p>
+               </div>
                {/* Registration payment receipt */}
                <div className="form-upload-wrapper">
                     <label className="form-label">Upload your Registration payment receipt (optional)</label>
