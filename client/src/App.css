@@ -49,6 +49,7 @@ body {
 
 /* ------------------------- */
 
+/* error page */
 .error {
   position: absolute;
   margin: 0 auto;
@@ -76,7 +77,6 @@ body {
 }
 
 /* info box & common page styles */
-
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -171,7 +171,8 @@ body {
 
 .button-long-blue,
 .button-long-pink,
-.upload-button {
+.upload-button,
+.button-long-PP {
   color: white;
   margin-top: 1rem;
   text-decoration: none;
@@ -187,7 +188,8 @@ body {
 
 .button-long-blue:hover,
 .button-long-pink:hover,
-.upload-button:hover {
+.upload-button:hover,
+.button-long-PP:hover {
   scale: 1.01;
   transition: all 0.2s;
   box-shadow: 0px 0px 20px rgb(255, 255, 255);
@@ -195,6 +197,10 @@ body {
 
 .button-long-blue {
   background-color: var(--sweet-blue);
+}
+
+.button-long-PP {
+  background-color: #f2ba36;
 }
 
 .submit-button {
@@ -236,6 +242,7 @@ body {
   font-weight: 700;
 }
 
+/* asterisk */
 .form-label span {
   color: #e53935;
 }
@@ -319,7 +326,7 @@ body {
   font-weight: 600;
 }
 
-.venue-img {
+.image {
   width: auto;
   border: none;
   margin-bottom: 1rem;
@@ -340,7 +347,20 @@ body {
 .paypal-buttons {
   z-index: 1;
   margin-inline: auto;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.info-box .paypal-success {
+  margin-inline: auto;
+  width: 100%;
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #499626;
+  background-color: #bad8ac;
+  border-radius: 12px;
+  padding: 8px;
+  border: 2px solid #499626;
+  font-weight: 600;
 }
 
 /* for mobile devices in landscape */
@@ -378,6 +398,7 @@ body {
 
   .button-long-blue,
   .button-long-pink,
+  .button-long-PP,
   .upload-button {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 1rem;
@@ -420,7 +441,8 @@ body {
 
   .button-long-blue,
   .button-long-pink,
-  .upload-button {
+  .upload-button,
+  .button-long-PP {
     font-size: clamp(0.95rem, 2.2vw, 0.75rem);
   }
 }
@@ -437,14 +459,19 @@ body {
   }
 }
 
+/* intended for 1920x1080 */
 @media screen and (min-width: 1367px) {
+  .form-input {
+    padding: 0.25rem;
+    padding-inline: 0.5rem;
+  }
+
   .page-title {
-    width: 50vw;
+    width: 40vw;
   }
 
   .page-info {
-    /* margin-inline: auto; */
-    width: 50vw;
+    width: 40vw;
   }
 
   .page-info.form {
@@ -457,7 +484,88 @@ body {
   }
 
   .page-title {
-    margin-top: 12rem;
+    margin-top: 10rem;
+    font-size: clamp(1.8rem, 2.2vw, 0.75rem);
+  }
+
+  .page-info {
+    margin-top: 2rem;
+  }
+
+  .info-title {
+    font-size: clamp(1.1rem, 2.2vw, 0.75rem);
+  }
+
+  .info-text p,
+  .info-text ul {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    line-height: 1.2rem;
+  }
+
+  .info-counter {
+    font-size: clamp(1.3rem, 2.2vw, 0.75rem);
+  }
+
+  .form-select {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 0.65rem;
+  }
+
+  .form-radio-label,
+  .form-label,
+  .info-box .form-error-message,
+  .form-input {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+  }
+
+  .button-long-blue,
+  .button-long-pink,
+  .upload-button,
+  .button-long-PP {
+    font-size: clamp(0.5rem, 2.2vw, 0.75rem);
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .paypal-buttons {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .paypal-buttons {
+    width: 80%;
+  }
+}
+
+/* intended for the largest screens */
+@media screen and (min-width: 1921px) {
+  .paypal-buttons {
+    z-index: 1;
+    margin-inline: auto;
+    width: 60%;
+  }
+
+  .page-title {
+    width: 40vw;
+  }
+
+  .page-info {
+    width: 40vw;
+  }
+
+  .page-info.form {
+    width: 35vw;
+    margin-inline: auto;
+  }
+
+  .info-box {
+    padding: 64px;
+  }
+
+  .page-title {
+    margin-top: 14rem;
     font-size: clamp(2rem, 2.2vw, 0.75rem);
   }
 
@@ -489,28 +597,9 @@ body {
 
   .button-long-blue,
   .button-long-pink,
-  .upload-button {
+  .upload-button,
+  .button-long-PP {
     font-size: clamp(0.5rem, 2.2vw, 0.75rem);
     padding: 1rem;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .paypal-buttons {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .paypal-buttons {
-    width: 80%;
-  }
-}
-
-@media screen and (min-width: 1921px) {
-  .paypal-buttons {
-    z-index: 1;
-    margin-inline: auto;
-    width: 60%;
   }
 }

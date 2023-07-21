@@ -93,6 +93,8 @@ export default function Home() {
                               </ul>
 
                          </div>
+                         <br />
+                         <a className="button-long-blue" href="assets/files/schedule-quitel2023.pdf" download>Download program</a>
                     </motion.div>
 
                     <motion.div className="info-box"

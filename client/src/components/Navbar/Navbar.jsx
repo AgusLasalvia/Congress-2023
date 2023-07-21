@@ -9,7 +9,6 @@ export default function Navbar() {
      const navigate = useNavigate();
      window.addEventListener("orientationchange", () => {
           setIsLandscape(!isLandscape);
-          // console.log("orientation changed");
      });
 
      // Toggles css .open class on nav component
@@ -32,8 +31,6 @@ export default function Navbar() {
      }
 
      useEffect(() => {
-          // console.log("isMobile: " + isMobile);
-          // console.log("landscape mode: " + isLandscape);
      }, [isLandscape, isMobile])
 
      return (
@@ -68,39 +65,39 @@ export default function Navbar() {
                     <nav role="navigation" id="nav">
                          <ul id="menu">
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/">Home</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/about">About</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/committees">Committees</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/registration">Registration</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/speakers">Speakers</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/abstract-submission">Abstract submission</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/venue">Venue</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/hotel">Hotel</NavLink>
                               </motion.li>
 
-                              <motion.li whileHover={{ scale: [null, 1.15, 1.10] }} transition={{ duration: 0.2 }} whileTap={{ scale: 1 }}>
+                              <motion.li transition={{ duration: 0.1 }} whileTap={{ scale: 0.9 }}>
                                    <NavLink className="nav-link" to="/contact">Contact us</NavLink>
                               </motion.li>
 

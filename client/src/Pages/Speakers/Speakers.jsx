@@ -47,7 +47,10 @@ export default function Speakers() {
 
                                    <li>Dr. <a href="https://ri.conicet.gov.ar/author/1709" rel="noreferrer" target="_blank">Alfredo Juan</a>, Department of Physics Universidad Nacional del Sur, Bahía Blanca, Argentina.</li>
                               </ul>
+
                          </div>
+                         <br />
+                         <a className="button-long-blue" href="assets/files/schedule-quitel2023.pdf" download>Download program</a>
                     </div>
                </div>
                <Footer />

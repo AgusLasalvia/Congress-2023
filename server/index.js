@@ -4,17 +4,22 @@ const Register = require("./Models/registration");
 const Abstract = require("./Models/abstracts");
 const mongoose = require("mongoose");
 
+// MercadoPago Checkout Pro API
+// const mercadopago = require("mercadopago");
+// mercadopago.configure({
+//   access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
+// });
+
 // Google API required modules
-const authentication = require("./js/google-sheet");
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
-//Google Authentication init
+
+// Google Authentication credentials init
 const auth = new google.auth.GoogleAuth({
-    //Keyfile are the credentials given by Google Developer site
-    keyFile: "",
-    scopes: ["https://www.googleapis.com/auth/drive"],
+  keyFile: "./credential.json",
+  scopes: ["https://www.googleapis.com/auth/drive"],
 });
 
 // Express modules
@@ -25,27 +30,24 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Read .env
+// Read .env from railway
 require("dotenv").config();
 
 // Email configuration
 const mail = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  //default port for send mail via Gmail
-  port: 465,
+  port: 465,  // Default Gmail smtp port
   secure: true,
   auth: {
-    //Email user
-    user: "",
-    //Password generated for apps
-    pass: "",
+    user: "aguslblumenfeld@gmail.com", 
+    pass: "lnfzwfsumfidaxjd", // Password created from gmail for apps
   },
 });
 
 // Mongoose configuration
-mongoose.connect(process.env.MONGODB);
+mongoose.connect(process.env.MONGODB); // MongoDB connection String
 db = mongoose.connection.once("open", () => {
-  console.log("Mongodb connected");
+  console.log("Mongodb connected"); // Connnection verification message
 });
 
 // Express conficurations
@@ -57,7 +59,7 @@ app.use(fileUpload());
 
 // Home redirection Route
 app.get("/", (req, res) => {
-  res.redirect("https://quitel23.site/");
+  res.redirect("https://quitel23.site/Quitel/");
 });
 
 // Routes POST
@@ -71,18 +73,18 @@ app.post("/pre-registration", (req, res) => {
     })
     .then((result) => {
       if (result == null) {
+
         // Save data on MongoDB
         postData.save();
 
         // Send confirmation mail
         SendMail(
           data,
-          "Pre registration to QUITEL 2023 completed successfully",
+          "Pre registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
           "QUITEL 2023 Pre Registration"
         );
         res.json("success");
       } else {
-        //Response to Frontend if username already exist in DB
         res.json("already-pre-registered");
       }
     });
@@ -91,32 +93,35 @@ app.post("/pre-registration", (req, res) => {
 // Registration Data Form Receiver
 app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
-  console.log(data)
+  console.log(data);
   let postData = new Register(data);
   Register.findOne({
-    email: data["email"],
+    email: data["email"], // Search for existing email on MongoDB
   }).then((result) => {
     if (result == null) {
+
       // MongoDB successfull
       postData.save();
 
       // Send mailOptions
       SendMail(
         data,
-        "Registration to QUITEL 2023 completed successfully",
+        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
         "QUITEL 2023 Registration"
       );
 
-      res.json("success");
+      res.json("success"); // Response to Frontend
     } else {
-      res.json("already-registered");
+      res.json("already-registered"); // Response to Frontend
     }
   });
 });
 
 app.post("/registration-files", async (req, res) => {
-  const files = req.files;
-  console.log(files)
+  const files = req.files; // Get all files from incoming Form
+  console.log(files);
+
+  // Check existing files, if exists, save it on Google Drive
   if (files.registration != (undefined || null)) {
     await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID);
   }
@@ -126,36 +131,28 @@ app.post("/registration-files", async (req, res) => {
   if (files.accompanying != (undefined || null)) {
     await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
   }
-  res.json('submitted-successfully');
+  res.json("submitted-successfully");
 });
 
 // Abstract Data Form Submition
 app.post("/submit-abstract-data", (req, res) => {
-  const body = req.body.abstract;
-  let postData = new Abstract(body);
+  const body = req.body.abstract; // Get incoming Form Data
+  let postData = new Abstract(body); // Declare a new model with Form data
   console.log(body);
-  Abstract.findOne({
-    email: body["email"],
-  }).then((result) => {
-    if (result == null) {
-      postData.save();
-      res.json("data-validated");
-      SendMail(
+  postData.save();
+  res.json("data-validated");
+  SendMail(
         body,
         "Abstract sent successfully, you will be notified if it has been approved,\n\
-      otherwise you will be asked for modifications",'QUITEL 2023 Abstract Submition'
-      );
-    } else {
-      res.json("already-submitted");
-    }
-  });
+      otherwise you will be asked for modifications",
+        "QUITEL 2023 Abstract Submition"
+  );
 });
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
+  // All same as registraiton-files
   const { files } = req;
-  // Check for existing files
-  // In case it exists, save it on a google drive folder
   console.log(files);
   if (files.editableFormat != (undefined || null)) {
     await uploadFile(files.editableFormat, process.env.ABSTRACT_FOLDER_ID);
@@ -163,7 +160,6 @@ app.post("/submit-abstract-files", async (req, res) => {
   if (files.pdfFormat != (undefined || null)) {
     await uploadFile(files.pdfFormat, process.env.ABSTRACT_FOLDER_ID);
   }
-  //Response to Frontend
   res.json("submitted-successfully");
 });
 
@@ -181,7 +177,7 @@ function SendMail(receiver, message, subject) {
     if (err) {
       console.log(err);
     } else {
-      console.log("Email sent successfully: " + info.response);
+      console.log("Email sent successfully to: " + receiver["email"]);
     }
   });
 }
@@ -206,5 +202,62 @@ const uploadFile = async (fileObject, parentFolder) => {
       },
     });
 };
+
+// app.post("/create_preference", (req, res) => {
+//   const { description } = req.body;
+//   const values = {
+//     title: "",
+//     unit_price: 0,
+//     quantity: 1,
+//     currency_id: "USD",
+//   };
+//   switch (description) {
+//     case "postdocs":
+//       values.title = "Postdocs / Reasearchers / Professors ";
+//       values.unit_price = 405;
+//       break;
+//
+//     case "phdstudents":
+//       values.title = "Master / PhD Students ";
+//       values.unit_price = 270;
+//       break;
+//
+//     case "undergraduates":
+//       values.title = "Undergraduate Students ";
+//       values.unit_price = 225;
+//       break;
+//
+//     case "dinner":
+//       values.title = "Dinner ";
+//       values.unit_price = 1;
+//       break;
+//
+//     case "accompanying":
+//       values.title = "Accompanying ";
+//       values.unit_price = 180;
+//       break;
+//   }
+//
+//   console.log(values)
+//   let preference = {
+//     items: [values],
+//     back_urls: {
+//       success: "https://quitel23.site/registration-info",
+//       failure: "https://quitel23.site/registration-info",
+//       pending: "",
+//     },
+//     auto_return: "approved",
+//   };
+//   mercadopago.preferences
+//     .create(preference)
+//     .then(function (response) {
+//       res.json({ id: response.body.id });
+//     })
+//     .catch({
+//       function(error) {
+//         console.log(error);
+//       },
+//     });
+// });
 
 app.listen(port, () => console.info(`server started correctly`));
