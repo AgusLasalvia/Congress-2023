@@ -12,10 +12,6 @@ function App() {
   // smooth-scroll
   const lenis = new Lenis({ duration: 0.65 })
 
-  lenis.on('scroll', (e) => {
-    console.log(e)
-  })
-
   function raf(time) {
     lenis.raf(time)
     requestAnimationFrame(raf)

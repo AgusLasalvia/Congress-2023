@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../../../components/Footer/Footer";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
@@ -10,15 +10,17 @@ export default function Fees() {
      const navigateToForm = () => {
           navigate("/registration-form")
      }
+
+     const goBack = () => {
+          navigate("/registration");
+     }
+
+
      useEffect(() => {
           // Scrolls to top when rendered.
           // Otherwise when switching routes the user would remain at the same Y position in the window.
           window.scrollTo(0, 0);
      }, []);
-
-     const goBack = () => {
-          navigate("/registration");
-     }
 
 
      return (
@@ -141,7 +143,7 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by wire transfer to any of the bank accounts.
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by <i>wire transfer</i> to any of the bank accounts.
                                         <br />
                                         Please refer to the fees stated upon the top part of the page and specify either in PayPal or in the transfer which fees are being paid. We thank you in advance.
                                         <br />
@@ -154,6 +156,7 @@ export default function Fees() {
 
 
                          <div className="info-text">
+                              <div className="line heading"><p>Bank accounts</p></div>
                               <div className="line">
                                    <ul>
                                         {/* brou */}
@@ -167,7 +170,7 @@ export default function Fees() {
                                         <br />
 
                                         {/* santander  */}
-                                        <li><b>Santander Bank</b></li>
+                                        <li><b>Santander Bank (All amounts)</b></li>
                                         <ul>
                                              <li>075-5316316 ($ Uruguayan Peso)</li>
                                              <li>075-5316316 (U$S United States Dollar)</li>
@@ -175,13 +178,14 @@ export default function Fees() {
                                         </ul>
                                    </ul>
                               </div>
+
                          </div>
 
                          <br />
                          {/* Paypal.me */}
-                         <a className="button-long-PP" href="https://www.paypal.com/paypalme/fundaquim" rel="noreferrer" target="_blank">
-                              <i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
-                         </a>
+                         <NavLink className="button-long-PP" to="/payment">
+                              <span style={{ color: "black", fontWeight: "800" }}>I want to pay with </span><i><span style={{ color: "#002E80", fontWeight: "800" }}>Pay</span><span style={{ color: "#0094D3", fontWeight: "800" }}>Pal</span></i>
+                         </NavLink>
                     </div>
 
 
