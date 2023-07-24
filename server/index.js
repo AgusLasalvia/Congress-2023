@@ -1,8 +1,4 @@
-// MongoDB Schemas
-const preRegister = require("./Models/pre-register");
-const Register = require("./Models/registration");
-const Abstract = require("./Models/abstracts");
-const mongoose = require("mongoose");
+// ---------------IMPORTS--------------//
 
 // MercadoPago Checkout Pro API
 // const mercadopago = require("mercadopago");
@@ -10,17 +6,19 @@ const mongoose = require("mongoose");
 //   access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
 // });
 
+// MongoDB Schemas
+const preRegister = require("./Models/pre-register");
+const Register = require("./Models/registration");
+const Abstract = require("./Models/abstracts");
+const mongoose = require("mongoose");
+
+
 // Google API required modules
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
 
-// Google Authentication credentials init
-const auth = new google.auth.GoogleAuth({
-  keyFile: "./credential.json",
-  scopes: ["https://www.googleapis.com/auth/drive"],
-});
 
 // Express modules
 const fileUpload = require("express-fileupload");
@@ -29,6 +27,15 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 5000;
+
+
+// --------------CONFIGURATIONS -------------- //
+
+// Google Authentication credentials init
+const auth = new google.auth.GoogleAuth({
+  keyFile: "./credential.json",
+  scopes: ["https://www.googleapis.com/auth/drive"],
+});
 
 // Read .env from railway
 require("dotenv").config();
@@ -51,18 +58,62 @@ db = mongoose.connection.once("open", () => {
 });
 
 // Express conficurations
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParse.json());
 app.use(cors());
 app.use(fileUpload());
+
+
+// ---------------GLOBAL METHODS--------------- //
+
+// Email send method
+function SendMail(receiver, message, subject) {
+  // Mail individual options
+  let mailOptions = {
+    from: "aguslblumenfeld@gmail.com",
+    to: receiver["email"],
+    subject: subject,
+    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
+  };
+
+  mail.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email sent successfully to: " + receiver["email"]);
+    }
+  });
+}
+
+// Google Drive API configuration
+const uploadFile = async (fileObject, parentFolder) => {
+  const bufferStream = new stream.PassThrough();
+  bufferStream.end(fileObject["data"]);
+  const { data } = await google
+    .drive({
+      version: "v3",
+      auth: auth,
+    })
+    .files.create({
+      media: {
+        mimeType: fileObject["mimetype"],
+        body: bufferStream,
+      },
+      requestBody: {
+        name: fileObject["name"],
+        parents: [parentFolder],
+      },
+    });
+};
+
+
+// ----------------ROUTES----------------- //
 
 // Home redirection Route
 app.get("/", (req, res) => {
   res.redirect("https://quitel23.site/Quitel/");
 });
 
-// Routes POST
 app.post("/pre-registration", (req, res) => {
   const data = req.body.preRegistration;
   console.log(data);
@@ -163,45 +214,6 @@ app.post("/submit-abstract-files", async (req, res) => {
   res.json("submitted-successfully");
 });
 
-// Email send method
-function SendMail(receiver, message, subject) {
-  // Mail individual options
-  let mailOptions = {
-    from: "aguslblumenfeld@gmail.com",
-    to: receiver["email"],
-    subject: subject,
-    text: `${receiver["firstName"]} ${receiver["lastName"]} : \n ${message}`,
-  };
-
-  mail.sendMail(mailOptions, function (err, info) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Email sent successfully to: " + receiver["email"]);
-    }
-  });
-}
-
-// Google Drive API configuration
-const uploadFile = async (fileObject, parentFolder) => {
-  const bufferStream = new stream.PassThrough();
-  bufferStream.end(fileObject["data"]);
-  const { data } = await google
-    .drive({
-      version: "v3",
-      auth: auth,
-    })
-    .files.create({
-      media: {
-        mimeType: fileObject["mimetype"],
-        body: bufferStream,
-      },
-      requestBody: {
-        name: fileObject["name"],
-        parents: [parentFolder],
-      },
-    });
-};
 
 // app.post("/create_preference", (req, res) => {
 //   const { description } = req.body;
@@ -260,4 +272,5 @@ const uploadFile = async (fileObject, parentFolder) => {
 //     });
 // });
 
+// Server start and listend in the port given by Railway Host
 app.listen(port, () => console.info(`server started correctly`));
