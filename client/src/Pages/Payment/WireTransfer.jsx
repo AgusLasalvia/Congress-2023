@@ -140,7 +140,17 @@ export default function WireTransfer() {
                               <ul>
                                    <li>
                                         <div className="line">
-                                             <p>SWIFT:  BROUUYMMXXX</p> <CopyButton text="BROUUYMMXXX" />
+                                             <p>Account holder name: Fundación para el progreso de la Química (FUNDAQUIM)</p> <CopyButton text="Fundación para el progreso de la Química (FUNDAQUIM)" />
+                                        </div>
+                                   </li>
+                                   <li>
+                                        <div className="line">
+                                             <p>E-mail: contacto@fundaquim.org.uy</p> <CopyButton text="contacto@fundaquim.org.uy" />
+                                        </div>
+                                   </li>
+                                   <li>
+                                        <div className="line">
+                                             <p>SWIFT: BROUUYMMXXX</p> <CopyButton text="BROUUYMMXXX" />
                                         </div>
                                    </li>
                                    <li>
@@ -198,7 +208,17 @@ export default function WireTransfer() {
                               <ul>
                                    <li>
                                         <div className="line">
-                                             <p>SWIFT:  BSCHUYMM</p> <CopyButton text="BSCHUYMM" />
+                                             <p>Account holder name: Fundación para el progreso de la Química (FUNDAQUIM)</p> <CopyButton text="Fundación para el progreso de la Química (FUNDAQUIM)" />
+                                        </div>
+                                   </li>
+                                   <li>
+                                        <div className="line">
+                                             <p>E-mail: contacto@fundaquim.org.uy</p> <CopyButton text="contacto@fundaquim.org.uy" />
+                                        </div>
+                                   </li>
+                                   <li>
+                                        <div className="line">
+                                             <p>SWIFT: BSCHUYMM</p> <CopyButton text="BSCHUYMM" />
                                         </div>
                                    </li>
                                    <li>
