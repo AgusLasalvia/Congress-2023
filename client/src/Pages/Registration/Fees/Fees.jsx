@@ -145,7 +145,7 @@ export default function Fees() {
                          <div className="info-text">
                               <h1 className="info-title fees paypal">Registration fee payment</h1>
                               <div className="line">
-                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by <i>wire transfer</i> to any of the bank accounts.
+                                   <p>Payments can be made with <i>PayPal</i> using a credit or debit card, or by <i>wire transfer</i> from any bank account.
                                         <br />
                                         We thank you in advance.
                                         <br />
