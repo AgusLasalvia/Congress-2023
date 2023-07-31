@@ -40,7 +40,7 @@ export default function Payment() {
 
                          {/* Until June 30th */}
                          <div className="info-box">
-                              <h1 className="info-title fees">Early, until August 1st.</h1>
+                              <h1 className="info-title fees">Early, until August 18th.</h1>
                               <div className="info-text">
                                    {/* Level */}
                                    <div className="line heading">
@@ -77,7 +77,7 @@ export default function Payment() {
 
                          {/* From July 1st */}
                          <div className="info-box">
-                              <h1 className="info-title fees">From August 1st.</h1>
+                              <h1 className="info-title fees">From August 18th.</h1>
                               <div className="info-text">
                                    {/* Level */}
                                    <div className="line heading">
