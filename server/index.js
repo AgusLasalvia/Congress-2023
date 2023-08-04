@@ -1,11 +1,4 @@
 // ---------------IMPORTS--------------//
-
-// MercadoPago Checkout Pro API
-// const mercadopago = require("mercadopago");
-// mercadopago.configure({
-//   access_token: process.env.MERCADOPAGO_TOCKEN //Access tocken to the API
-// });
-
 // MongoDB Schemas
 const preRegister = require("./Models/pre-register");
 const Register = require("./Models/registration");
@@ -18,23 +11,21 @@ const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const stream = require("stream");
 
-
-
 // Express modules
-const fileUpload = require("express-fileupload");
-const bodyParse = require("body-parser");
-const express = require("express");
+const fileUpload = require("express-fileupload"); // Express file upload
+const bodyParse = require("body-parser"); // Express file parser for parsing JSON
+const express = require("express"); 
 const cors = require("cors");
-const app = express();
 const port = process.env.PORT || 5000;
+const app = express();
 
 
 // --------------CONFIGURATIONS -------------- //
 
 // Google Authentication credentials init
 const auth = new google.auth.GoogleAuth({
-  keyFile: "./credential.json",
-  scopes: ["https://www.googleapis.com/auth/drive"],
+  keyFile: "./credential.json", // Key file with credentials
+  scopes: ["https://www.googleapis.com/auth/drive"], // Google Drive API url
 });
 
 // Read .env from railway
@@ -43,10 +34,10 @@ require("dotenv").config();
 // Email configuration
 const mail = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,  // Default Gmail smtp port
+  port: 465,  // Default Gmail SMTP  port
   secure: true,
   auth: {
-    user: "aguslblumenfeld@gmail.com", 
+    user: "aguslblumenfeld@gmail.com", // Sender email
     pass: "lnfzwfsumfidaxjd", // Password created from gmail for apps
   },
 });
@@ -146,26 +137,16 @@ app.post("/registration-data", (req, res) => {
   const data = req.body.registration;
   console.log(data);
   let postData = new Register(data);
-  Register.findOne({
-    email: data["email"], // Search for existing email on MongoDB
-  }).then((result) => {
-    if (result == null) {
-
-      // MongoDB successfull
-      postData.save();
-
-      // Send mailOptions
-      SendMail(
-        data,
-        "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
-        "QUITEL 2023 Registration"
-      );
-
-      res.json("success"); // Response to Frontend
-    } else {
-      res.json("already-registered"); // Response to Frontend
-    }
-  });
+  // MongoDB successfull
+  postData.save();
+  
+  // Send mailOptions
+  SendMail(
+    data,
+    "Registration to QUITEL 2023 Montevideo-Uruguay completed successfully",
+    "QUITEL 2023 Registration"
+  );
+  res.json("success"); // Response to Frontend
 });
 
 app.post("/registration-files", async (req, res) => {
@@ -190,19 +171,27 @@ app.post("/submit-abstract-data", (req, res) => {
   const body = req.body.abstract; // Get incoming Form Data
   let postData = new Abstract(body); // Declare a new model with Form data
   console.log(body);
+
+  // MongoDB save
   postData.save();
+
+  // Response to Front End
   res.json("data-validated");
+
+  // Send mailOptions
   SendMail(
-        body,
-        "Abstract sent successfully, you will be notified if it has been approved,\n\
+    body,
+    "Abstract sent successfully, you will be notified if it has been approved,\n\
       otherwise you will be asked for modifications",
-        "QUITEL 2023 Abstract Submition"
+    "QUITEL 2023 Abstract Submition"
   );
 });
 
 // Abstract Files Form Submition
 app.post("/submit-abstract-files", async (req, res) => {
-  // All same as registraiton-files
+
+  // If there is any file in the incoming form
+  // Save it in the Google Drive folder
   const { files } = req;
   console.log(files);
   if (files.editableFormat != (undefined || null)) {
@@ -211,66 +200,8 @@ app.post("/submit-abstract-files", async (req, res) => {
   if (files.pdfFormat != (undefined || null)) {
     await uploadFile(files.pdfFormat, process.env.ABSTRACT_FOLDER_ID);
   }
-  res.json("submitted-successfully");
+  res.json("submitted-successfully"); // Response to frontend request
 });
-
-
-// app.post("/create_preference", (req, res) => {
-//   const { description } = req.body;
-//   const values = {
-//     title: "",
-//     unit_price: 0,
-//     quantity: 1,
-//     currency_id: "USD",
-//   };
-//   switch (description) {
-//     case "postdocs":
-//       values.title = "Postdocs / Reasearchers / Professors ";
-//       values.unit_price = 405;
-//       break;
-//
-//     case "phdstudents":
-//       values.title = "Master / PhD Students ";
-//       values.unit_price = 270;
-//       break;
-//
-//     case "undergraduates":
-//       values.title = "Undergraduate Students ";
-//       values.unit_price = 225;
-//       break;
-//
-//     case "dinner":
-//       values.title = "Dinner ";
-//       values.unit_price = 1;
-//       break;
-//
-//     case "accompanying":
-//       values.title = "Accompanying ";
-//       values.unit_price = 180;
-//       break;
-//   }
-//
-//   console.log(values)
-//   let preference = {
-//     items: [values],
-//     back_urls: {
-//       success: "https://quitel23.site/registration-info",
-//       failure: "https://quitel23.site/registration-info",
-//       pending: "",
-//     },
-//     auto_return: "approved",
-//   };
-//   mercadopago.preferences
-//     .create(preference)
-//     .then(function (response) {
-//       res.json({ id: response.body.id });
-//     })
-//     .catch({
-//       function(error) {
-//         console.log(error);
-//       },
-//     });
-// });
 
 // Server start and listend in the port given by Railway Host
 app.listen(port, () => console.info(`server started correctly`));
