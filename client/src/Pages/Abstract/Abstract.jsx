@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { motion } from "framer-motion";
 
@@ -39,9 +39,9 @@ export default function Abstract() {
                               </div>
                          </div>
                          {/* button */}
-                         <a className="button-long-pink" href="https://docs.google.com/document/d/1DG2FIFkAObM5T6Ieq0-NB5TVfEwQ0PjqkFTK7xs90VY/edit" rel="noreferrer" target="_blank">Download abstract template</a>
+                         {/* <a className="button-long-pink" href="https://docs.google.com/document/d/1DG2FIFkAObM5T6Ieq0-NB5TVfEwQ0PjqkFTK7xs90VY/edit" rel="noreferrer" target="_blank">Download abstract template</a> */}
                          {/* button */}
-                         <NavLink className="button-long-blue" to="/abstract-submission-form">Submit an abstract</NavLink>
+                         {/* <NavLink className="button-long-blue" to="/abstract-submission-form">Submit an abstract</NavLink> */}
 
                     </div>
                </div>
