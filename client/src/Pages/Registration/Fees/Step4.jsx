@@ -25,7 +25,7 @@ export default function Step3({ formData, setFormData }) {
                               checked={formData.modality === "presentation"}
                               onChange={(e) => setFormData({ ...formData, modality: e.target.value })}
                          />
-                         <label className="form-radio-label">Oral Presentation<span>*</span></label>
+                         <label className="form-radio-label">Oral Presentation</label>
                     </div>
                     <div className="form-radio-wrapper">
                          <input type="radio" name="FirstSet" className="form-radio" value="poster"

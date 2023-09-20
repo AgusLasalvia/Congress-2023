@@ -9,7 +9,7 @@ export default function ErrorElement() {
                exit={{ opacity: 0 }}
           >
                <img src="assets/svg/quitel-letters.svg" alt="" className="quitel-letters" />
-               <h1 className="error-h1">Oops! We are still working on this feature!</h1>
+               <h1 className="error-h1">Oops! Page not found!</h1>
                <br />
                <NavLink to="/">Go to the homepage</NavLink>
           </motion.div>
