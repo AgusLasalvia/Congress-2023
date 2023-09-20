@@ -1,3 +1,4 @@
+// import { NavLink } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import { motion } from "framer-motion";
@@ -28,7 +29,7 @@ export default function Abstract() {
                     <div className="info-box">
                          <div className="info-text">
                               <div className="line">
-                                   <p>Abstract submission deadline: <br /> <b>August 1st</b></p>
+                                   <p>Abstract submission deadline: <br /> <b>August 18th</b></p>
                               </div>
                               <div className="line">
                                    <p>If modifications are needed they will be requested before: <br /><b>September 1st</b></p>
