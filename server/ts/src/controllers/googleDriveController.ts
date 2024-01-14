@@ -3,18 +3,17 @@ import stream from "stream";
 // Google Drive API configuration
 // Google Authentication credentials init
 const auth = new google.auth.GoogleAuth({
-    keyFile: "./credential.json", // Key file with credentials
+    keyFile: "../credential.json", // Key file with credentials
     scopes: ["https://www.googleapis.com/auth/drive"], // Google Drive API url
 });
 
 export const uploadFile = async (fileObject: any, parentFolder: string) => {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(fileObject["data"]);
-    const { data } = await google
-        .drive({
-            version: "v3",
-            auth: auth,
-        })
+    await google.drive({
+        version: "v3",
+        auth: auth,
+    })
         .files.create({
             media: {
                 mimeType: fileObject["mimetype"],

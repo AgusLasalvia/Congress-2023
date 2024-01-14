@@ -16,8 +16,8 @@ export const searchExistenPreRegistration = async (req: Request, res: Response, 
 
 // Create pre-registration
 export const createPreRegistration = async (req: Request, res: Response) => {
-    const { email } = req.body;
-    const newPreRegistration = new preRegister({ email });
+    const body = req.body;
+    const newPreRegistration = new preRegister(body);
     await newPreRegistration.save().then(() => {
         res.status(201).json({ message: 'success' });
     });

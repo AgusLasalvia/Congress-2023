@@ -10,20 +10,21 @@ export const createAbstract = async (req: Request, res: Response, next: NextFunc
     });
 };
 
-export const uploadAbstractFiles = async (req: any, res: Response, next: NextFunction) => {
+export const uploadAbstractFiles = async (req: Request, res: Response, next: NextFunction) => {
     const files = req?.files; // Get all files from incoming Form
-    console.log(files);
 
     // Check existing files, if exists, save it on Google Drive
     if (files?.registration != (undefined || null)) {
-        await uploadFile(files.registration, "process.env.REGISTRATION_FOLDER_ID")
+        await uploadFile(files.registration, process.env.REGISTRATION_FOLDER_ID as string)
+        console.log("registration file uploaded")
     }
     if (files?.dinner != (undefined || null)) {
-        await uploadFile(files.dinner, "process.env.DINNER_FOLDER_ID");
+        await uploadFile(files.dinner, process.env.DINNER_FOLDER_ID as string);
+        console.log("dinner file uploaded")
     }
     if (files?.accompanying != (undefined || null)) {
-        await uploadFile(files.accompanying, "process.env.ACCOMPANYING_FOLDER_ID");
+        await uploadFile(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID as string);
+        console.log("accompaning file uploaded")
     }
-
     next()
 };
