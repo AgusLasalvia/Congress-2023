@@ -22,16 +22,18 @@ const createAbstract = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
 exports.createAbstract = createAbstract;
 const uploadAbstractFiles = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const files = req === null || req === void 0 ? void 0 : req.files; // Get all files from incoming Form
-    console.log(files);
     // Check existing files, if exists, save it on Google Drive
     if ((files === null || files === void 0 ? void 0 : files.registration) != (undefined || null)) {
-        yield (0, googleDriveController_1.uploadFile)(files.registration, "process.env.REGISTRATION_FOLDER_ID");
+        yield (0, googleDriveController_1.uploadFile)(files.registration, process.env.REGISTRATION_FOLDER_ID);
+        console.log("registration file uploaded");
     }
     if ((files === null || files === void 0 ? void 0 : files.dinner) != (undefined || null)) {
-        yield (0, googleDriveController_1.uploadFile)(files.dinner, "process.env.DINNER_FOLDER_ID");
+        yield (0, googleDriveController_1.uploadFile)(files.dinner, process.env.DINNER_FOLDER_ID);
+        console.log("dinner file uploaded");
     }
     if ((files === null || files === void 0 ? void 0 : files.accompanying) != (undefined || null)) {
-        yield (0, googleDriveController_1.uploadFile)(files.accompanying, "process.env.ACCOMPANYING_FOLDER_ID");
+        yield (0, googleDriveController_1.uploadFile)(files.accompanying, process.env.ACCOMPANYING_FOLDER_ID);
+        console.log("accompaning file uploaded");
     }
     next();
 });

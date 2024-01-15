@@ -24,8 +24,8 @@ const searchExistenPreRegistration = (req, res, next) => __awaiter(void 0, void 
 exports.searchExistenPreRegistration = searchExistenPreRegistration;
 // Create pre-registration
 const createPreRegistration = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email } = req.body;
-    const newPreRegistration = new preRegistrationModel_1.preRegister({ email });
+    const body = req.body;
+    const newPreRegistration = new preRegistrationModel_1.preRegister(body);
     yield newPreRegistration.save().then(() => {
         res.status(201).json({ message: 'success' });
     });

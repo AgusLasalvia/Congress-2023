@@ -18,14 +18,13 @@ const stream_1 = __importDefault(require("stream"));
 // Google Drive API configuration
 // Google Authentication credentials init
 const auth = new googleapis_1.google.auth.GoogleAuth({
-    keyFile: "./credential.json", // Key file with credentials
+    keyFile: "../credential.json",
     scopes: ["https://www.googleapis.com/auth/drive"], // Google Drive API url
 });
 const uploadFile = (fileObject, parentFolder) => __awaiter(void 0, void 0, void 0, function* () {
     const bufferStream = new stream_1.default.PassThrough();
     bufferStream.end(fileObject["data"]);
-    const { data } = yield googleapis_1.google
-        .drive({
+    yield googleapis_1.google.drive({
         version: "v3",
         auth: auth,
     })
