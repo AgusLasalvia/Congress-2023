@@ -1,13 +1,16 @@
 header {
+  width: 100%;
   position: fixed;
   top: 0;
   display: inline-block;
-  margin-bottom: 50px;
   z-index: 5;
   user-select: none;
 }
 
 .header-visible {
+  height: 19vh;
+  background-color: var(--white);
+  border-radius: 0 0 20px 20px;
   position: relative;
   display: flex;
   align-items: center;
@@ -27,6 +30,10 @@ header {
 }
 
 @media screen and (max-width: 1366px) {
+  .header-visible {
+    height: 10vh;
+  }
+
   nav {
     position: fixed;
     top: 0rem;
@@ -94,7 +101,7 @@ nav.open {
 /* hamburger */
 #menu-toggle {
   position: absolute;
-  margin-top: -0.5rem;
+  margin-top: 0;
   right: clamp(2rem, 2.2vw, 0.65rem);
   display: flex;
   flex-direction: column;
@@ -140,17 +147,18 @@ nav.open {
   align-self: flex-end;
 }
 
-#menu-toggle input:checked ~ span {
+#menu-toggle input:checked~span {
   opacity: 1;
   transform: rotate(45deg) translate(-3px, -1px);
   background: var(--darkpink);
 }
-#menu-toggle input:checked ~ span:nth-last-child(2) {
+
+#menu-toggle input:checked~span:nth-last-child(2) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-#menu-toggle input:checked ~ span:nth-last-child(1) {
+#menu-toggle input:checked~span:nth-last-child(1) {
   transform: rotate(-45deg) translate(0, -1px);
 }
 
@@ -187,6 +195,7 @@ nav.open {
   .nav-link {
     font-size: clamp(1rem, 2.2vw, 0.65rem);
   }
+
   .menu-stamp {
     width: 5rem;
   }
