@@ -9,17 +9,17 @@ config(); // Dotenv configuration
 const baseUrl: string = '/api/v1'
 
 //Routes imports
-import preRegistration from './routes/preRegistrationRoute';
-import registration from './routes/registrationRoute';
-import abstract from './routes/abstractRoute';
+import preRegistration from './routes/preRegistration.routes';
+import registration from './routes/registration.routes';
+import abstract from './routes/abstract.routes';
 
 // Server setup
 const app: Application = express();
 
 // Mongoose configuration
 connect(process.env.MONGODB as string)
-    .then(() => console.log('MongoDB connected successfully'))
-    .catch((err: Error) => console.log(err.message));
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch((err: Error) => console.log(err.message));
 
 // Express configuration
 app.use(cors());
@@ -33,12 +33,13 @@ app.use(baseUrl, preRegistration); // Pre-registration route
 
 // Redirect to website
 app.get('*', (req: Request, res: Response) => {
-    res.redirect('https://quitel23.site/')
+  res.redirect('https://quitel23.site/')
 })
+
 
 // Server start
 app.listen(3030, () => {
-    console.log(`
+  console.log(`
 SERVER START SUCCESSFULLY
 Server started on http://localhost:3030
     `)

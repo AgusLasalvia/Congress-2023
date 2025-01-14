@@ -1,0 +1,7 @@
+creadentials.json
+package-lock.json
+node_modules.json
+
+.env
+.env.local
+

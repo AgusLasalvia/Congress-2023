@@ -1,4 +1,4 @@
-import { searchExistenPreRegistration, createPreRegistration } from "../controllers/preRegistrationController";
+import { searchExistenPreRegistration, createPreRegistration } from "../controllers/preRegistration.controller";
 import { Router } from "express";
 
 const router = Router();
