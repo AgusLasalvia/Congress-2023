@@ -9,3 +9,8 @@ After completing the pre-registration, if the individual confirms their attendan
 This data is stored in a MongoDB database since there is no need for relationships between the various database tables.
 
 Once registered, if they are participants, they can access the final form where they can submit different abstracts or posters, which will be evaluated by the committee in charge of this edition of the conference.
+
+
+
+- Front-End Developer -> Joaquin Gomez
+- Back-End  Developer -> Agustin Lasalvia
