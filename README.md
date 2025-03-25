@@ -20,7 +20,7 @@ For **participants**, there will be an additional **final form** where they can 
 
 ## 🛠️ Tech Stack
 
-- **Front-End**: 🌐 React / Astro
+- **Front-End**: 🌐 React
 - **Back-End**: 🚀 Node.js / Express
 - **Database**: 🗄️ MongoDB
 
