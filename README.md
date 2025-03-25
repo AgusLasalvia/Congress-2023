@@ -1,16 +1,40 @@
-This is the Official repository for the landing page of the QUITEL (XLVI International Congress of Theoretical Chemists of Latin Expression).
+# 🎭 QUITEL - XLVI International Congress of Theoretical Chemists of Latin Expression
 
-In association with the deparment of BioInformatic at the Uruguayan Public University - UDELAR.
+Welcome to the **official repository** for the landing page of **QUITEL (XLVI International Congress of Theoretical Chemists of Latin Expression).** 🎉
 
-The focus of this website is to allow different users who wish to attend this conference, either as participants or guests, to preliminarily complete a pre-registration form, thus highlighting their interest in attending.
+---
 
-After completing the pre-registration, if the individual confirms their attendance, they must fill out the full registration form.
+## 🔬 About QUITEL
 
-This data is stored in a MongoDB database since there is no need for relationships between the various database tables.
+📍 **In association with the Department of Bioinformatics at the Uruguayan Public University - UDELAR**.
 
-Once registered, if they are participants, they can access the final form where they can submit different abstracts or posters, which will be evaluated by the committee in charge of this edition of the conference.
+The goal of this website is to provide a **preliminary pre-registration form** for those interested in attending the congress, whether as **participants** or **guests**.
+
+Once pre-registered, attendees who confirm their participation will need to **complete a full registration form**.
+
+🗃️ The collected data is stored in a **MongoDB database**, as it does not require relational structures.
+
+For **participants**, there will be an additional **final form** where they can submit **abstracts** or **posters**, which will be **evaluated by the committee** in charge of this edition of the conference.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Front-End**: 🌐 React / Astro
+- **Back-End**: 🚀 Node.js / Express
+- **Database**: 🗄️ MongoDB
+
+---
+
+## 👥 Development Team
+
+- **Front-End Developer**: 🎨 Joaquin Gomez
+- **Back-End Developer**: 🔧 Agustin Lasalvia
 
 
+📢 Follow us on **social media** for updates!
 
-- Front-End Developer -> Joaquin Gomez
-- Back-End  Developer -> Agustin Lasalvia
+---
+
+🚀 **Join us at QUITEL and be part of the future of Theoretical Chemistry!** 🧪
+
